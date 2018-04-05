@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // go to another page
               //  Intent anothorpage = new Intent(this,ManageWallet.class);
                 //this.startActivity(anothorpage);
+                pwd.get
             }
             else
             {
