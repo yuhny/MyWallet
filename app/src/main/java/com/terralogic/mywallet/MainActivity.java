@@ -9,13 +9,14 @@ import android.support.v7.widget.ButtonBarLayout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import java.lang.reflect.Array;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button btnSo1, btnSo2, btnSo3, btnSo4, btnSo5, btnSo6, btnSo7, btnSo8, btnSo9, btnSo0;
-    RadioButton radioBtn1, radioBtn2,radioBtn3,radioBtn4,radioBtn5;
+    Button btnNum1, btnNum2, btnNum3, btnNum4, btnNum5, btnNum6, btnNum7, btnNum8, btnNum9, btnNum0;
+    RadioButton radioBtn1, radioBtn2, radioBtn3, radioBtn4, radioBtn5;
     private String pwdLetters[] = new String[5];
     private int mCountClick = 0;
 
@@ -26,87 +27,97 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnSo1 = (Button) findViewById(R.id.buttonSo1);
-        btnSo2 = (Button) findViewById(R.id.buttonSo2);
-        btnSo3 = (Button) findViewById(R.id.buttonSo3);
-        btnSo4 = (Button) findViewById(R.id.buttonSo4);
-        btnSo5 = (Button) findViewById(R.id.buttonSo5);
-        btnSo6 = (Button) findViewById(R.id.buttonSo6);
-        btnSo7 = (Button) findViewById(R.id.buttonSo7);
-        btnSo8 = (Button) findViewById(R.id.buttonSo8);
-        btnSo9 = (Button) findViewById(R.id.buttonSo9);
-        btnSo0 = (Button) findViewById(R.id.buttonSo0);
+        btnNum1 = (Button) findViewById(R.id.buttonNum1);
+        btnNum2 = (Button) findViewById(R.id.buttonNum2);
+        btnNum3 = (Button) findViewById(R.id.buttonNum3);
+        btnNum4 = (Button) findViewById(R.id.buttonNum4);
+        btnNum5 = (Button) findViewById(R.id.buttonNum5);
+        btnNum6 = (Button) findViewById(R.id.buttonNum6);
+        btnNum7 = (Button) findViewById(R.id.buttonNum7);
+        btnNum8 = (Button) findViewById(R.id.buttonNum8);
+        btnNum9 = (Button) findViewById(R.id.buttonNum9);
+        btnNum0 = (Button) findViewById(R.id.buttonNum0);
 
-        radioBtn1 = (RadioButton)findViewById(R.id.radioSo1);
-        radioBtn2 = (RadioButton)findViewById(R.id.radioSo2);
-        radioBtn3 = (RadioButton)findViewById(R.id.radioSo3);
-        radioBtn4 = (RadioButton)findViewById(R.id.radioSo4);
-        radioBtn5 = (RadioButton)findViewById(R.id.radioSo5);
+        radioBtn1 = (RadioButton) findViewById(R.id.radioNum1);
+        radioBtn2 = (RadioButton) findViewById(R.id.radioNum2);
+        radioBtn3 = (RadioButton) findViewById(R.id.radioNum3);
+        radioBtn4 = (RadioButton) findViewById(R.id.radioNum4);
+        radioBtn5 = (RadioButton) findViewById(R.id.radioNum5);
 
-        btnSo1.setOnClickListener(this);
-        btnSo2.setOnClickListener(this);
-        btnSo3.setOnClickListener(this);
-        btnSo4.setOnClickListener(this);
-        btnSo5.setOnClickListener(this);
-        btnSo6.setOnClickListener(this);
-        btnSo7.setOnClickListener(this);
-        btnSo8.setOnClickListener(this);
-        btnSo9.setOnClickListener(this);
-        btnSo0.setOnClickListener(this);
+        btnNum1.setOnClickListener(this);
+        btnNum2.setOnClickListener(this);
+        btnNum3.setOnClickListener(this);
+        btnNum4.setOnClickListener(this);
+        btnNum5.setOnClickListener(this);
+        btnNum6.setOnClickListener(this);
+        btnNum7.setOnClickListener(this);
+        btnNum8.setOnClickListener(this);
+        btnNum9.setOnClickListener(this);
+        btnNum0.setOnClickListener(this);
 
         // Checking pwd exitence
 
-            SharedPreferences sharePreferences = getSharedPreferences(PREF_NAME,
-                   Context.MODE_PRIVATE);
-            String pwd = sharePreferences.getString("PWD", null);
+        SharedPreferences sharePreferences = getSharedPreferences(PREF_NAME,
+                Context.MODE_PRIVATE);
+        String pwd = sharePreferences.getString("PWD", null);
 
-            if(pwd != null) {
-                // go to another page
-              //  Intent anothorpage = new Intent(this,ManageWallet.class);
-                //this.startActivity(anothorpage);
-                pwd.get
-            }
-            else
+        if (pwd != null) {
+            // go to another page
+            //  Intent anothorpage = new Intent(this,ManageWallet.class);
+            //this.startActivity(anothorpage);
+            if (pwd.equals("PWD"))
+
             {
-
+                //  Intent anothorpage = new Intent(this,ManageWallet.class);
+                //this.startActivity(anothorpage);
+            } else {
+                TextView txt = (TextView) findViewById(R.id.text1);
+                txt.setText("Reenter your pass");
             }
+        } else {
+            fillPwdRadioBtn(mCountClick);
+        }
 
     }
 
     void fillPwdRadioBtn(int countClick) {
         switch (countClick) {
-            case 0: radioBtn1.setChecked(true);
+            case 0:
+                radioBtn1.setChecked(true);
                 break;
-            case 1: radioBtn2.setChecked(true);
+            case 1:
+                radioBtn2.setChecked(true);
                 break;
-            case 2: radioBtn3.setChecked(true);
+            case 2:
+                radioBtn3.setChecked(true);
                 break;
-            case 3: radioBtn4.setChecked(true);
+            case 3:
+                radioBtn4.setChecked(true);
                 break;
-            case 4: radioBtn5.setChecked(true);
+            case 4:
+                radioBtn5.setChecked(true);
         }
     }
 
     @Override
     public void onClick(View view) {
-        if(mCountClick > 5) {
+        if (mCountClick > 5) {
 
-            
+            return;
 
         }
-            pwdLetters[mCountClick] = ((Button) view).getText().toString();
-            fillPwdRadioBtn(mCountClick);
+        pwdLetters[mCountClick] = ((Button) view).getText().toString();
+        fillPwdRadioBtn(mCountClick);
 
-            String pwd = "";
-            for (int i = 0; i < pwdLetters.length; i++) {
-                // 1 . accumulate letter to have final string of pwd
-                String pwdLetter = pwdLetters[i];
-                pwd += pwdLetter;
-            }
+        String pwd = "";
+        for (int i = 0; i < pwdLetters.length; i++) {
+            // 1 . accumulate letter to have final string of pwd
+            String pwdLetter = pwdLetters[i];
+            pwd += pwdLetter;
+        }
 
 
-
-             if(mCountClick == 5) {
+        if (mCountClick == 5) {
             SharedPreferences sharePreferences = getSharedPreferences(PREF_NAME,
                     Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharePreferences.edit();
@@ -116,8 +127,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mCountClick++;
     }
-
-
 
 
 }
