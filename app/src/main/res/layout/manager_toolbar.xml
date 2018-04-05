@@ -3,21 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary">
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Wallet Manager"
-        android:textColor="#FFF"
-        android:textSize="25dp"
-        android:textStyle="bold" />
-
-
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="right"
-        android:src="@drawable/icon-user" />
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:gravity="center"-->
+        <!--android:text="text"-->
+        <!--android:textColor="#FFF"-->
+        <!--android:textSize="25dp"-->
+        <!--android:textStyle="bold" />-->
+    <!--<ImageView-->
+        <!--android:layout_width="50dp"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:layout_gravity="right"-->
+        <!--android:src="@drawable/" />-->
 </android.support.v7.widget.Toolbar>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imgCate"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/icon_smile" />
+
+        <TextView
+            android:id="@+id/txtExpense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/imgCate"
+            android:text="Em chua 18"
+            android:textSize="18dp"
+            android:layout_marginTop="5dp"
+            android:textColor="#000"
+            />
+        <TextView
+            android:id="@+id/txtDate"
+            android:layout_below="@id/txtExpense"
+            android:layout_toRightOf="@+id/imgCate"
+            android:layout_marginLeft="10dp"
+            android:text="5-4-2018"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="250.000 VNĐ"
+        android:textSize="20dp"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:gravity="right"
+        android:layout_gravity="center"/>
+</LinearLayout>
