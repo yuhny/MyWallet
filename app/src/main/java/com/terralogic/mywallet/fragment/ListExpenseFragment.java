@@ -20,7 +20,6 @@ import java.util.List;
 
 public class ListExpenseFragment extends Fragment {
     RecyclerView recyclerView;
-    FloatingActionButton fab;
     List<Expense> expenseList;
     ExpenseAdapter adapter;
 
@@ -50,8 +49,6 @@ public class ListExpenseFragment extends Fragment {
 
         adapter = new ExpenseAdapter(this.getContext(), expenseList);
         recyclerView.setAdapter(adapter);
-
-        fab = (FloatingActionButton) view.findViewById(R.id.fabAdd);
 
         return view;
     }
