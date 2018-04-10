@@ -1,5 +1,6 @@
 package com.terralogic.mywallet;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int mCountClick = 0;
     final String PREF_NAME = "com.terralogic.mywallet";
     String oldPassword;
+    @SuppressLint("CutPasteId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,13 +100,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String pwdLetter = pwdLetters[i];
             pwd += pwdLetter;
         }
-        if (mCountClick == 4 && oldPassword==null) {
-            Intent i = new Intent(this,MainActivity.class);
-            startActivity(i);
 
-            Intent k =  new Intent(this, ReLogin.class);
-            startActivity(k);
-            if()
+        if (mCountClick == 4 && oldPassword==null) {
+            Intent i = new Intent(this,ReLogin.class);
+            i.putExtra( "first_pass",pwd );
+            startActivity(i);
+            finish();
 //            SharedPreferences sharePreferences = getSharedPreferences(PREF_NAME,
 //                    Context.MODE_PRIVATE);
 //            SharedPreferences.Editor editor = sharePreferences.edit();
@@ -113,8 +114,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }else if(mCountClick==4 && oldPassword!=null){
             if(oldPassword.equals(pwd))
             {
+
                 Intent i = new Intent(this,ManageActivity.class);
                 startActivity(i);
+                finish();
             }
             else
             {
@@ -126,6 +129,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                radioBtn5.setChecked(false);
                return;
             }
+
         }
         mCountClick++;
     }
