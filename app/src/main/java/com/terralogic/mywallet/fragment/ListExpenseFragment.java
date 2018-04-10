@@ -23,6 +23,18 @@ public class ListExpenseFragment extends Fragment {
     List<Expense> expenseList;
     ExpenseAdapter adapter;
 
+
+    public ListExpenseFragment() {
+    }
+
+    public List<Expense> getExpenseList() {
+        return expenseList;
+    }
+
+    public void setExpenseList(List<Expense> expenseList) {
+        this.expenseList = expenseList;
+    }
+
     public static ListExpenseFragment newInstance() {
         ListExpenseFragment fragment = new ListExpenseFragment();
         return fragment;

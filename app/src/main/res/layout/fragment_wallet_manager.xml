@@ -8,7 +8,8 @@
         android:id="@+id/calendar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark">
+        android:background="@color/colorPrimaryDark"
+        android:clickable="true">
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fabBalance"
@@ -21,7 +22,7 @@
     </CalendarView>
 
     <FrameLayout
-        android:id="@+id/frameManage"
+        android:id="@+id/frameWallet"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

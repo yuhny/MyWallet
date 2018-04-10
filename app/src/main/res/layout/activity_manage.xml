@@ -10,15 +10,15 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/manager_toolbar" />
-
-    <!--<FrameLayout-->
-    <!--android:id="@+id/frameContent"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"></FrameLayout>-->
-    <fragment
-        android:id="@+id/fragmentManage"
-        android:name="com.terralogic.mywallet.fragment.WalletManageFragment"
+    <FrameLayout
+        android:id="@+id/frameManage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout="@layout/fragment_wallet_manager" />
+        android:layout_height="match_parent"></FrameLayout>
+
+    <!--<fragment-->
+        <!--android:id="@+id/fragmentManage"-->
+        <!--android:name="com.terralogic.mywallet.fragment.WalletManageFragment"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--tools:layout="@layout/fragment_wallet_manager" />-->
 </LinearLayout>
