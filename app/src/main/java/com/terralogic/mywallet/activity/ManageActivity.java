@@ -26,9 +26,15 @@ public class ManageActivity extends AppCompatActivity {
         mTitle = (TextView) findViewById(R.id.txtTitle);
 
         mTitle.setText("Wallet Manage");
+//        setTitle("Wallet Manage");
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.frameManage, WalletManageFragment.newInstance());
+        transaction.add(R.id.frameManage, new WalletManageFragment());
         transaction.commit();
     }
+//
+//    public void setTitle(String text){
+//        mTitle.setText(text.toString());
+//    }
+
 }
