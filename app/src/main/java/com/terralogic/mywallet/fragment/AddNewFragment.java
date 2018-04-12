@@ -36,13 +36,27 @@ public class AddNewFragment extends Fragment {
         layoutExpense = (LinearLayout) view.findViewById(R.id.layoutExpense);
 
         layoutIncome.setBackgroundResource(R.drawable.background_income);
-        layoutIncome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                layoutIncome.setBackgroundResource(R.drawable.background_income);
-                layoutExpense.setBackgroundResource(R.drawable.background_null);
-            }
-        });
+//        layoutIncome.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                layoutIncome.setBackgroundResource(R.drawable.background_income);
+//                layoutExpense.setBackgroundResource(R.drawable.background_null);
+//            }
+//        });
+//        layoutExpense.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                layoutExpense.setBackgroundResource(R.drawable.background_expense);
+//                layoutIncome.setBackgroundResource(R.drawable.background_null);
+//            }
+//        });
+        clickLayoutIncome();
+        clickLayoutExpense();
+
+        return view;
+    }
+
+    private void clickLayoutExpense() {
         layoutExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,12 +64,21 @@ public class AddNewFragment extends Fragment {
                 layoutIncome.setBackgroundResource(R.drawable.background_null);
             }
         });
+    }
 
-        return view;
+    private void clickLayoutIncome() {
+        layoutIncome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                layoutIncome.setBackgroundResource(R.drawable.background_income);
+                layoutExpense.setBackgroundResource(R.drawable.background_null);
+            }
+        });
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
 }
