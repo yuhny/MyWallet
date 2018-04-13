@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.ButtonBarLayout;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+
 
         btnNum1 = (Button) findViewById(R.id.buttonNum1);
         btnNum2 = (Button) findViewById(R.id.buttonNum2);
@@ -58,6 +61,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnNum8.setOnClickListener(this);
         btnNum9.setOnClickListener(this);
         btnNum0.setOnClickListener(this);
+
+
+
 
         // Checking pwd exitence
         SharedPreferences sharePreferences = getSharedPreferences(PREF_NAME,
@@ -106,11 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             i.putExtra( "first_pass",pwd );
             startActivity(i);
             finish();
-//            SharedPreferences sharePreferences = getSharedPreferences(PREF_NAME,
-//                    Context.MODE_PRIVATE);
-//            SharedPreferences.Editor editor = sharePreferences.edit();
-//            editor.putString("PWD", pwd);
-//            editor.commit();
+
         }else if(mCountClick==4 && oldPassword!=null){
             if(oldPassword.equals(pwd))
             {
