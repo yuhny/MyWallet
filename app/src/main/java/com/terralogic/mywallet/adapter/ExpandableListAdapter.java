@@ -114,7 +114,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         Item item = mlistDataItem.get( mlistDataGroup.get( groupPosition ) ).get( childPosition );
         textViewNameChild.setText( item.getmName() );
         textViewDateChild.setText( item.getmDate() );
-        textViewMoneyChild.setText(item.getmMoneyConsume());
+        textViewMoneyChild.setText(item.getmMoney());
 
         return convertView;
     }

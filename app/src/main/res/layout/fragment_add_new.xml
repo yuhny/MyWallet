@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_dialog"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <!--android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"-->
+        <LinearLayout
+            android:id="@+id/layoutIncome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/txtAddIncome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="@string/add_income"
+                android:textColor="@color/colorBlack"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutExpense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/txtAddExpense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="EXPENSE"
+                android:textColor="@color/colorBlack"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:gravity="bottom|center"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/txtAddMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="0,000"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/txtUnit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text=",000"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VNĐ"
+            android:textSize="30dp"
+            android:textColor="@color/colorPrimaryDark"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="@string/add_new_note"
+            android:textSize="25dp" />
+
+        <EditText
+            android:id="@+id/editNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/add_new_date"
+            android:textSize="25dp" />
+
+        <EditText
+            android:id="@+id/editDate"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:editable="false" />
+
+        <ImageView
+            android:id="@+id/imgAddDate"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/icon_smile" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.3"
+            android:text="@string/add_new_category"
+            android:textSize="25dp" />
+
+        <Spinner
+            android:id="@+id/spinnerCate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.7" />
+
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/icon_smile" />
+    </LinearLayout>
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="3"
+        android:rowCount="3">
+
+        <LinearLayout
+            android:layout_width="85dp"
+            android:layout_height="60dp"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="85dp"
+            android:layout_height="60dp"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="85dp"
+            android:layout_height="60dp"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="85dp"
+            android:layout_height="60dp"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="85dp"
+            android:layout_height="60dp"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="85dp"
+            android:layout_height="60dp"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="85dp"
+            android:layout_height="60dp"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="85dp"
+            android:layout_height="60dp"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="85dp"
+            android:layout_height="60dp"></LinearLayout>
+
+    </GridLayout>
+</LinearLayout>

@@ -2,29 +2,52 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="2">
 
-    <CalendarView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"></CalendarView>
+        android:layout_weight="0.8">
+
+        <CalendarView
+            android:id="@+id/calendar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:clickable="true">
+
+            <!--<android.support.design.widget.FloatingActionButton-->
+            <!--android:id="@+id/fabBalance"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="bottom|end"-->
+            <!--android:background="@null"-->
+            <!--android:backgroundTint="@color/colorPrimary"-->
+            <!--android:src="@drawable/icon_smile" />-->
+        </CalendarView>
+
+        <ImageView
+            android:id="@+id/imgBalance"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/icon_smile"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
 
     <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:id="@+id/frameWallet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.2">
 
-        <ListView
-            android:id="@+id/listExpenses"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></ListView>
-
-        <TextView
-            android:id="@+id/txtData"
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabAddNew"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="No data"
-            android:textColor="@color/colorAccent"
-            android:textSize="18dp" />
+            android:layout_gravity="bottom|end"
+            android:backgroundTint="@color/colorPrimary"
+            android:src="@drawable/icon_smile" />
     </FrameLayout>
 </LinearLayout>

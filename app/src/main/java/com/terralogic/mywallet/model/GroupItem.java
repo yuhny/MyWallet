@@ -7,11 +7,11 @@ public class GroupItem {
         private  int cImage;
         private String cName;
         private String cMoney;
-       private String cIdGroup;
+       private Integer cIdGroup;
     public GroupItem()
     {}
 
-    public GroupItem(int cImage, String cName, String cMoney, String cIdGroup) {
+    public GroupItem(int cImage, String cName, String cMoney, Integer cIdGroup) {
         this.cImage = cImage;
         this.cName = cName;
         this.cMoney = cMoney;
@@ -42,7 +42,7 @@ public class GroupItem {
         this.cMoney = cMoney;
     }
 
-    public String getcIdGroup() {
+    public int getcIdGroup() {
         return cIdGroup;
     }
 
