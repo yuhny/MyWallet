@@ -35,21 +35,18 @@ public class ListExpenseFragment extends Fragment {
         this.expenseList = expenseList;
     }
 
-    public static ListExpenseFragment newInstance() {
-        ListExpenseFragment fragment = new ListExpenseFragment();
-        return fragment;
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_expense, container, false);
 
+        view.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.MATCH_PARENT));
+
         expenseList = new ArrayList<>();
 
         recyclerView = (RecyclerView) view.findViewById(R.id.listExpenses);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
 
         expenseList.add(new Expense("Em chưa 18+", new Timestamp(System.currentTimeMillis()), 250000, R.drawable.icon_smile));
         expenseList.add(new Expense("Em chưa 19+", new Timestamp(System.currentTimeMillis()), 250000, R.drawable.icon_smile));

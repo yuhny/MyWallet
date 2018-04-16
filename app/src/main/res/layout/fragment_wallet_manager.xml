@@ -2,29 +2,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="2">
 
-    <CalendarView
-        android:id="@+id/calendar"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:clickable="true">
+        android:layout_weight="0.8">
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fabBalance"
-            android:layout_width="wrap_content"
+        <CalendarView
+            android:id="@+id/calendar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:background="@null"
-            android:backgroundTint="@color/colorPrimary"
-            android:src="@drawable/icon_smile" />
-    </CalendarView>
+            android:background="@color/colorPrimaryDark"
+            android:clickable="true">
+
+            <!--<android.support.design.widget.FloatingActionButton-->
+            <!--android:id="@+id/fabBalance"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="bottom|end"-->
+            <!--android:background="@null"-->
+            <!--android:backgroundTint="@color/colorPrimary"-->
+            <!--android:src="@drawable/icon_smile" />-->
+        </CalendarView>
+
+        <ImageView
+            android:id="@+id/imgBalance"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/icon_smile"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
 
     <FrameLayout
         android:id="@+id/frameWallet"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_weight="1.2">
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fabAddNew"

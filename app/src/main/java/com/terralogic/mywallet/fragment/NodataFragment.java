@@ -15,11 +15,6 @@ import com.terralogic.mywallet.R;
  */
 
 public class NodataFragment extends Fragment {
-
-    public static Fragment newInstance() {
-        NodataFragment fragment = new NodataFragment();
-        return fragment;
-    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

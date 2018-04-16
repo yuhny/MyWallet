@@ -1,14 +1,15 @@
 package com.terralogic.mywallet.model;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class Expense {
     private String context;
-    private Timestamp timestamp;
+    private Date timestamp;
     private int totalMoney;
     private int image;
 
-    public Expense(String context, Timestamp timestamp, int totalMoney, int image) {
+    public Expense(String context, Date timestamp, int totalMoney, int image) {
         this.context = context;
         this.timestamp = timestamp;
         this.totalMoney = totalMoney;
@@ -31,11 +32,11 @@ public class Expense {
         this.context = context;
     }
 
-    public Timestamp getTimestamp() {
-        return timestamp;
+    public String getTimestamp() {
+        return DateUtil.getDate(timestamp.getTime());
     }
 
-    public void setTimestamp(Timestamp timestamp) {
+    public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
 

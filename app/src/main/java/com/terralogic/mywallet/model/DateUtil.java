@@ -37,6 +37,12 @@ public class DateUtil {
         String text = format.format(d);
         return text;
     }
+    public static String getDate(long input){
+        Date d = new Date(input);
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        String text = format.format(d);
+        return text;
+    }
 
 //    public static void main(String[] args) {
 //        Map<String, String> mappp = DateUtil.MONTH_OF_YEAR;
