@@ -90,16 +90,16 @@ public class DetailScreenFragment extends Fragment {
         {
             listDataGroup = new ArrayList<>(  );
             listDataItem = new HashMap<GroupItem, List<Item>>();
-            listDataGroup.add( new GroupItem( R.mipmap.ic_launcher,"baby","2000000 vnd"
+            listDataGroup.add( new GroupItem( R.mipmap.ic_launcher,"baby","2000000 vnd","01"
                      ) );
             listDataGroup.add(new GroupItem( R.mipmap.ic_launcher,"supermarket",
                     "100000 " +
-                    "vnd" ) );
+                    "vnd","02" ) );
 
             List<Item> baby = new ArrayList<>(  );
-            baby.add( new Item("buy milk","22/12/2018","318000 vnd" ));
+            baby.add( new Item("buy milk","22/12/2018","001" ,"500000 vnd","318000 vnd"));
             List<Item> supermarket = new ArrayList<>(  );
-            supermarket.add(new Item(   "buy fish","22/12/2018","30000 vnd" ));
+            supermarket.add(new Item(   "buy fish","22/12/2018","002","300000","30000 vnd" ));
 
             listDataItem.put(listDataGroup.get(0),baby);
             listDataItem.put( listDataGroup.get( 1 ), supermarket );

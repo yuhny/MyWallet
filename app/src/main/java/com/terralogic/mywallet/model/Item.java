@@ -2,47 +2,81 @@ package com.terralogic.mywallet.model;
 
 public class Item {
 
-    private String Name;
-    private String Date;
-    private String Money;
-   // private String IdGroup;
+    private String mName;
+    private String mDate;
+    private int mIdItem;
+    private String mMoney;
+    private ItemType mType;
 
-    public Item(String name, String date, String money) {
-        Name = name;
-        Date = date;
-        Money = money;
-        //IdGroup = idGroup;
+    public Item()
+    {}
+
+    public Item(String name, String date,int idItem,
+                String money,ItemType type ) {
+        mName = name;
+        mDate = date;
+
+        mIdItem = idItem;
+        mMoney = money;
+        mType = type;
+
+
+
     }
 
-    public String getName() {
-        return Name;
+
+    public String getmName() {
+        return mName;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public void setmName(String mName) {
+        this.mName = mName;
     }
 
-    public String getDate() {
-        return Date;
+    public String getmDate() {
+        return mDate;
     }
 
-    public void setDate(String date) {
-        Date = date;
+    public void setmDate(String mDate) {
+        this.mDate = mDate;
     }
 
-    public String getMoney() {
-        return Money;
-    }
-
-    public void setMoney(String money) {
-        Money = money;
-    }
-
-//    public String getIdGroup() {
-//        return IdGroup;
+//    public String getmMoney() {
+//        return mMoney;
 //    }
 //
-//    public void setIdGroup(String idGroup) {
-//        IdGroup = idGroup;
+//    public void setmMoney(String mMoney) {
+//        this.mMoney = mMoney;
 //    }
+
+    public int getmIdItem() {
+        return mIdItem;
+    }
+
+    public void setmIdItem(int mIdItem) {
+        this.mIdItem = mIdItem;
+    }
+
+    public String getmMoney() {
+        return mMoney;
+    }
+
+    public void setmMoney(String mMoney) {
+        this.mMoney = mMoney;
+    }
+
+    public ItemType getmType() {
+
+        return mType;
+    }
+
+    public void setmType(ItemType mType) {
+        this.mType = mType;
+    }
+
+    @Override
+    public String toString() {
+        return "Name :"+getmName()+"\n"+"Date :"+getmDate()+"\n"+
+                "MoneyConsume"+getmMoney()+"\n"+"MoneyIncome"+getmType();
+    }
 }

@@ -89,9 +89,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 //        grTextView2.setText( groupMoney );
         GroupItem groupItem = mlistDataGroup.get( groupPosition );
 
-        imGroup.setImageResource( groupItem.getImage() );
-        grTextView1.setText( groupItem.getName() );
-        grTextView2.setText( groupItem.getMoney() );
+        imGroup.setImageResource( groupItem.getcImage() );
+        grTextView1.setText( groupItem.getcName() );
+        grTextView2.setText( groupItem.getcMoney() );
 
 
         return convertView;
@@ -112,9 +112,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 
         Item item = mlistDataItem.get( mlistDataGroup.get( groupPosition ) ).get( childPosition );
-        textViewNameChild.setText( item.getName() );
-        textViewDateChild.setText( item.getDate() );
-        textViewMoneyChild.setText(item.getMoney());
+        textViewNameChild.setText( item.getmName() );
+        textViewDateChild.setText( item.getmDate() );
+        textViewMoneyChild.setText(item.getmMoneyConsume());
 
         return convertView;
     }

@@ -2,49 +2,58 @@ package com.terralogic.mywallet.model;
 
 public class GroupItem {
 
-        private  int Image;
-        private String Name;
-        private String Money;
-      //  private String IdGroup;
 
-    public GroupItem(int image, String name, String money) {
-        Image = image;
-        Name = name;
-        Money = money;
 
+        private  int cImage;
+        private String cName;
+        private String cMoney;
+       private String cIdGroup;
+    public GroupItem()
+    {}
+
+    public GroupItem(int cImage, String cName, String cMoney, String cIdGroup) {
+        this.cImage = cImage;
+        this.cName = cName;
+        this.cMoney = cMoney;
+        this.cIdGroup = cIdGroup;
     }
 
-    public int getImage() {
-        return Image;
+    public int getcImage() {
+        return cImage;
     }
 
-    public void setImage(int image) {
-        Image = image;
+    public void setcImage(int cImage) {
+        this.cImage = cImage;
     }
 
-    public String getName() {
-        return Name;
+    public String getcName() {
+        return cName;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public void setcName(String cName) {
+        this.cName = cName;
     }
 
-    public String getMoney() {
-        return Money;
+    public String getcMoney() {
+        return cMoney;
     }
 
-    public void setMoney(String money) {
-        Money = money;
+    public void setcMoney(String cMoney) {
+        this.cMoney = cMoney;
     }
 
-//    public String getIdGroup() {
-//        return IdGroup;
-//    }
-//
-//    public void setIdGroup(String idGroup) {
-//        IdGroup = idGroup;
-//    }
+    public String getcIdGroup() {
+        return cIdGroup;
+    }
+
+    public void setcIdGroup(int cIdGroup) {
+        this.cIdGroup = cIdGroup;
+    }
+
+    @Override
+    public String toString() {
+        return "Image:"+getcImage()+"\n"+"Name:"+getcName()+"\n"+"Money"+getcMoney();
+    }
 }
 
 

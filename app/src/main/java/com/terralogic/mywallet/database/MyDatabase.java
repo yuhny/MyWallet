@@ -1,28 +1,43 @@
 package com.terralogic.mywallet.database;
 
+
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
-public class MyDatabase  extends SQLiteOpenHelper {
+import com.terralogic.mywallet.model.GroupItem;
 
-    private static final String tag ="SQLite";
+public class MyDatabase {
+
+    public static final String MY_DATA_BASE = "MyDatabase";
+    public static final String TABLE_CATEGORY = "TableCategory";
+    public static final String TABLE_ITEM = "TableItem";
+    public static final String ID_TABLE_CATEGORY = "IdTableCategory";
+    public static final String ID_TABLE_ITEM = " IdTableItem";
+    public static final String NAME_CATEGORY = "NameCategory";
+    public static final String NAME_ITEM = "NameItem";
+    public static final String IMAGE_CATEGORY = "ImageCategory";
+    public static final String DATE_COMSUME = "Date";
+    public static final String MONEY_ITEM = "MoneyItem";
+    public static final String MONEY_TYPE = "Money Type";
+    public Context context;
 
 
-    private static final int data_VERSION = 1;
-
-    public MyDatabase(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super( context, name, factory, version );
+    public static String createTableCategory() {
+        return "CREATE TABLE " + TABLE_CATEGORY + "(" + ID_TABLE_CATEGORY + "integer primary key,"
+                + NAME_CATEGORY + "text," + IMAGE_CATEGORY + "text)";
+//
     }
 
 
-    @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+    public static String createTableItem() {
+        return  " CREATE TABLE " + TABLE_ITEM + "(" + ID_TABLE_ITEM + "integer primary key,"
+                + NAME_ITEM + "text," + DATE_COMSUME + "text," + MONEY_ITEM + "text," + MONEY_TYPE + "text)";
 
+//
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
-    }
 }
