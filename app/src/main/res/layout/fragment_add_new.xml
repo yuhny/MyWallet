@@ -160,6 +160,7 @@
             android:layout_weight="1.7" />
 
         <ImageView
+            android:id="@+id/imageAddCate"
             android:layout_width="45dp"
             android:layout_height="match_parent"
             android:src="@drawable/icon_smile" />

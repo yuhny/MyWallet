@@ -3,10 +3,12 @@ package com.terralogic.mywallet.fragment;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +19,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.terralogic.mywallet.R;
 import com.terralogic.mywallet.activity.ManageActivity;
+import com.terralogic.mywallet.fragment.dialog.BalanceDialog;
+import com.terralogic.mywallet.fragment.dialog.CategoryDialog;
 
 import java.util.Calendar;
 
@@ -30,7 +35,7 @@ import java.util.Calendar;
 public class AddNewFragment extends Fragment {
     private TextView mTxtTitle, mTxtAddIncome, mTxtAddExpense, mTxtAddMoney, mTxtUnit;
     private LinearLayout mLayoutIncome, mLayoutExpense;
-    private ImageView mImgAddDate;
+    private ImageView mImgAddDate, mImgAddCate;
     private EditText mEditAddDate;
     private boolean isIncome = true;
     private int day, month, year;
@@ -53,6 +58,7 @@ public class AddNewFragment extends Fragment {
         mTxtUnit = (TextView) view.findViewById(R.id.txtUnit);
 
         mImgAddDate = (ImageView) view.findViewById(R.id.imgAddDate);
+        mImgAddCate = (ImageView) view.findViewById(R.id.imageAddCate);
 
         mEditAddDate = (EditText) view.findViewById(R.id.editDate);
 
@@ -63,6 +69,18 @@ public class AddNewFragment extends Fragment {
         clickLayoutIncome();
         clickLayoutExpense();
         clickCalendarImage();
+
+        mImgAddCate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CategoryDialog dialog = new CategoryDialog(getContext());
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.setCancelable(true);
+                dialog.getWindow().setGravity(Gravity.CENTER);
+                dialog.show();
+                dialog.getWindow().setLayout(480, Toolbar.LayoutParams.WRAP_CONTENT);
+            }
+        });
 
         return view;
     }

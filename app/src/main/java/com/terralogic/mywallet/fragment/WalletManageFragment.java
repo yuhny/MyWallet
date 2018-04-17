@@ -93,7 +93,7 @@ public class WalletManageFragment extends Fragment {
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
 
-        transaction.setCustomAnimations(R.anim.anim_in_right, R.anim.anim_out_left, R.anim.anim_in_left, R.anim.anim_out_right);
+        transaction.setCustomAnimations(R.anim.anim_in_right, R.anim.anim_out_left, R.anim.anim_in_left, R.anim.anim_to_right);
         transaction.replace(R.id.frameManage, fragment);
         transaction.addToBackStack(fragment.getClass().getSimpleName());
         transaction.commit();
