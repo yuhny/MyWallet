@@ -166,6 +166,10 @@
             android:src="@drawable/icon_smile" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -209,4 +213,20 @@
             android:layout_height="60dp"></LinearLayout>
 
     </GridLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnCount="2"
+            android:rowCount="1">
+
+            <LinearLayout
+                android:layout_width="85dp"
+                android:layout_height="60dp"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"></LinearLayout>
+        </GridLayout>
+    </LinearLayout>
 </LinearLayout>
