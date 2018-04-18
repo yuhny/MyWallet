@@ -47,4 +47,12 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ItemViewHolder> {
     public int getItemCount() {
         return expenseList.size();
     }
+
+    public List<Expense> getExpenseList() {
+        return expenseList;
+    }
+
+    public void setExpenseList(List<Expense> expenseList) {
+        this.expenseList = expenseList;
+    }
 }

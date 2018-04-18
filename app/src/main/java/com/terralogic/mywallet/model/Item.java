@@ -8,20 +8,16 @@ public class Item {
     private String mMoney;
     private ItemType mType;
 
-    public Item()
-    {}
+    public Item() {
+    }
 
-    public Item(String name, String date,int idItem,
-                String money,ItemType type ) {
+    public Item(String name, String date, int idItem,
+                String money, ItemType type) {
         mName = name;
         mDate = date;
-
         mIdItem = idItem;
         mMoney = money;
         mType = type;
-
-
-
     }
 
 
@@ -76,7 +72,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Name :"+getmName()+"\n"+"Date :"+getmDate()+"\n"+
-                "MoneyConsume"+getmMoney()+"\n"+"MoneyIncome"+getmType();
+        return "Name :" + getmName() + "\n" + "Date :" + getmDate() + "\n" +
+                "MoneyConsume" + getmMoney() + "\n" + "MoneyIncome" + getmType();
     }
 }

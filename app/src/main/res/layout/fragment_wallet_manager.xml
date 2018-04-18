@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="2">
+    android:weightSum="3">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.8">
@@ -17,30 +17,22 @@
             android:background="@color/colorPrimaryDark"
             android:clickable="true">
 
-            <!--<android.support.design.widget.FloatingActionButton-->
-            <!--android:id="@+id/fabBalance"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="bottom|end"-->
-            <!--android:background="@null"-->
-            <!--android:backgroundTint="@color/colorPrimary"-->
-            <!--android:src="@drawable/icon_smile" />-->
+            <ImageView
+                android:id="@+id/imgBalance"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/icon_smile"
+                android:layout_gravity="bottom|end"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"/>
         </CalendarView>
-
-        <ImageView
-            android:id="@+id/imgBalance"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/icon_smile"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"/>
-    </RelativeLayout>
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/frameWallet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1.2">
+        android:layout_weight="2.2">
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fabAddNew"
