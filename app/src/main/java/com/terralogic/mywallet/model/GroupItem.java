@@ -4,7 +4,7 @@ public class GroupItem {
 
 
 
-        private  int cImage;
+        private int cImage;
         private String cName;
         private String cMoney;
        private Integer cIdGroup;

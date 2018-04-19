@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.terralogic.mywallet.model.GroupItem;
@@ -19,8 +20,10 @@ public class MySQLite extends SQLiteOpenHelper {
 
     private Context context;
 
-    public MySQLite(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super( context, name, factory, version );
+    public MySQLite(Context context) {
+        super( context, MyDatabase.MY_DATA_BASE, null, 1 );
+        Log.d( "MySQLite", "MySQLite:" );
+        this.context = context;
     }
 
 
@@ -39,9 +42,8 @@ public class MySQLite extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL( MyDatabase.createTableCategory() );
+      sqLiteDatabase.execSQL( MyDatabase.createTableCategory() );
         sqLiteDatabase.execSQL( MyDatabase.createTableItem() );
-        Toast.makeText( context, "Create 2 table success", Toast.LENGTH_SHORT ).show();
 
     }
 
@@ -56,18 +58,19 @@ public class MySQLite extends SQLiteOpenHelper {
             do {
 
                 GroupItem category = new GroupItem();
-                category.setcIdGroup( cursor.getInt( 0 ) );
-                category.setcImage( cursor.getInt( 1 ) );
-                category.setcName( cursor.getString( 2 ) );
-                category.setcMoney( cursor.getString( 3 ) );
+
+                category.setcImage( cursor.getInt( 0 ) );
+                category.setcName( cursor.getString( 1 ) );
+                category.setcMoney( cursor.getString( 2 ) );
+                category.setcIdGroup( cursor.getInt( 3 ) );
                 listGroupItem.add( category );
 
 
             } while (cursor.moveToNext());
-            cursor.close();
-            sqLiteDatabase.close();
 
         }
+        cursor.close();
+        sqLiteDatabase.close();
         return listGroupItem;
 
     }
@@ -82,11 +85,12 @@ public class MySQLite extends SQLiteOpenHelper {
             do {
                 Item item = new Item();
                 item.setmIdItem( cursor.getInt( 0 ) );
-                item.setmName( cursor.getString( 1 ) );
-                item.setmDate( cursor.getString( 2 ) );
-                item.setmMoney( cursor.getString( 3 ) );
-                item.setmType(cursor.getInt( 4 )==ItemType.INCOME.getValues()?ItemType.INCOME:
-                        ItemType.CONSUM);
+                item.setmImage( cursor.getInt( 1 ) );
+                item.setmName( cursor.getString( 2 ) );
+                item.setmDate( cursor.getString( 3 ) );
+                item.setmMoney( cursor.getString( 4 ) );
+                item.setmType( cursor.getInt( 4 ) == ItemType.INCOME.getValues() ? ItemType.INCOME :
+                        ItemType.CONSUM );
                 listItem.add( item );
 
             } while (cursor.moveToNext());
@@ -97,26 +101,29 @@ public class MySQLite extends SQLiteOpenHelper {
     }
 
 
-    public void addCategory(GroupItem groupItem)
-    {
+    public void addCategory(GroupItem groupItem) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        ContentValues values = new ContentValues(  );
-        values.put( MyDatabase.NAME_CATEGORY,groupItem.getcName() );
-        values.put( MyDatabase.IMAGE_CATEGORY,groupItem.getcImage() );
-        sqLiteDatabase.insert( MyDatabase.TABLE_CATEGORY,null,values );
+        ContentValues values = new ContentValues();
+        values.put( MyDatabase.IMAGE_CATEGORY, groupItem.getcImage() );
+        values.put( MyDatabase.NAME_CATEGORY, groupItem.getcName() );
+        values.put( MyDatabase.MONEY_CATEGORY,groupItem.getcMoney() );
+        values.put( MyDatabase.ID_TABLE_CATEGORY,groupItem.getcIdGroup() );
+        long check = sqLiteDatabase.insert( MyDatabase.TABLE_CATEGORY,null, values );
+        Toast.makeText( context, check+" ", Toast.LENGTH_SHORT ).show();
         sqLiteDatabase.close();
     }
 
 
-    public void addItem(Item item)
-    {
+    public void addItem(Item item) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        ContentValues values = new ContentValues(  );
-        values.put( MyDatabase.NAME_ITEM,item.getmName() );
-        values.put( MyDatabase.DATE_COMSUME,item.getmDate() );
-        values.put( MyDatabase.MONEY_ITEM,item.getmMoney() );
-        values.put( MyDatabase.MONEY_TYPE,item.getmType().getValues() );
-        sqLiteDatabase.insert( MyDatabase.TABLE_ITEM,null,values );
+        ContentValues values = new ContentValues();
+        values.put(MyDatabase.IMAGE_IEAM,item.getmImage());
+        values.put( MyDatabase.NAME_ITEM, item.getmName() );
+        values.put( MyDatabase.DATE_COMSUME, item.getmDate() );
+        values.put(MyDatabase.ID_TABLE_ITEM,item.getmIdItem());
+        values.put( MyDatabase.MONEY_ITEM, item.getmMoney() );
+        values.put( MyDatabase.MONEY_TYPE, item.getmType().getValues() );
+        sqLiteDatabase.insert( MyDatabase.TABLE_ITEM, null, values );
         sqLiteDatabase.close();
     }
 
@@ -145,31 +152,27 @@ public class MySQLite extends SQLiteOpenHelper {
                         } );
     }
 
-    public List<Item> getListItemWithDate(String date)
-    {
-        List<Item> listItemWithDate = new ArrayList<>(  );
-        String selectQueryItem = "SELECT * FROM "+MyDatabase.TABLE_ITEM;
+    public List<Item> getListItemWithDate(String date) {
+        List<Item> listItemWithDate = new ArrayList<>();
+        String selectQueryItem = "SELECT * FROM " + MyDatabase.TABLE_ITEM;
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery( selectQueryItem,null );
+        Cursor cursor = sqLiteDatabase.rawQuery( selectQueryItem, null );
 
-        if(cursor.moveToFirst())
-        {
+        if (cursor.moveToFirst()) {
             do {
                 Item item = new Item();
-                item.setmIdItem(cursor.getInt( 0 ));
+                item.setmIdItem( cursor.getInt( 0 ) );
                 item.setmName( cursor.getString( 1 ) );
                 item.setmDate( cursor.getString( 2 ) );
                 item.setmMoney( cursor.getString( 3 ) );
-                item.setmType(cursor.getInt( 4 )== ItemType.INCOME.getValues()?ItemType.INCOME:
-                        ItemType.CONSUM);
-                if(item.getmDate().equals(date))
-                {
+                item.setmType( cursor.getInt( 4 ) == ItemType.INCOME.getValues() ? ItemType.INCOME :
+                        ItemType.CONSUM );
+                if (item.getmDate().equals( date )) {
                     listItemWithDate.add( item );
                 }
 
 
-
-            }while(cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
 
         cursor.close();
