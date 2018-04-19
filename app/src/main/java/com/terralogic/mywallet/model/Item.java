@@ -7,24 +7,31 @@ public class Item {
     private int mIdItem;
     private String mMoney;
     private ItemType mType;
-    private Integer mImage;
+    private int mIdGroup;
 
     public Item() {
     }
 
 
-    public Item(Integer image, String name, String date, int idItem,
-                String money, ItemType type) {
+    public Item(String name, String date, int idItem,
+                String money, ItemType type, int idGroup) {
         mName = name;
         mDate = date;
         mIdItem = idItem;
         mMoney = money;
         mType = type;
+        mIdGroup = idGroup;
 
-        mImage = image;
 
     }
 
+    public int getmIdGroup() {
+        return mIdGroup;
+    }
+
+    public void setmIdGroup(int mIdGroup) {
+        this.mIdGroup = mIdGroup;
+    }
 
     public String getmName() {
         return mName;
@@ -42,13 +49,6 @@ public class Item {
         this.mDate = mDate;
     }
 
-    public Integer getmImage() {
-        return mImage;
-    }
-
-    public void setmImage(Integer mImage) {
-        this.mImage = mImage;
-    }
 
     public int getmIdItem() {
         return mIdItem;
@@ -78,7 +78,7 @@ public class Item {
     @Override
     public String toString() {
 
-        return "Image :" + getmImage() + "Name :" + getmName() + "\n" + "Date :" + getmDate() + "\n" +
+        return "Name :" + getmName() + "\n" + "Date :" + getmDate() + "\n" +
                 "MoneyConsume" + getmMoney() + "\n" + "MoneyIncome" + getmType();
 
     }

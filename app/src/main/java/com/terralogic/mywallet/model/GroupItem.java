@@ -1,10 +1,10 @@
 package com.terralogic.mywallet.model;
 
 public class GroupItem {
-    private int cImage;
+    private Integer cImage;
     private String cName;
     private String cMoney;
-    private Integer cIdGroup;
+    private int cIdGroup;
 
 
 
@@ -12,18 +12,18 @@ public class GroupItem {
     }
 
 
-    public GroupItem(int cImage, String cName, String cMoney, Integer cIdGroup) {
+    public GroupItem(Integer cImage, String cName, String cMoney, int cIdGroup) {
         this.cImage = cImage;
         this.cName = cName;
         this.cMoney = cMoney;
         this.cIdGroup = cIdGroup;
     }
 
-    public int getcImage() {
+    public Integer getcImage() {
         return cImage;
     }
 
-    public void setcImage(int cImage) {
+    public void setcImage(Integer cImage) {
         this.cImage = cImage;
     }
 

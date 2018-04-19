@@ -110,9 +110,9 @@ public class DetailScreenFragment extends Fragment {
                     "vnd",2 ) );
 
             List<Item> baby = new ArrayList<>(  );
-            baby.add( new Item(13356,"buy milk","22/12/2018",1 ,"500000 vnd",ItemType.INCOME));
+            baby.add( new Item("buy milk","22/12/2018",1 ,"500000 vnd",ItemType.INCOME,1));
             List<Item> supermarket = new ArrayList<>(  );
-            supermarket.add(new Item( 1234,  "buy fish","22/12/2018",2,"300000",ItemType.INCOME ));
+            supermarket.add(new Item(   "buy fish","22/12/2018",2,"300000",ItemType.INCOME,2 ));
 
             listDataItem.put(listDataGroup.get(0),baby);
             listDataItem.put( listDataGroup.get( 1 ), supermarket );

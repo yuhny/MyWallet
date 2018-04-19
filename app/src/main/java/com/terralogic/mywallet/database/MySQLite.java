@@ -42,7 +42,7 @@ public class MySQLite extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-      sqLiteDatabase.execSQL( MyDatabase.createTableCategory() );
+        sqLiteDatabase.execSQL( MyDatabase.createTableCategory() );
         sqLiteDatabase.execSQL( MyDatabase.createTableItem() );
 
     }
@@ -85,12 +85,12 @@ public class MySQLite extends SQLiteOpenHelper {
             do {
                 Item item = new Item();
                 item.setmIdItem( cursor.getInt( 0 ) );
-                item.setmImage( cursor.getInt( 1 ) );
-                item.setmName( cursor.getString( 2 ) );
-                item.setmDate( cursor.getString( 3 ) );
-                item.setmMoney( cursor.getString( 4 ) );
+                item.setmName( cursor.getString( 1 ) );
+                item.setmDate( cursor.getString( 2 ) );
+                item.setmMoney( cursor.getString( 3 ) );
                 item.setmType( cursor.getInt( 4 ) == ItemType.INCOME.getValues() ? ItemType.INCOME :
                         ItemType.CONSUM );
+                item.setmIdGroup( cursor.getInt( 5 ) );
                 listItem.add( item );
 
             } while (cursor.moveToNext());
@@ -106,10 +106,10 @@ public class MySQLite extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put( MyDatabase.IMAGE_CATEGORY, groupItem.getcImage() );
         values.put( MyDatabase.NAME_CATEGORY, groupItem.getcName() );
-        values.put( MyDatabase.MONEY_CATEGORY,groupItem.getcMoney() );
-        values.put( MyDatabase.ID_TABLE_CATEGORY,groupItem.getcIdGroup() );
-        long check = sqLiteDatabase.insert( MyDatabase.TABLE_CATEGORY,null, values );
-        Toast.makeText( context, check+" ", Toast.LENGTH_SHORT ).show();
+        values.put( MyDatabase.MONEY_CATEGORY, groupItem.getcMoney() );
+        values.put( MyDatabase.ID_TABLE_CATEGORY, groupItem.getcIdGroup() );
+        long check = sqLiteDatabase.insert( MyDatabase.TABLE_CATEGORY, null, values );
+        Toast.makeText( context, check + " ", Toast.LENGTH_SHORT ).show();
         sqLiteDatabase.close();
     }
 
@@ -117,12 +117,13 @@ public class MySQLite extends SQLiteOpenHelper {
     public void addItem(Item item) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(MyDatabase.IMAGE_IEAM,item.getmImage());
+
         values.put( MyDatabase.NAME_ITEM, item.getmName() );
         values.put( MyDatabase.DATE_COMSUME, item.getmDate() );
-        values.put(MyDatabase.ID_TABLE_ITEM,item.getmIdItem());
+        values.put( MyDatabase.ID_TABLE_ITEM, item.getmIdItem() );
         values.put( MyDatabase.MONEY_ITEM, item.getmMoney() );
         values.put( MyDatabase.MONEY_TYPE, item.getmType().getValues() );
+        values.put( MyDatabase.ID_GROUP_IEAM, item.getmIdGroup() );
         sqLiteDatabase.insert( MyDatabase.TABLE_ITEM, null, values );
         sqLiteDatabase.close();
     }
@@ -143,8 +144,10 @@ public class MySQLite extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put( MyDatabase.NAME_ITEM, item.getmName() );
         contentValues.put( MyDatabase.DATE_COMSUME, item.getmDate() );
+        contentValues.put( MyDatabase.ID_TABLE_ITEM, item.getmIdItem() );
         contentValues.put( MyDatabase.MONEY_ITEM, item.getmMoney() );
         contentValues.put( MyDatabase.MONEY_TYPE, item.getmType().getValues() );
+        contentValues.put( MyDatabase.ID_GROUP_IEAM, item.getmIdGroup() );
         return sqLiteDatabase.update( MyDatabase.TABLE_ITEM, contentValues,
                 MyDatabase.ID_TABLE_ITEM + "=?", new String[]
                         {
@@ -167,6 +170,7 @@ public class MySQLite extends SQLiteOpenHelper {
                 item.setmMoney( cursor.getString( 3 ) );
                 item.setmType( cursor.getInt( 4 ) == ItemType.INCOME.getValues() ? ItemType.INCOME :
                         ItemType.CONSUM );
+                item.setmIdGroup( cursor.getInt( 5 ) );
                 if (item.getmDate().equals( date )) {
                     listItemWithDate.add( item );
                 }

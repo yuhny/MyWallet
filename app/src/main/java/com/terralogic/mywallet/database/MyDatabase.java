@@ -19,7 +19,7 @@ public class MyDatabase {
     public static final String NAME_CATEGORY = "NameCategory";
     public static final String NAME_ITEM = "NameItem";
     public static final String IMAGE_CATEGORY = "ImageCategory";
-    public static final String IMAGE_IEAM = "ImageItem";
+    public static final String ID_GROUP_IEAM = "IdGroupItem";
     public static  final String MONEY_CATEGORY = "MoneyCategory";
     public static final String DATE_COMSUME = "Date";
     public static final String MONEY_ITEM = "MoneyItem";
@@ -37,8 +37,8 @@ public class MyDatabase {
 
     public static String createTableItem() {
         return  " CREATE TABLE " + TABLE_ITEM + "(" + ID_TABLE_ITEM + " integer primary key,"
-                +IMAGE_IEAM+" text,"+ NAME_ITEM + " text," + DATE_COMSUME + " text," + MONEY_ITEM + " text," +
-                MONEY_TYPE + " text)";
+               + NAME_ITEM + " text," + DATE_COMSUME + " text," + MONEY_ITEM + " text," +
+                MONEY_TYPE + " text,"+ ID_GROUP_IEAM+" text)";
 
 //
     }
