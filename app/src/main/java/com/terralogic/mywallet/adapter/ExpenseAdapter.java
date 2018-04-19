@@ -5,22 +5,21 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
 import com.terralogic.mywallet.R;
 import com.terralogic.mywallet.adapter.viewHolder.ItemViewHolder;
 import com.terralogic.mywallet.model.Expense;
+import com.terralogic.mywallet.model.Item;
 
 import java.util.List;
 
 public class ExpenseAdapter extends RecyclerView.Adapter<ItemViewHolder> {
     private Context context;
-    private List<Expense> expenseList;
+    private List<Item> itemList;
 
-    public ExpenseAdapter(Context context, List<Expense> expenseList) {
+    public ExpenseAdapter(Context context, List<Item> expenseList) {
         this.context = context;
-        this.expenseList = expenseList;
+        this.itemList = expenseList;
     }
 
     @Override
@@ -35,24 +34,24 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ItemViewHolder> {
 
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position) {
-        Expense expense = expenseList.get(position);
+        Item item = itemList.get(position);
 
-        holder.getmContextExpense().setText(expense.getContext());
-        holder.getmDateCreate().setText(expense.getTimestamp() + "");
-        holder.getmMoney().setText(expense.getTotalMoney() + "");
-        holder.getmImageCate().setImageDrawable(context.getResources().getDrawable(expense.getImage()));
+        holder.getmContextExpense().setText(item.getmName());
+        holder.getmDateCreate().setText(item.getmDate() + "");
+        holder.getmMoney().setText(item.getmMoney() + ",000");
+        holder.getmImageCate().setImageDrawable(context.getResources().getDrawable(R.drawable.icon_smile));
     }
 
     @Override
     public int getItemCount() {
-        return expenseList.size();
+        return itemList.size();
     }
 
-    public List<Expense> getExpenseList() {
-        return expenseList;
+    public List<Item> getItemList() {
+        return itemList;
     }
 
-    public void setExpenseList(List<Expense> expenseList) {
-        this.expenseList = expenseList;
+    public void setItemList(List<Item> itemList) {
+        this.itemList = itemList;
     }
 }

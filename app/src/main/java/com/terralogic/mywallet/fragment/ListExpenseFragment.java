@@ -3,7 +3,6 @@ package com.terralogic.mywallet.fragment;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,27 +15,25 @@ import com.terralogic.mywallet.R;
 import com.terralogic.mywallet.adapter.ExpenseAdapter;
 import com.terralogic.mywallet.controller.SwipeController;
 import com.terralogic.mywallet.controller.SwipeControllerActions;
-import com.terralogic.mywallet.model.Expense;
+import com.terralogic.mywallet.model.Item;
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ListExpenseFragment extends Fragment {
     RecyclerView recyclerView;
-    List<Expense> expenseList;
+    List<Item> items;
     ExpenseAdapter adapter;
     SwipeController swipeController;
+    private String date;
 
     public ListExpenseFragment() {
     }
-
-    public List<Expense> getExpenseList() {
-        return expenseList;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setExpenseList(List<Expense> expenseList) {
-        this.expenseList = expenseList;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 
     @Nullable
@@ -50,23 +47,13 @@ public class ListExpenseFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
 
-        expenseList = new ArrayList<>();
-
-        expenseList.add(new Expense("Em chưa 18+", new Timestamp(System.currentTimeMillis()), 250000, R.drawable.icon_smile));
-        expenseList.add(new Expense("Em chưa 19+", new Timestamp(System.currentTimeMillis()), 250000, R.drawable.icon_smile));
-        expenseList.add(new Expense("Em chưa 20+", new Timestamp(System.currentTimeMillis()), 250000, R.drawable.icon_smile));
-        expenseList.add(new Expense("Em chưa 21+", new Timestamp(System.currentTimeMillis()), 250000, R.drawable.icon_smile));
-        expenseList.add(new Expense("Em chưa 22+", new Timestamp(System.currentTimeMillis()), 250000, R.drawable.icon_smile));
-        expenseList.add(new Expense("Em chưa 23+", new Timestamp(System.currentTimeMillis()), 250000, R.drawable.icon_smile));
-        expenseList.add(new Expense("Em chưa 24+", new Timestamp(System.currentTimeMillis()), 250000, R.drawable.icon_smile));
-
-        adapter = new ExpenseAdapter(this.getContext(), expenseList);
+        adapter = new ExpenseAdapter(this.getContext(), items);
         recyclerView.setAdapter(adapter);
 
         swipeController = new SwipeController(new SwipeControllerActions() {
             @Override
             public void onRightClicked(int position) {
-                adapter.getExpenseList().remove(position);
+                adapter.getItemList().remove(position);
                 adapter.notifyItemRemoved(position);
                 adapter.notifyItemRangeChanged(position, adapter.getItemCount());
             }
