@@ -23,7 +23,7 @@ public class MyDatabase {
     public static  final String MONEY_CATEGORY = "MoneyCategory";
     public static final String DATE_COMSUME = "Date";
     public static final String MONEY_ITEM = "MoneyItem";
-    public static final String MONEY_TYPE = "Money Type";
+    public static final String MONEY_TYPE = "MoneyType";
     public Context context;
 
 
@@ -36,7 +36,7 @@ public class MyDatabase {
 
 
     public static String createTableItem() {
-        return  " CREATE TABLE " + TABLE_ITEM + "(" + ID_TABLE_ITEM + " integer primary key,"
+        return  "CREATE TABLE " + TABLE_ITEM + "(" + ID_TABLE_ITEM + " integer primary key,"
                + NAME_ITEM + " text," + DATE_COMSUME + " text," + MONEY_ITEM + " text," +
                 MONEY_TYPE + " text,"+ ID_GROUP_IEAM+" text)";
 
