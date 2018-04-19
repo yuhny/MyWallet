@@ -20,6 +20,13 @@ public class Item {
         mType = type;
     }
 
+    public Item(String name, String date, String money, ItemType type) {
+        mName = name;
+        mDate = date;
+        mMoney = money;
+        mType = type;
+    }
+
 
     public String getmName() {
         return mName;

@@ -14,6 +14,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -44,10 +45,10 @@ public class AddNewFragment extends Fragment implements View.OnClickListener {
     private boolean isIncome = true;
     private int day, month, year;
     private Button btnZero, btnOne, btnTwo, btnThree, btnFour, btnFive, btnSix, btnSeven, btnEight, btnNine;
-    private Button btnDel, btnOkay;
+    private Button btnOkay;
+    private ImageButton btnDel;
     private String resultMoney = "0";
 
-    @SuppressLint("ResourceAsColor")
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -162,7 +163,6 @@ public class AddNewFragment extends Fragment implements View.OnClickListener {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        month += 1;
                         mEditAddDate.setText(day + "-" + month + "-" + year);
                     }
                 }, year, month, day);

@@ -143,7 +143,7 @@
                 android:id="@+id/imgAddDate"
                 android:layout_width="45dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/icon_smile" />
+                android:src="@drawable/ic_datepicker" />
         </LinearLayout>
 
         <LinearLayout
@@ -170,7 +170,7 @@
                 android:id="@+id/imageAddCate"
                 android:layout_width="45dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/icon_smile" />
+                android:src="@drawable/ic_categorypicker" />
         </LinearLayout>
     </LinearLayout>
 
@@ -305,13 +305,13 @@
             android:orientation="vertical"
             android:weightSum="2">
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnDelete"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@null"
-                android:text="Del"
+                android:src="@drawable/ic_clear"
                 android:textColor="@color/colorWhite" />
 
             <Button
@@ -321,8 +321,8 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:text="OK"
-                android:textStyle="bold"
-                android:textColor="@color/colorWhite" />
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </RelativeLayout>
