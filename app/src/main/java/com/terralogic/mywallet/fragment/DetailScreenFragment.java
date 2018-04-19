@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +15,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.terralogic.mywallet.R;
+import com.terralogic.mywallet.activity.ManageActivity;
 import com.terralogic.mywallet.model.GroupItem;
 import com.terralogic.mywallet.model.Item;
 import com.terralogic.mywallet.model.ItemType;
@@ -31,6 +34,8 @@ public class DetailScreenFragment extends Fragment {
     ExpandableListView expListView;
     List<GroupItem> listDataGroup;
     HashMap<GroupItem, List<Item>> listDataItem;
+    private Toolbar mToolbar;
+    private TextView mTitle;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Nullable
@@ -38,6 +43,13 @@ public class DetailScreenFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate( R.layout.fragment_detail_screen, container, false );
+
+
+
+        mToolbar = ((ManageActivity)getActivity()).findViewById( R.id.toolbar );
+        mTitle = ((ManageActivity)getActivity()).findViewById( R.id.txtTitle );
+        mTitle.setText( "Detail for month" );
+
 
         spinner =view.findViewById( R.id.spinner_month );
         final ArrayList<String> arrayMonth = new ArrayList<>();
@@ -98,9 +110,9 @@ public class DetailScreenFragment extends Fragment {
                     "vnd",2 ) );
 
             List<Item> baby = new ArrayList<>(  );
-            baby.add( new Item("buy milk","22/12/2018",1 ,"500000 vnd",ItemType.INCOME));
+            baby.add( new Item("buy milk","22/12/2018",1 ,"500000 vnd",ItemType.INCOME,1));
             List<Item> supermarket = new ArrayList<>(  );
-            supermarket.add(new Item(   "buy fish","22/12/2018",2,"300000",ItemType.INCOME ));
+            supermarket.add(new Item(   "buy fish","22/12/2018",2,"300000",ItemType.INCOME,2 ));
 
             listDataItem.put(listDataGroup.get(0),baby);
             listDataItem.put( listDataGroup.get( 1 ), supermarket );

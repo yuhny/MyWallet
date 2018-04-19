@@ -7,26 +7,31 @@ public class Item {
     private int mIdItem;
     private String mMoney;
     private ItemType mType;
+    private int mIdGroup;
 
     public Item() {
     }
 
+
     public Item(String name, String date, int idItem,
-                String money, ItemType type) {
+                String money, ItemType type, int idGroup) {
         mName = name;
         mDate = date;
         mIdItem = idItem;
         mMoney = money;
         mType = type;
+        mIdGroup = idGroup;
+
+
     }
 
-    public Item(String name, String date, String money, ItemType type) {
-        mName = name;
-        mDate = date;
-        mMoney = money;
-        mType = type;
+    public int getmIdGroup() {
+        return mIdGroup;
     }
 
+    public void setmIdGroup(int mIdGroup) {
+        this.mIdGroup = mIdGroup;
+    }
 
     public String getmName() {
         return mName;
@@ -44,13 +49,6 @@ public class Item {
         this.mDate = mDate;
     }
 
-//    public String getmMoney() {
-//        return mMoney;
-//    }
-//
-//    public void setmMoney(String mMoney) {
-//        this.mMoney = mMoney;
-//    }
 
     public int getmIdItem() {
         return mIdItem;
@@ -79,7 +77,9 @@ public class Item {
 
     @Override
     public String toString() {
+
         return "Name :" + getmName() + "\n" + "Date :" + getmDate() + "\n" +
                 "MoneyConsume" + getmMoney() + "\n" + "MoneyIncome" + getmType();
+
     }
 }

@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.ButtonBarLayout;
+import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int mCountClick = 0;
     final String PREF_NAME = "com.terralogic.mywallet";
     String oldPassword;
+    private Toolbar mToolBar;
+    private TextView mTitle;
     @SuppressLint("CutPasteId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         radioBtn3 = (RadioButton) findViewById(R.id.radioNum3);
         radioBtn4 = (RadioButton) findViewById(R.id.radioNum4);
         radioBtn5 = (RadioButton) findViewById(R.id.radioNum5);
+
+
+
+        mToolBar = (Toolbar) findViewById(R.id.toolbar);
+        mTitle = (TextView) findViewById(R.id.txtTitle);
+        mTitle.setText("Wallet Manage");
 
         btnNum1.setOnClickListener(this);
         btnNum2.setOnClickListener(this);

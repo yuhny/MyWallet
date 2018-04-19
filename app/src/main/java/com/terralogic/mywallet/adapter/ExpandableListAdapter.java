@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.terralogic.mywallet.R;
-import com.terralogic.mywallet.fragment.DetailScreenFragment;
 import com.terralogic.mywallet.model.GroupItem;
 import com.terralogic.mywallet.model.Item;
 
@@ -69,9 +68,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView,
                              ViewGroup viewGroup) {
-//        String groupTitle = (String) getGroup( groupPosition );
-//        int groupImage = (Integer) getGroup( groupPosition );
-//        String groupMoney = (String) getGroup( groupPosition );
+
 
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) this.mcontext.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
@@ -84,14 +81,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView grTextView1 = (TextView) convertView.findViewById( R.id.textNameGroup );
         TextView grTextView2 = (TextView) convertView.findViewById( R.id.textMoney );
 
-//        imGroup.setImageResource( groupImage );
-//        grTextView1.setText( groupTitle );
-//        grTextView2.setText( groupMoney );
+
         GroupItem groupItem = mlistDataGroup.get( groupPosition );
 
-        imGroup.setImageResource( groupItem.getcImage() );
-        grTextView1.setText( groupItem.getcName() );
-        grTextView2.setText( groupItem.getcMoney() );
+//        imGroup.setImageResource( groupItem.getcImage() );
+//        grTextView1.setText( groupItem.getcName() );
+//        grTextView2.setText( groupItem.getcMoney() );
 
 
         return convertView;
