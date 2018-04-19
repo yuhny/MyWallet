@@ -9,20 +9,19 @@ public class Item {
     private ItemType mType;
     private Integer mImage;
 
-    public Item()
-    {}
+    public Item() {
+    }
 
-    public Item(Integer image,String name, String date,int idItem,
-                String money,ItemType type ) {
+
+    public Item(Integer image, String name, String date, int idItem,
+                String money, ItemType type) {
         mName = name;
         mDate = date;
-
         mIdItem = idItem;
         mMoney = money;
         mType = type;
+
         mImage = image;
-
-
 
     }
 
@@ -78,7 +77,9 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Image :"+getmImage()+"Name :"+getmName()+"\n"+"Date :"+getmDate()+"\n"+
-                "MoneyConsume"+getmMoney()+"\n"+"MoneyIncome"+getmType();
+
+        return "Image :" + getmImage() + "Name :" + getmName() + "\n" + "Date :" + getmDate() + "\n" +
+                "MoneyConsume" + getmMoney() + "\n" + "MoneyIncome" + getmType();
+
     }
 }

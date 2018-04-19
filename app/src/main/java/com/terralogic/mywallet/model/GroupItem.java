@@ -1,15 +1,16 @@
 package com.terralogic.mywallet.model;
 
 public class GroupItem {
+    private int cImage;
+    private String cName;
+    private String cMoney;
+    private Integer cIdGroup;
 
 
 
-        private int cImage;
-        private String cName;
-        private String cMoney;
-       private Integer cIdGroup;
-    public GroupItem()
-    {}
+    public GroupItem() {
+    }
+
 
     public GroupItem(int cImage, String cName, String cMoney, Integer cIdGroup) {
         this.cImage = cImage;
@@ -52,7 +53,7 @@ public class GroupItem {
 
     @Override
     public String toString() {
-        return "Image:"+getcImage()+"\n"+"Name:"+getcName()+"\n"+"Money"+getcMoney();
+        return "Image:" + getcImage() + "\n" + "Name:" + getcName() + "\n" + "Money" + getcMoney();
     }
 }
 
