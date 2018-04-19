@@ -57,7 +57,7 @@ public class AddNewFragment extends Fragment implements View.OnClickListener {
         initToolbar();
 
         initContent(view);
-        initButtons(view);
+//        initButtons(view);
 
         clickLayoutIncome();
         clickLayoutExpense();
@@ -77,43 +77,43 @@ public class AddNewFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
-    private void initButtons(View view) {
-        btnZero = view.findViewById(R.id.buttonZero);
-        btnZero.setOnClickListener(this);
-
-        btnOne = view.findViewById(R.id.btnOne);
-        btnOne.setOnClickListener(this);
-
-        btnTwo = view.findViewById(R.id.btnTwo);
-        btnTwo.setOnClickListener(this);
-
-        btnThree = view.findViewById(R.id.btnThree);
-        btnThree.setOnClickListener(this);
-
-        btnFour = view.findViewById(R.id.btnFour);
-        btnFour.setOnClickListener(this);
-
-        btnFive = view.findViewById(R.id.btnFive);
-        btnFive.setOnClickListener(this);
-
-        btnSix = view.findViewById(R.id.btnSix);
-        btnSix.setOnClickListener(this);
-
-        btnSeven = view.findViewById(R.id.btnSeven);
-        btnSeven.setOnClickListener(this);
-
-        btnEight = view.findViewById(R.id.btnEight);
-        btnEight.setOnClickListener(this);
-
-        btnNine = view.findViewById(R.id.btnNine);
-        btnNine.setOnClickListener(this);
-
-        btnDel = view.findViewById(R.id.btnDelete);
-        btnDel.setOnClickListener(this);
-
-        btnOkay = view.findViewById(R.id.btnOk);
-        btnOkay.setOnClickListener(this);
-    }
+//    private void initButtons(View view) {
+//        btnZero = view.findViewById(R.id.buttonZero);
+//        btnZero.setOnClickListener(this);
+//
+//        btnOne = view.findViewById(R.id.btnOne);
+//        btnOne.setOnClickListener(this);
+//
+//        btnTwo = view.findViewById(R.id.btnTwo);
+//        btnTwo.setOnClickListener(this);
+//
+//        btnThree = view.findViewById(R.id.btnThree);
+//        btnThree.setOnClickListener(this);
+//
+//        btnFour = view.findViewById(R.id.btnFour);
+//        btnFour.setOnClickListener(this);
+//
+//        btnFive = view.findViewById(R.id.btnFive);
+//        btnFive.setOnClickListener(this);
+//
+//        btnSix = view.findViewById(R.id.btnSix);
+//        btnSix.setOnClickListener(this);
+//
+//        btnSeven = view.findViewById(R.id.btnSeven);
+//        btnSeven.setOnClickListener(this);
+//
+//        btnEight = view.findViewById(R.id.btnEight);
+//        btnEight.setOnClickListener(this);
+//
+//        btnNine = view.findViewById(R.id.btnNine);
+//        btnNine.setOnClickListener(this);
+//
+//        btnDel = view.findViewById(R.id.btnDelete);
+//        btnDel.setOnClickListener(this);
+//
+//        btnOkay = view.findViewById(R.id.btnOk);
+//        btnOkay.setOnClickListener(this);
+//    }
 
     private void initContent(View view) {
         mLayoutIncome = view.findViewById(R.id.layoutIncome);
