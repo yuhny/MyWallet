@@ -108,7 +108,7 @@ public class MySQLite extends SQLiteOpenHelper {
         values.put(MyDatabase.MONEY_CATEGORY, groupItem.getcMoney());
         values.put(MyDatabase.ID_TABLE_CATEGORY, groupItem.getcIdGroup());
         long check = sqLiteDatabase.insert(MyDatabase.TABLE_CATEGORY, null, values);
-        Toast.makeText(context, check + " ", Toast.LENGTH_SHORT).show();
+        //[Toast.makeText(context, check + " ", Toast.LENGTH_SHORT).show();
         sqLiteDatabase.close();
     }
 

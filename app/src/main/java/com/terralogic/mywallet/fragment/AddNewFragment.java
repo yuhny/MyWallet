@@ -291,8 +291,13 @@ public class AddNewFragment extends Fragment implements View.OnClickListener, Ad
     }
 
     private void addItemToDatabase() {
+        List itemList = mySQLite.getListItem();
+        int countLastItem = 0;
+        if(itemList!=null && itemList.size() > 0){
+            countLastItem = ((Item)itemList.get( itemList.size() - 1 )).getmIdItem() + 1;
+        }
         Item item = new Item();
-        item.setmIdItem(12);
+        item.setmIdItem(countLastItem);
         item.setmDate(mEditAddDate.getText().toString());
         item.setmIdGroup(itemSpinner.getcIdGroup());
         item.setmType(isIncome ? ItemType.INCOME : ItemType.CONSUM);
