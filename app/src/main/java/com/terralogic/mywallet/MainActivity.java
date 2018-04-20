@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnNum1, btnNum2, btnNum3, btnNum4, btnNum5, btnNum6, btnNum7, btnNum8, btnNum9, btnNum0;
     RadioButton radioBtn1, radioBtn2, radioBtn3, radioBtn4, radioBtn5;
     private String pwdLetters[] = new String[5];
+    private String radioButtonArr[] = new String[5];
     private int mCountClick = 0;
     final String PREF_NAME = "com.terralogic.mywallet";
     String oldPassword;
@@ -71,6 +72,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnNum9.setOnClickListener(this);
         btnNum0.setOnClickListener(this);
 
+        radioBtn1.setChecked(false);
+        radioBtn2.setChecked( false);
+        radioBtn3.setChecked( false );
+        radioBtn4.setChecked( false );
+        radioBtn5.setChecked( false );
+
 
 
 
@@ -79,6 +86,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Context.MODE_PRIVATE);
         oldPassword = sharePreferences.getString("PWD", null);
 
+    }
+
+    void preventRadioButtonOnClick(int countClickRadioButton)
+    {
+        switch (countClickRadioButton)
+        {
+            case 0:
+                radioBtn1.setChecked( false );
+                break;
+            case 1:
+                radioBtn2.setChecked( false );
+                break;
+            case 2:
+                radioBtn3.setChecked( false );
+                break;
+            case 3:
+                radioBtn4.setChecked( false );
+                break;
+        }
     }
 
     void fillPwdRadioBtn(int countClick) {
@@ -105,6 +131,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(mCountClick>4){
             return;
         }
+//        radioButtonArr[mCountClick] = ((RadioButton)view).getText().toString();
+//        preventRadioButtonOnClick( mCountClick );
         pwdLetters[mCountClick] = ((Button) view).getText().toString();
         fillPwdRadioBtn(mCountClick);
 

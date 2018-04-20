@@ -20,25 +20,31 @@ public class MyDatabase {
     public static final String NAME_ITEM = "NameItem";
     public static final String IMAGE_CATEGORY = "ImageCategory";
     public static final String ID_GROUP_IEAM = "IdGroupItem";
-    public static  final String MONEY_CATEGORY = "MoneyCategory";
+    public static final String MONEY_CATEGORY = "MoneyCategory";
     public static final String DATE_COMSUME = "Date";
     public static final String MONEY_ITEM = "MoneyItem";
     public static final String MONEY_TYPE = "MoneyType";
     public Context context;
 
-
+    /*
+     *trile
+     *change data type of image category from text to integer
+     */
     public static String createTableCategory() {
         return "CREATE TABLE " + TABLE_CATEGORY + "("
-                + IMAGE_CATEGORY + " text," + NAME_CATEGORY + " text,"+MONEY_CATEGORY+" text,"+
+                + IMAGE_CATEGORY + " integer," + NAME_CATEGORY + " text,"+MONEY_CATEGORY+" text,"+
                 ID_TABLE_CATEGORY + " integer primary key)";
 //
     }
 
-
+    /*
+     * autor: trile
+     * action: change type of id group item from text to integer
+     */
     public static String createTableItem() {
         return  "CREATE TABLE " + TABLE_ITEM + "(" + ID_TABLE_ITEM + " integer primary key,"
                + NAME_ITEM + " text," + DATE_COMSUME + " text," + MONEY_ITEM + " text," +
-                MONEY_TYPE + " text,"+ ID_GROUP_IEAM+" text)";
+                MONEY_TYPE + " integer,"+ ID_GROUP_IEAM+" integer)";
 
 //
     }

@@ -71,7 +71,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 
         if (convertView == null) {
-            LayoutInflater inflater = (LayoutInflater) this.mcontext.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+            LayoutInflater inflater = (LayoutInflater) this.mcontext.getSystemService(
+                    Context.LAYOUT_INFLATER_SERVICE );
             convertView = inflater.inflate( R.layout.list_group, null );
 
 
@@ -93,10 +94,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup viewGroup) {
+    public View getChildView(int groupPosition, final int childPosition, boolean
+            isLastChild, View convertView, ViewGroup viewGroup) {
 
         if (convertView == null) {
-            LayoutInflater inflater = (LayoutInflater) this.mcontext.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+            LayoutInflater inflater = (LayoutInflater) this.mcontext.getSystemService(
+                    Context.LAYOUT_INFLATER_SERVICE );
             convertView = inflater.inflate( R.layout.list_item, null );
 
         }

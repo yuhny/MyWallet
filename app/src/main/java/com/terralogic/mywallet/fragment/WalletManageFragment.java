@@ -15,11 +15,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
 import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.terralogic.mywallet.R;
+import com.terralogic.mywallet.database.MySQLite;
 import com.terralogic.mywallet.fragment.dialog.BalanceDialog;
 import com.terralogic.mywallet.model.DateUtil;
+import com.terralogic.mywallet.model.Item;
+
+import java.util.List;
 
 public class WalletManageFragment extends Fragment {
     private CalendarView mCalendarView;
@@ -28,6 +33,7 @@ public class WalletManageFragment extends Fragment {
     private long day;
     private int month, year;
     private String text, result;
+    private MySQLite mySQLite;
 
     @Nullable
     @Override
@@ -35,9 +41,9 @@ public class WalletManageFragment extends Fragment {
                              @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_wallet_manager, container, false);
+        mySQLite = new MySQLite(getContext());
 
         mCalendarView = (CalendarView) view.findViewById(R.id.calendar);
-//        mFabBalance = (FloatingActionButton) view.findViewById(R.id.fabBalance);
         mFabAddNew = (FloatingActionButton) view.findViewById(R.id.fabAddNew);
 
         mImgBalance = (ImageView) view.findViewById(R.id.imgBalance);
@@ -53,11 +59,18 @@ public class WalletManageFragment extends Fragment {
         mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView calendarView, int i, final int i1, final int i2) {
-                if (i2 == 12) {
-                    addFragment(new ListExpenseFragment());
-                } else {
+                String date = i2 + "-" + (i1 + 1) + "-" + i;
+                List<Item> items = mySQLite.getListItemWithDate(date);
+                ListExpenseFragment listExpenseFragment = new ListExpenseFragment();
+                listExpenseFragment.setItems(items);
+
+                if(items.size()==0){
                     addFragment(new NodataFragment());
+                } else {
+                    addFragment(listExpenseFragment);
                 }
+
+//                Toast.makeText(getContext(), date + " - " + items.size(), Toast.LENGTH_SHORT).show();
             }
         });
     }

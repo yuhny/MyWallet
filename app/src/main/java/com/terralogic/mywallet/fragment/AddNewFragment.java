@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -24,7 +25,12 @@ import android.widget.Toast;
 import com.terralogic.mywallet.R;
 import com.terralogic.mywallet.activity.ManageActivity;
 import com.terralogic.mywallet.adapter.CategoryAdapter;
+import com.terralogic.mywallet.controller.ButtonState;
+import com.terralogic.mywallet.database.MySQLite;
 import com.terralogic.mywallet.model.Category;
+import com.terralogic.mywallet.model.GroupItem;
+import com.terralogic.mywallet.model.Item;
+import com.terralogic.mywallet.model.ItemType;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -34,86 +40,88 @@ import java.util.List;
  * Created by trile on 4/10/2018.
  */
 
-public class AddNewFragment extends Fragment implements View.OnClickListener {
+public class AddNewFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     private TextView mTxtTitle, mTxtAddIncome, mTxtAddExpense, mTxtAddMoney, mTxtUnit;
     private LinearLayout mLayoutIncome, mLayoutExpense;
     private ImageView mImgAddDate, mImgAddCate;
     private EditText mEditAddDate, mEditAddNote;
     private Spinner mSpinnerCate;
-    private List<Category> mListCate;
+    private List<GroupItem> mListCate;
     private CategoryAdapter adapter;
     private boolean isIncome = true;
     private int day, month, year;
     private Button btnZero, btnOne, btnTwo, btnThree, btnFour, btnFive, btnSix, btnSeven, btnEight, btnNine;
     private Button btnOkay;
-    private ImageButton btnDel;
+    private Button btnDel;
     private String resultMoney = "0";
+    private GroupItem itemSpinner;
+    private MySQLite mySQLite;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_new, container, false);
+        mySQLite = new MySQLite(getContext());
 
         initToolbar();
 
         initContent(view);
-//        initButtons(view);
+        initButtons(view);
 
         clickLayoutIncome();
         clickLayoutExpense();
         clickCalendarImage();
 
         initListCate();
-//
-//        mImgAddCate.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
-        adapter = new CategoryAdapter(getContext(), mListCate);
-        mSpinnerCate.setAdapter(adapter);
+        initSpinner();
 
         return view;
     }
 
-//    private void initButtons(View view) {
-//        btnZero = view.findViewById(R.id.buttonZero);
-//        btnZero.setOnClickListener(this);
-//
-//        btnOne = view.findViewById(R.id.btnOne);
-//        btnOne.setOnClickListener(this);
-//
-//        btnTwo = view.findViewById(R.id.btnTwo);
-//        btnTwo.setOnClickListener(this);
-//
-//        btnThree = view.findViewById(R.id.btnThree);
-//        btnThree.setOnClickListener(this);
-//
-//        btnFour = view.findViewById(R.id.btnFour);
-//        btnFour.setOnClickListener(this);
-//
-//        btnFive = view.findViewById(R.id.btnFive);
-//        btnFive.setOnClickListener(this);
-//
-//        btnSix = view.findViewById(R.id.btnSix);
-//        btnSix.setOnClickListener(this);
-//
-//        btnSeven = view.findViewById(R.id.btnSeven);
-//        btnSeven.setOnClickListener(this);
-//
-//        btnEight = view.findViewById(R.id.btnEight);
-//        btnEight.setOnClickListener(this);
-//
-//        btnNine = view.findViewById(R.id.btnNine);
-//        btnNine.setOnClickListener(this);
-//
-//        btnDel = view.findViewById(R.id.btnDelete);
-//        btnDel.setOnClickListener(this);
-//
-//        btnOkay = view.findViewById(R.id.btnOk);
-//        btnOkay.setOnClickListener(this);
-//    }
+    private void initSpinner() {
+        adapter = new CategoryAdapter(getContext(), mListCate);
+        mSpinnerCate.setAdapter(adapter);
+
+        mSpinnerCate.setOnItemSelectedListener(this);
+    }
+
+    private void initButtons(View view) {
+        btnZero = view.findViewById(R.id.btnZero);
+        btnZero.setOnClickListener(this);
+
+        btnOne = view.findViewById(R.id.btnOne);
+        btnOne.setOnClickListener(this);
+
+        btnTwo = view.findViewById(R.id.btnTwo);
+        btnTwo.setOnClickListener(this);
+
+        btnThree = view.findViewById(R.id.btnThree);
+        btnThree.setOnClickListener(this);
+
+        btnFour = view.findViewById(R.id.btnFour);
+        btnFour.setOnClickListener(this);
+
+        btnFive = view.findViewById(R.id.btnFive);
+        btnFive.setOnClickListener(this);
+
+        btnSix = view.findViewById(R.id.btnSix);
+        btnSix.setOnClickListener(this);
+
+        btnSeven = view.findViewById(R.id.btnSeven);
+        btnSeven.setOnClickListener(this);
+
+        btnEight = view.findViewById(R.id.btnEight);
+        btnEight.setOnClickListener(this);
+
+        btnNine = view.findViewById(R.id.btnNine);
+        btnNine.setOnClickListener(this);
+
+        btnDel = view.findViewById(R.id.btnDelete);
+        btnDel.setOnClickListener(this);
+
+        btnOkay = view.findViewById(R.id.btnOk);
+        btnOkay.setOnClickListener(this);
+    }
 
     private void initContent(View view) {
         mLayoutIncome = view.findViewById(R.id.layoutIncome);
@@ -205,14 +213,14 @@ public class AddNewFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initListCate() {
-        mListCate = new ArrayList<>();
-        mListCate.add(new Category(R.drawable.icon_smile, "Cinema"));
-        mListCate.add(new Category(R.drawable.icon_smile, "Baby"));
-        mListCate.add(new Category(R.drawable.icon_smile, "Home"));
-        mListCate.add(new Category(R.drawable.icon_smile, "Market"));
-        mListCate.add(new Category(R.drawable.icon_smile, "Restaurant"));
-        mListCate.add(new Category(R.drawable.icon_smile, "Travel"));
-        mListCate.add(new Category(R.drawable.icon_smile, "Others"));
+        mListCate = mySQLite.getListCategory();
+//        mListCate.add(new Category(R.drawable.icon_smile, "Cinema"));
+//        mListCate.add(new Category(R.drawable.icon_smile, "Baby"));
+//        mListCate.add(new Category(R.drawable.icon_smile, "Home"));
+//        mListCate.add(new Category(R.drawable.icon_smile, "Market"));
+//        mListCate.add(new Category(R.drawable.icon_smile, "Restaurant"));
+//        mListCate.add(new Category(R.drawable.icon_smile, "Travel"));
+//        mListCate.add(new Category(R.drawable.icon_smile, "Others"));
     }
 
     private void switchColorMoney() {
@@ -269,10 +277,28 @@ public class AddNewFragment extends Fragment implements View.OnClickListener {
         if (view == btnOkay) {
             if (mEditAddNote.getText().toString() == null || mEditAddNote.getText().toString().length() == 0) {
                 Toast.makeText(getContext(), "Please enter the note!", Toast.LENGTH_SHORT).show();
-            } else{
-                Toast.makeText(getContext(), "Clear to go!", Toast.LENGTH_SHORT).show();
+            } else {
+                addItemToDatabase();
+                clear();
             }
         }
+    }
+
+    private void clear() {
+        mEditAddNote.setText("");
+        resultMoney = "0";
+        mTxtAddMoney.setText(resultMoney);
+    }
+
+    private void addItemToDatabase() {
+        Item item = new Item();
+        item.setmIdItem(12);
+        item.setmDate(mEditAddDate.getText().toString());
+        item.setmIdGroup(itemSpinner.getcIdGroup());
+        item.setmType(isIncome ? ItemType.INCOME : ItemType.CONSUM);
+        item.setmMoney(resultMoney);
+        item.setmName(mEditAddNote.getText().toString());
+        mySQLite.addItem(item);
     }
 
     private void limitResult(String num) {
@@ -295,4 +321,13 @@ public class AddNewFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+        itemSpinner = (GroupItem) adapterView.getItemAtPosition(position);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 }

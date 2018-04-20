@@ -9,4 +9,5 @@
     <string name="add_new_category">Category:</string>
     <string name="add_income">INCOME</string>
     <string name="add_expense">EXPENSE</string>
+    <string name="hint_note">Enter your note</string>
 </resources>

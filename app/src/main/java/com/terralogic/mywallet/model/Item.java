@@ -1,5 +1,9 @@
 package com.terralogic.mywallet.model;
 
+import com.terralogic.mywallet.activity.ManageActivity;
+
+import java.util.List;
+
 public class Item {
 
     private String mName;
@@ -75,9 +79,20 @@ public class Item {
         this.mType = mType;
     }
 
+//    public int getImageCate() {
+//        int result = 0;
+//        ManageActivity manageActivity = new ManageActivity();
+//        List<GroupItem> groupItems = manageActivity.checkForTableCategory();
+//        for (GroupItem item : groupItems) {
+//            if (mIdGroup == item.getcIdGroup()) {
+//                result = item.getcImage();
+//            }
+//        }
+//        return result;
+//    }
+
     @Override
     public String toString() {
-
         return "Name :" + getmName() + "\n" + "Date :" + getmDate() + "\n" +
                 "MoneyConsume" + getmMoney() + "\n" + "MoneyIncome" + getmType();
 
