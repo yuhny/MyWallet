@@ -2,12 +2,13 @@ package com.terralogic.mywallet.model;
 
 import com.terralogic.mywallet.activity.ManageActivity;
 
+import java.util.Date;
 import java.util.List;
 
 public class Item {
 
     private String mName;
-    private String mDate;
+    private Date mDate;
     private int mIdItem;
     private String mMoney;
     private ItemType mType;
@@ -17,7 +18,7 @@ public class Item {
     }
 
 
-    public Item(String name, String date, int idItem,
+    public Item(String name, Date date, int idItem,
                 String money, ItemType type, int idGroup) {
         mName = name;
         mDate = date;
@@ -45,11 +46,11 @@ public class Item {
         this.mName = mName;
     }
 
-    public String getmDate() {
+    public Date getmDate() {
         return mDate;
     }
 
-    public void setmDate(String mDate) {
+    public void setmDate(Date mDate) {
         this.mDate = mDate;
     }
 

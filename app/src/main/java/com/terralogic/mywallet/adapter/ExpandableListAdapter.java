@@ -1,6 +1,7 @@
 package com.terralogic.mywallet.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.terralogic.mywallet.R;
+import com.terralogic.mywallet.model.DateUtil;
 import com.terralogic.mywallet.model.GroupItem;
 import com.terralogic.mywallet.model.Item;
+import com.terralogic.mywallet.model.ItemType;
 
 import java.util.HashMap;
 import java.util.List;
@@ -85,10 +88,17 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         GroupItem groupItem = mlistDataGroup.get( groupPosition );
 
-//        imGroup.setImageResource( groupItem.getcImage() );
-//        grTextView1.setText( groupItem.getcName() );
-//        grTextView2.setText( groupItem.getcMoney() );
-
+        imGroup.setImageResource( groupItem.getcImage() );
+        grTextView1.setText( groupItem.getcName() );
+        if(Long.parseLong(groupItem.getcMoney() ) < 0 )
+        {
+            grTextView2.setText( groupItem.getcMoney() );
+            grTextView2.setTextColor(Color.argb( 255,207,29,29 )  );
+        }
+        else if(Long.parseLong( groupItem.getcMoney() )>0) {
+            grTextView2.setText( groupItem.getcMoney() );
+            grTextView2.setTextColor( Color.argb( 255,0,255,251 ) );
+        }
 
         return convertView;
     }
@@ -109,10 +119,20 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView textViewMoneyChild = (TextView) convertView.findViewById( R.id.textMoneyItem );
 
 
-        Item item = mlistDataItem.get( mlistDataGroup.get( groupPosition ) ).get( childPosition );
+        Item item = mlistDataItem.get( mlistDataGroup.get(
+                groupPosition ) ).get( childPosition );
         textViewNameChild.setText( item.getmName() );
-        textViewDateChild.setText( item.getmDate() );
-        textViewMoneyChild.setText(item.getmMoney());
+        textViewDateChild.setText( DateUtil.getDateStringFromDataObject(item.getmDate()));
+        if(item.getmType()== ItemType.CONSUM) {
+            textViewMoneyChild.setText( item.getmMoney() );
+            textViewMoneyChild.setTextColor( Color.argb( 255,185,56,56 ));
+        }
+        else if(item.getmType() == ItemType.INCOME)
+        {
+            textViewMoneyChild.setText( item.getmMoney() );
+        }
+
+
 
         return convertView;
     }

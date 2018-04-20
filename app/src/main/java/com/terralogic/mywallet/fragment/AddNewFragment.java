@@ -28,12 +28,14 @@ import com.terralogic.mywallet.adapter.CategoryAdapter;
 import com.terralogic.mywallet.controller.ButtonState;
 import com.terralogic.mywallet.database.MySQLite;
 import com.terralogic.mywallet.model.Category;
+import com.terralogic.mywallet.model.DateUtil;
 import com.terralogic.mywallet.model.GroupItem;
 import com.terralogic.mywallet.model.Item;
 import com.terralogic.mywallet.model.ItemType;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -298,7 +300,7 @@ public class AddNewFragment extends Fragment implements View.OnClickListener, Ad
         }
         Item item = new Item();
         item.setmIdItem(countLastItem);
-        item.setmDate(mEditAddDate.getText().toString());
+        item.setmDate( DateUtil.getDateFromString(  mEditAddDate.getText().toString()) );
         item.setmIdGroup(itemSpinner.getcIdGroup());
         item.setmType(isIncome ? ItemType.INCOME : ItemType.CONSUM);
         item.setmMoney(resultMoney);

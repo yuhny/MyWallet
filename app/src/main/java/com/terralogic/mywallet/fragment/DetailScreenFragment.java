@@ -29,6 +29,7 @@ import com.terralogic.mywallet.model.ItemType;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -42,20 +43,21 @@ public class DetailScreenFragment extends Fragment {
     List<GroupItem> listDataGroup;
     HashMap<GroupItem, List<Item>> listDataItem;
     HashMap<Integer, List<Item>> listId;
-//    private Toolbar mToolbar;
-//    private TextView mTitle;
+    private Toolbar mToolbar;
+    private TextView mTitle;
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
+   // @RequiresApi(api = Build.VERSION_CODES.M)
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate( R.layout.fragment_detail_screen, container, false );
+        View view = inflater.inflate( R.layout.fragment_detail_screen, container,
+                false );
 
 
-//        mToolbar = ((ManageActivity) getActivity()).findViewById( R.id.toolbar );
-//        mTitle = ((ManageActivity) getActivity()).findViewById( R.id.txtTitle );
-//        mTitle.setText( "Detail for month" );
+        mToolbar = ((ManageActivity) getActivity()).findViewById( R.id.toolbar );
+        mTitle = ((ManageActivity) getActivity()).findViewById( R.id.txtTitle );
+////        mTitle.setText( "Detail for month" );
 
 
         spinner = view.findViewById( R.id.spinner_month );
@@ -77,55 +79,69 @@ public class DetailScreenFragment extends Fragment {
                 android.R.layout.simple_spinner_item, arrayMonth );
         arrayAdapter.setDropDownViewResource( R.layout.support_simple_spinner_dropdown_item );
         spinner.setAdapter( arrayAdapter );
-        spinner.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
+        spinner.setOnItemSelectedListener(onItemSelectedListener());
+
+
+        expListView = view.findViewById( R.id.expandableListView );
+
+        prepareListData();
+        return view;
+    }
+
+    private AdapterView.OnItemSelectedListener onItemSelectedListener(){
+       return new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText( getContext(), spinner.getSelectedItem().toString(),
-                        Toast.LENGTH_SHORT ).show();
+                prepareListData();
+                //listAdapter.notify();
+                listAdapter = new com.terralogic.mywallet.adapter.ExpandableListAdapter(
+                        view.getContext(), listDataGroup, listDataItem );
+
+                expListView.setAdapter( listAdapter );
+                int itemCount = expListView.getCount();
+                for (int j = 0; j < itemCount; j++) {
+                    expListView.expandGroup( j );
+                }
+                mTitle.setText( "Detail for "+spinner.getSelectedItem() );
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
-        } );
-
-
-        expListView = view.findViewById( R.id.expandableListView );
-
-        prepareListData();
-
-        listAdapter = new com.terralogic.mywallet.adapter.ExpandableListAdapter(
-                this.getActivity(), listDataGroup, listDataItem );
-
-        expListView.setAdapter( listAdapter );
-        int itemCount = expListView.getCount();
-        for (int i = 0; i < itemCount; i++) {
-            expListView.expandGroup( i );
-        }
-
-        return view;
+        };
     }
 
     private void prepareListData() {
         listDataGroup = new ArrayList<>();
         listDataItem = new HashMap<GroupItem, List<Item>>();
         MySQLite sqLite = new MySQLite( this.getContext() );
-        listDataGroup = sqLite.getListCategory();
+        List<GroupItem> listDataGroupTemp = sqLite.getListCategory();
 
         List<Item> itemList = sqLite.getListItem();
 
-        for (GroupItem gi : listDataGroup) {
+        for (GroupItem gi : listDataGroupTemp) {
             ArrayList<Item> listItem = new ArrayList<>();
+            long money = 0;
 
             for (Item item : itemList) {
-                if (item.getmIdGroup() == gi.getcIdGroup()) {
-                    listItem.add( item );
+                if (item.getmIdGroup() == gi.getcIdGroup() ) {
+                    if(spinner.getSelectedItemPosition() == item.getmDate().getMonth()) {
+                        listItem.add( item );
+                        if (item.getmType() == ItemType.INCOME) {
+                            money += Long.parseLong( item.getmMoney() );
+                        } else {
+                            money -= Long.parseLong( item.getmMoney() );
+                        }
+                    }
                 }
             }
 
-
-            listDataItem.put( gi, listItem );
+            if (listItem.size() > 0) {
+                listDataItem.put( gi, listItem );
+                gi.setcMoney( money+"" );
+                listDataGroup.add( gi );
+            }
 
         }
 
@@ -149,7 +165,17 @@ public class DetailScreenFragment extends Fragment {
 //                }
 
 
+    }
 
+    private void handleMoneyCategory() {
+        MySQLite sqLite1 = new MySQLite( this.getContext() );
+        List<Item> itemList = sqLite1.getListItem();
+        List<GroupItem> listDataGroup = sqLite1.getListCategory();
+
+
+        for (GroupItem gritem : listDataGroup) {
+
+        }
     }
 
 

@@ -1,5 +1,6 @@
 package com.terralogic.mywallet.model;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -44,6 +45,19 @@ public class DateUtil {
         return text;
     }
 
+    public static Date getDateFromString(String dateString){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        try {
+            return sdf.parse( dateString );
+        }catch (ParseException er){
+            return  new Date(  );
+        }
+    }
+
+    public static String getDateStringFromDataObject(Date date){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        return sdf.format( date );
+    }
 //    public static void main(String[] args) {
 //        Map<String, String> mappp = DateUtil.MONTH_OF_YEAR;
 //        mappp.get();
