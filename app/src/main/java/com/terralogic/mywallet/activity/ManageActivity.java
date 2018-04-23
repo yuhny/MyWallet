@@ -65,8 +65,6 @@ public class ManageActivity extends AppCompatActivity {
 //            Toast.makeText(getApplicationContext(),"data was filled ",Toast.LENGTH_SHORT ).show();
 
             MySQLite mySQLite2 = new MySQLite(this.getApplicationContext());
-            List list2 = mySQLite2.getListCategory();
-            list2.size();
 
 
         } else {

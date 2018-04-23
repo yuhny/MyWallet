@@ -8,11 +8,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.terralogic.mywallet.model.DateUtil;
 import com.terralogic.mywallet.model.GroupItem;
 import com.terralogic.mywallet.model.Item;
 import com.terralogic.mywallet.model.ItemType;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -85,7 +87,7 @@ public class MySQLite extends SQLiteOpenHelper {
                 Item item = new Item();
                 item.setmIdItem(cursor.getInt(0));
                 item.setmName(cursor.getString(1));
-                item.setmDate(cursor.getString(2));
+                item.setmDate( DateUtil.getDateFromString(  cursor.getString(2)));
                 item.setmMoney(cursor.getString(3));
                 item.setmType(cursor.getInt(4) == ItemType.INCOME.getValues() ? ItemType.INCOME :
                         ItemType.CONSUM);
@@ -108,7 +110,7 @@ public class MySQLite extends SQLiteOpenHelper {
         values.put(MyDatabase.MONEY_CATEGORY, groupItem.getcMoney());
         values.put(MyDatabase.ID_TABLE_CATEGORY, groupItem.getcIdGroup());
         long check = sqLiteDatabase.insert(MyDatabase.TABLE_CATEGORY, null, values);
-        Toast.makeText(context, check + " ", Toast.LENGTH_SHORT).show();
+        //[Toast.makeText(context, check + " ", Toast.LENGTH_SHORT).show();
         sqLiteDatabase.close();
     }
 
@@ -122,10 +124,9 @@ public class MySQLite extends SQLiteOpenHelper {
     public void addItem(Item item) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-
         values.put(MyDatabase.ID_TABLE_ITEM, item.getmIdItem());
         values.put(MyDatabase.NAME_ITEM, item.getmName());
-        values.put(MyDatabase.DATE_COMSUME, item.getmDate());
+        values.put(MyDatabase.DATE_COMSUME, DateUtil.getDateStringFromDataObject(  item.getmDate()));
         values.put(MyDatabase.MONEY_ITEM, item.getmMoney());
         values.put(MyDatabase.MONEY_TYPE, item.getmType().getValues());
         values.put(MyDatabase.ID_GROUP_IEAM, item.getmIdGroup());
@@ -152,7 +153,7 @@ public class MySQLite extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(MyDatabase.NAME_ITEM, item.getmName());
-        contentValues.put(MyDatabase.DATE_COMSUME, item.getmDate());
+        contentValues.put(MyDatabase.DATE_COMSUME, DateUtil.getDateStringFromDataObject( item.getmDate()));
         contentValues.put(MyDatabase.ID_TABLE_ITEM, item.getmIdItem());
         contentValues.put(MyDatabase.MONEY_ITEM, item.getmMoney());
         contentValues.put(MyDatabase.MONEY_TYPE, item.getmType().getValues());
@@ -179,7 +180,7 @@ public class MySQLite extends SQLiteOpenHelper {
                 Item item = new Item();
                 item.setmIdItem(cursor.getInt(0));
                 item.setmName(cursor.getString(1));
-                item.setmDate(cursor.getString(2));
+                item.setmDate(DateUtil.getDateFromString(  cursor.getString(2)));
                 item.setmMoney(cursor.getString(3));
                 item.setmType(cursor.getInt(4) == ItemType.INCOME.getValues() ? ItemType.INCOME :
                         ItemType.CONSUM);

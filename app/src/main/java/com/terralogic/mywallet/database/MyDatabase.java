@@ -42,7 +42,7 @@ public class MyDatabase {
      * action: change type of id group item from text to integer
      */
     public static String createTableItem() {
-        return  "CREATE TABLE " + TABLE_ITEM + "(" + ID_TABLE_ITEM + " integer,"
+        return  "CREATE TABLE " + TABLE_ITEM + "(" + ID_TABLE_ITEM + " integer primary key,"
                + NAME_ITEM + " text," + DATE_COMSUME + " text," + MONEY_ITEM + " text," +
                 MONEY_TYPE + " integer,"+ ID_GROUP_IEAM+" integer)";
 

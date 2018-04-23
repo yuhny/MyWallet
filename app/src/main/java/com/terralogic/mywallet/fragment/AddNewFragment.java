@@ -28,12 +28,14 @@ import com.terralogic.mywallet.adapter.CategoryAdapter;
 import com.terralogic.mywallet.controller.ButtonState;
 import com.terralogic.mywallet.database.MySQLite;
 import com.terralogic.mywallet.model.Category;
+import com.terralogic.mywallet.model.DateUtil;
 import com.terralogic.mywallet.model.GroupItem;
 import com.terralogic.mywallet.model.Item;
 import com.terralogic.mywallet.model.ItemType;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -291,12 +293,17 @@ public class AddNewFragment extends Fragment implements View.OnClickListener, Ad
     }
 
     private void addItemToDatabase() {
+        List itemList = mySQLite.getListItem();
+        int countLastItem = 0;
+        if(itemList!=null && itemList.size() > 0){
+            countLastItem = ((Item)itemList.get( itemList.size() - 1 )).getmIdItem() + 1;
+        }
         Item item = new Item();
-        item.setmIdItem(12);
-        item.setmDate(mEditAddDate.getText().toString());
+        item.setmIdItem(countLastItem);
+        item.setmDate( DateUtil.getDateFromString(  mEditAddDate.getText().toString()) );
         item.setmIdGroup(itemSpinner.getcIdGroup());
         item.setmType(isIncome ? ItemType.INCOME : ItemType.CONSUM);
-        item.setmMoney(resultMoney);
+        item.setmMoney(resultMoney+"000");
         item.setmName(mEditAddNote.getText().toString());
         mySQLite.addItem(item);
     }
