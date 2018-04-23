@@ -21,6 +21,7 @@ import java.util.List;
  */
 
 public class CategoryAdapter extends ArrayAdapter<GroupItem> {
+    private List<GroupItem> categories;
 
     public CategoryAdapter(Context context, List<GroupItem> categories) {
         super(context, 0, categories);
@@ -52,4 +53,9 @@ public class CategoryAdapter extends ArrayAdapter<GroupItem> {
 
         return convertView;
     }
+
+    public List<GroupItem> getCategories() {
+        return categories;
+    }
+
 }

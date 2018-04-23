@@ -4,17 +4,22 @@ import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.terralogic.mywallet.R;
 import com.terralogic.mywallet.adapter.ExpenseAdapter;
 import com.terralogic.mywallet.controller.SwipeController;
 import com.terralogic.mywallet.controller.SwipeControllerActions;
+import com.terralogic.mywallet.database.MySQLite;
 import com.terralogic.mywallet.model.Item;
 
 import java.util.List;
@@ -25,9 +30,11 @@ public class ListExpenseFragment extends Fragment {
     ExpenseAdapter adapter;
     SwipeController swipeController;
     private String date;
+    private MySQLite mySQLite;
 
     public ListExpenseFragment() {
     }
+
     public List<Item> getItems() {
         return items;
     }
@@ -48,14 +55,23 @@ public class ListExpenseFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
 
         adapter = new ExpenseAdapter(this.getContext(), items);
+        mySQLite = new MySQLite(getContext());
+
         recyclerView.setAdapter(adapter);
 
         swipeController = new SwipeController(new SwipeControllerActions() {
             @Override
             public void onRightClicked(int position) {
-                adapter.getItemList().remove(position);
+                Item i = adapter.getItemList().remove(position);
+                mySQLite.deleteItem(i);
                 adapter.notifyItemRemoved(position);
                 adapter.notifyItemRangeChanged(position, adapter.getItemCount());
+            }
+
+            @Override
+            public void onLeftClicked(int position) {
+                Item item = adapter.getItemList().get(position);
+                addFragmentBackStack(new AddNewFragment(item));
             }
         });
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeController);
@@ -69,6 +85,16 @@ public class ListExpenseFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void addFragmentBackStack(Fragment fragment) {
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+
+        transaction.setCustomAnimations(R.anim.anim_in_right, R.anim.anim_out_left, R.anim.anim_in_left, R.anim.anim_to_right);
+        transaction.replace(R.id.frameManage, fragment);
+        transaction.addToBackStack(fragment.getClass().getSimpleName());
+        transaction.commit();
     }
 
     @Override

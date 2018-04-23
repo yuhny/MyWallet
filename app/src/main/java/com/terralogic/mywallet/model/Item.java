@@ -1,6 +1,7 @@
 package com.terralogic.mywallet.model;
 
 import com.terralogic.mywallet.activity.ManageActivity;
+import com.terralogic.mywallet.database.MySQLite;
 
 import java.util.Date;
 import java.util.List;
@@ -82,8 +83,8 @@ public class Item {
 
 //    public int getImageCate() {
 //        int result = 0;
-//        ManageActivity manageActivity = new ManageActivity();
-//        List<GroupItem> groupItems = manageActivity.checkForTableCategory();
+//        MySQLite mySQLite = new MySQLite()
+//
 //        for (GroupItem item : groupItems) {
 //            if (mIdGroup == item.getcIdGroup()) {
 //                result = item.getcImage();

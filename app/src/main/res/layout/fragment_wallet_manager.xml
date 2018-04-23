@@ -21,10 +21,10 @@
                 android:id="@+id/imgBalance"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/icon_smile"
-                android:layout_gravity="bottom|end"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:layout_gravity="bottom|end"
+                android:src="@drawable/ic_summary" />
         </CalendarView>
     </LinearLayout>
 
@@ -40,6 +40,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:backgroundTint="@color/colorPrimary"
-            android:src="@drawable/icon_smile" />
+            android:src="@drawable/ic_add" />
     </FrameLayout>
 </LinearLayout>

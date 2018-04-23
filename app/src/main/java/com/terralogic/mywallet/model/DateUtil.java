@@ -38,11 +38,24 @@ public class DateUtil {
         String text = format.format(d);
         return text;
     }
-    public static String getDate(long input){
+
+    public static String getDate(long input) {
         Date d = new Date(input);
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         String text = format.format(d);
         return text;
+    }
+
+
+    public static int getMonth(String s) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        try {
+            Date date = simpleDateFormat.parse(s);
+            return date.getMonth() + 1;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     public static Date getDateFromString(String dateString){

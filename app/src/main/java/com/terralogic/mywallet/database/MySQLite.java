@@ -126,15 +126,15 @@ public class MySQLite extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(MyDatabase.ID_TABLE_ITEM, item.getmIdItem());
         values.put(MyDatabase.NAME_ITEM, item.getmName());
-        values.put(MyDatabase.DATE_COMSUME, DateUtil.getDateStringFromDataObject(  item.getmDate()));
+        values.put(MyDatabase.DATE_COMSUME, DateUtil.getDateStringFromDataObject(item.getmDate()));
         values.put(MyDatabase.MONEY_ITEM, item.getmMoney());
         values.put(MyDatabase.MONEY_TYPE, item.getmType().getValues());
         values.put(MyDatabase.ID_GROUP_IEAM, item.getmIdGroup());
 
         long check = sqLiteDatabase.insert(MyDatabase.TABLE_ITEM, null, values);
+        Toast.makeText(context, check + " ", Toast.LENGTH_SHORT).show();
 
         sqLiteDatabase.close();
-//        Toast.makeText(context, check + " ", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -185,7 +185,7 @@ public class MySQLite extends SQLiteOpenHelper {
                 item.setmType(cursor.getInt(4) == ItemType.INCOME.getValues() ? ItemType.INCOME :
                         ItemType.CONSUM);
                 item.setmIdGroup(cursor.getInt(5));
-                if (item.getmDate().equals(date)) {
+                if (item.getmDate().equals(DateUtil.getDateFromString(date))) {
                     listItemWithDate.add(item);
                 }
 
@@ -222,6 +222,11 @@ public class MySQLite extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
     }
+
+//    public int getIncome(int month){
+//        String sql = "SELECT "+ MyDatabase.MONEY_ITEM + " FROM " + MyDatabase.TABLE_ITEM + " WHERE " + ;
+//        return 0;
+//    }
 
 
 //

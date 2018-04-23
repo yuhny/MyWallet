@@ -1,6 +1,7 @@
 package com.terralogic.mywallet.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +9,10 @@ import android.view.ViewGroup;
 
 import com.terralogic.mywallet.R;
 import com.terralogic.mywallet.adapter.viewHolder.ItemViewHolder;
+import com.terralogic.mywallet.database.MySQLite;
+import com.terralogic.mywallet.model.DateUtil;
 import com.terralogic.mywallet.model.Expense;
+import com.terralogic.mywallet.model.GroupItem;
 import com.terralogic.mywallet.model.Item;
 
 import java.util.List;
@@ -16,10 +20,12 @@ import java.util.List;
 public class ExpenseAdapter extends RecyclerView.Adapter<ItemViewHolder> {
     private Context context;
     private List<Item> itemList;
+    private MySQLite mySQLite;
 
     public ExpenseAdapter(Context context, List<Item> expenseList) {
         this.context = context;
         this.itemList = expenseList;
+        mySQLite = new MySQLite(context);
     }
 
     @Override
@@ -37,9 +43,26 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ItemViewHolder> {
         Item item = itemList.get(position);
 
         holder.getmContextExpense().setText(item.getmName());
-        holder.getmDateCreate().setText(item.getmDate() + "");
-        holder.getmMoney().setText(item.getmMoney() + ",000");
-        holder.getmImageCate().setImageDrawable(context.getResources().getDrawable(R.drawable.icon_smile));
+        holder.getmDateCreate().setText(DateUtil.getDateStringFromDataObject(item.getmDate()));
+        holder.getmMoney().setText(String.format("%,d", Integer.parseInt(item.getmMoney()))+ "VNĐ");
+
+        holder.getmImageCate().setImageDrawable(context.getResources().getDrawable(getImageCate(item.getmIdGroup())));
+        if (item.getmType().getValues() == 0) {
+            holder.getmMoney().setTextColor(Color.parseColor("#40E0D0"));
+        } else {
+            holder.getmMoney().setTextColor(Color.parseColor("#FF4081"));
+        }
+    }
+
+    private int getImageCate(int idGroup) {
+        List<GroupItem> groupItems = mySQLite.getListCategory();
+        int result = 0;
+        for (GroupItem groupItem : groupItems) {
+            if (groupItem.getcIdGroup() == idGroup) {
+                result = groupItem.getcImage();
+            }
+        }
+        return result;
     }
 
     @Override
@@ -53,5 +76,9 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ItemViewHolder> {
 
     public void setItemList(List<Item> itemList) {
         this.itemList = itemList;
+    }
+
+    public void removeItem(int position) {
+        mySQLite.deleteItem(itemList.remove(position));
     }
 }

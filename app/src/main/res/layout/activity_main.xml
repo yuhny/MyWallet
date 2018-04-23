@@ -3,9 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0062ff"
-    android:orientation="vertical"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp">
+    android:orientation="vertical">
     <include
         android:id="@+id/toolbar"
         layout="@layout/manager_toolbar" />

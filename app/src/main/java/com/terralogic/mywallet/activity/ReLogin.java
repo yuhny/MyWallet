@@ -60,7 +60,12 @@ public class ReLogin extends AppCompatActivity {
 
 
 
+
+
     TextView textView;
+
+    @BindView(R.id.txtTitle)
+    TextView mTitle;
 
     private String pwdLetters[] = new String[5];
     private int mCountClick = 0;
@@ -74,38 +79,14 @@ public class ReLogin extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-
+        /*
+         * author: trile
+         * action: set title Toolbar for Activity Relogin
+         */
         textView.setText( "Reenter your pass" );
+        mTitle.setText("Password Lock");
+
         firstPass = getIntent().getStringExtra("first_pass");
-        //        if(radioBtn1.isChecked())
-        //
-        //        {
-        //            radioBtn1.setChecked( false );
-        //        }
-        //        else if(radioBtn2.isChecked()) {
-        //
-        //            radioBtn2.setChecked( false );
-        //        }
-        //        else if(radioBtn3.isChecked()) {
-        //            radioBtn3.setChecked( false );
-        //        }
-        //        else if(radioBtn4.isChecked()) {
-        //            radioBtn4.setChecked( false );
-        //        }
-        //        else if(radioBtn5.isChecked())
-        //        {
-        //            radioBtn5.setChecked( false );
-        //
-        //        }
-//                if(radioBtn1.isChecked()||radioBtn2.isChecked()||radioBtn3.isChecked()
-//                        ||radioBtn4.isChecked()||radioBtn5.isChecked())
-//                {
-//                    radioBtn1.setChecked( false );
-//                    radioBtn2.setChecked( false );
-//                    radioBtn3.setChecked( false );
-//                    radioBtn4.setChecked( false );
-//                    radioBtn5.setChecked( false );
-//                }
 
         radioBtn1.setEnabled( false );
         radioBtn2.setEnabled( false );

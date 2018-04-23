@@ -38,7 +38,7 @@ public class MyDatabase {
     }
 
     /*
-     * autor: trile
+     * author: trile
      * action: change type of id group item from text to integer
      */
     public static String createTableItem() {
