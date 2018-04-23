@@ -55,8 +55,10 @@ public class ReLogin extends AppCompatActivity {
 
 
     @BindView(R.id.text1)
-
     TextView textView;
+
+    @BindView(R.id.txtTitle)
+    TextView mTitle;
 
     private String pwdLetters[] = new String[5];
     private int mCountClick = 0;
@@ -70,8 +72,13 @@ public class ReLogin extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-
+        /*
+         * author: trile
+         * action: set title Toolbar for Activity Relogin
+         */
         textView.setText( "Reenter your pass" );
+        mTitle.setText("Password Lock");
+
         firstPass = getIntent().getStringExtra("first_pass");
 
     }

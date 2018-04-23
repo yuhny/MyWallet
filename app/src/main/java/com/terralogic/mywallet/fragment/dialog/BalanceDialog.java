@@ -13,9 +13,11 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.terralogic.mywallet.R;
 import com.terralogic.mywallet.fragment.DetailScreenFragment;
+import com.terralogic.mywallet.fragment.fragment;
 import com.terralogic.mywallet.model.DateUtil;
 
 import java.util.Map;
@@ -49,8 +51,8 @@ public class BalanceDialog extends Dialog implements View.OnClickListener {
         mExpense = (TextView) findViewById( R.id.txtDialogExpense );
         imageView = (ImageView) findViewById( R.id.imgDialog );
         imageView.setOnClickListener( this);
+//        Toast.makeText(getContext(), map.get( month ).toString(), Toast.LENGTH_SHORT).show();
         mTitle.setText( "Summary for " + map.get( month ) );
-        //todo here
     }
 
     public String getMonth() {
@@ -61,14 +63,15 @@ public class BalanceDialog extends Dialog implements View.OnClickListener {
         this.month = month;
     }
 
-    public void callFragment(Fragment frangment)
+    public void callFragment(Fragment fragment)
     {
         if (!(mContext instanceof  FragmentActivity)) {
             return;
         }
         FragmentManager manager = ((FragmentActivity)mContext).getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace( R.id.frameManage,frangment );
+        transaction.replace( R.id.frameManage,fragment );
+        transaction.addToBackStack(fragment.getClass().getSimpleName());
         transaction.commit();
         dismiss();
 
@@ -78,8 +81,6 @@ public class BalanceDialog extends Dialog implements View.OnClickListener {
     public void onClick(View view) {
         if (view.getId() == R.id.imgDialog) {
             callFragment( new DetailScreenFragment());
-
-
         }
 
     }

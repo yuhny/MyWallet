@@ -7,9 +7,11 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.terralogic.mywallet.R;
 import com.terralogic.mywallet.adapter.ExpenseAdapter;
@@ -28,6 +30,7 @@ public class ListExpenseFragment extends Fragment {
 
     public ListExpenseFragment() {
     }
+
     public List<Item> getItems() {
         return items;
     }
@@ -54,9 +57,11 @@ public class ListExpenseFragment extends Fragment {
             @Override
             public void onRightClicked(int position) {
                 adapter.getItemList().remove(position);
+
                 adapter.notifyItemRemoved(position);
                 adapter.notifyItemRangeChanged(position, adapter.getItemCount());
             }
+
         });
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeController);
         itemTouchHelper.attachToRecyclerView(recyclerView);

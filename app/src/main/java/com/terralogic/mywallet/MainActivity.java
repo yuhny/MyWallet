@@ -58,7 +58,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mToolBar = (Toolbar) findViewById(R.id.toolbar);
         mTitle = (TextView) findViewById(R.id.txtTitle);
-        mTitle.setText("Wallet Manage");
+
+        /*
+         * author: trile
+         * action: set title Toolbar for Activity Relogin
+         */
+        mTitle.setText("Password Lock");
 
         btnNum1.setOnClickListener(this);
         btnNum2.setOnClickListener(this);

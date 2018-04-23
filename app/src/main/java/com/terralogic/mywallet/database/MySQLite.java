@@ -222,6 +222,11 @@ public class MySQLite extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
     }
 
+//    public int getIncome(int month){
+//        String sql = "SELECT "+ MyDatabase.MONEY_ITEM + " FROM " + MyDatabase.TABLE_ITEM + " WHERE " + ;
+//        return 0;
+//    }
+
 
 //
 //

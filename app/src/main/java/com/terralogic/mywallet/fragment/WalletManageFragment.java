@@ -4,6 +4,7 @@ package com.terralogic.mywallet.fragment;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -64,12 +65,14 @@ public class WalletManageFragment extends Fragment {
                 ListExpenseFragment listExpenseFragment = new ListExpenseFragment();
                 listExpenseFragment.setItems(items);
 
-                if(items.size()==0){
+//                text = DateUtil.getMonthFromLong(mCalendarView.getDate());
+                text = "0" + (i1 + 1);
+//                Toast.makeText(getContext(), , Toast.LENGTH_SHORT).show();
+                if (items.size() == 0) {
                     addFragment(new NodataFragment());
                 } else {
                     addFragment(listExpenseFragment);
                 }
-
 //                Toast.makeText(getContext(), date + " - " + items.size(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -86,7 +89,6 @@ public class WalletManageFragment extends Fragment {
     }
 
     private void clickBalance() {
-        text = DateUtil.getMonthFromLong(mCalendarView.getDate());
 
         mImgBalance.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +99,7 @@ public class WalletManageFragment extends Fragment {
                 dialog.getWindow().setGravity(Gravity.CENTER);
                 dialog.show();
                 dialog.getWindow().setLayout(480, Toolbar.LayoutParams.WRAP_CONTENT);
+//                Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -25,7 +25,7 @@ public class SwipeController extends Callback {
 
     private SwipeControllerActions buttonsActions = null;
 
-    private static final float buttonWidth = 300;
+    private static final float BUTTON_WIDTH = 300;
 
     public SwipeController(SwipeControllerActions buttonsActions) {
         this.buttonsActions = buttonsActions;
@@ -59,8 +59,8 @@ public class SwipeController extends Callback {
     public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
         if (actionState == ACTION_STATE_SWIPE) {
             if (buttonShowedState != ButtonState.GONE) {
-                if (buttonShowedState == ButtonState.LEFT_VISIBLE) dX = Math.max(dX, buttonWidth);
-                if (buttonShowedState == ButtonState.RIGHT_VISIBLE) dX = Math.min(dX, -buttonWidth);
+                if (buttonShowedState == ButtonState.LEFT_VISIBLE) dX = Math.max(dX, BUTTON_WIDTH);
+                if (buttonShowedState == ButtonState.RIGHT_VISIBLE) dX = Math.min(dX, -BUTTON_WIDTH);
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
             }
             else {
@@ -80,8 +80,8 @@ public class SwipeController extends Callback {
             public boolean onTouch(View v, MotionEvent event) {
                 swipeBack = event.getAction() == MotionEvent.ACTION_CANCEL || event.getAction() == MotionEvent.ACTION_UP;
                 if (swipeBack) {
-                    if (dX < -buttonWidth) buttonShowedState = ButtonState.RIGHT_VISIBLE;
-                    else if (dX > buttonWidth) buttonShowedState  = ButtonState.LEFT_VISIBLE;
+                    if (dX < -BUTTON_WIDTH) buttonShowedState = ButtonState.RIGHT_VISIBLE;
+                    else if (dX > BUTTON_WIDTH) buttonShowedState  = ButtonState.LEFT_VISIBLE;
 
                     if (buttonShowedState != ButtonState.GONE) {
                         setTouchDownListener(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
@@ -143,7 +143,7 @@ public class SwipeController extends Callback {
     }
 
     private void drawButtons(Canvas c, RecyclerView.ViewHolder viewHolder) {
-        float buttonWidthWithoutPadding = buttonWidth - 20;
+        float buttonWidthWithoutPadding = BUTTON_WIDTH - 20;
         float corners = 16;
 
         View itemView = viewHolder.itemView;
@@ -159,6 +159,7 @@ public class SwipeController extends Callback {
         p.setColor(Color.RED);
         c.drawRoundRect(rightButton, corners, corners, p);
         drawText("DELETE", c, rightButton, p);
+
 
         buttonInstance = null;
         if (buttonShowedState == ButtonState.LEFT_VISIBLE) {
