@@ -1,6 +1,5 @@
 package com.terralogic.mywallet.fragment;
 
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -25,24 +23,20 @@ import android.widget.Toast;
 import com.terralogic.mywallet.R;
 import com.terralogic.mywallet.activity.ManageActivity;
 import com.terralogic.mywallet.adapter.CategoryAdapter;
-import com.terralogic.mywallet.controller.ButtonState;
 import com.terralogic.mywallet.database.MySQLite;
-import com.terralogic.mywallet.model.Category;
 import com.terralogic.mywallet.model.DateUtil;
 import com.terralogic.mywallet.model.GroupItem;
 import com.terralogic.mywallet.model.Item;
 import com.terralogic.mywallet.model.ItemType;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**
- * Created by trile on 4/10/2018.
+ * Created by trile on 4/23/2018.
  */
 
-public class AddNewFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+public class EditFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     private TextView mTxtTitle, mTxtAddIncome, mTxtAddExpense, mTxtAddMoney, mTxtUnit;
     private LinearLayout mLayoutIncome, mLayoutExpense;
     private ImageView mImgAddDate, mImgAddCate;
@@ -58,15 +52,6 @@ public class AddNewFragment extends Fragment implements View.OnClickListener, Ad
     private String resultMoney = "0";
     private GroupItem itemSpinner;
     private MySQLite mySQLite;
-    private Item item;
-
-    @SuppressLint("ValidFragment")
-    public AddNewFragment(Item item) {
-        this.item = item;
-    }
-
-    public AddNewFragment() {
-    }
 
     @Nullable
     @Override
@@ -94,23 +79,6 @@ public class AddNewFragment extends Fragment implements View.OnClickListener, Ad
         mSpinnerCate.setAdapter(adapter);
 
         mSpinnerCate.setOnItemSelectedListener(this);
-        if (item != null) {
-//            mSpinnerCate.setSelection();
-            int position = mListCate.indexOf(getGroupItemById(item.getmIdGroup()));
-            mSpinnerCate.setSelection(position);
-            Toast.makeText(getContext(), position + "", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private GroupItem getGroupItemById(int id) {
-        GroupItem result = null;
-        List<GroupItem> groupItemList = mListCate;
-        for (GroupItem groupItem : groupItemList) {
-            if (groupItem.getcIdGroup() == id) {
-                result = groupItem;
-            }
-        }
-        return result;
     }
 
     private void initButtons(View view) {
@@ -168,15 +136,6 @@ public class AddNewFragment extends Fragment implements View.OnClickListener, Ad
 
         mSpinnerCate = view.findViewById(R.id.spinnerCate);
 
-        if (item != null) {
-            resultMoney = cutZero(item.getmMoney());
-            mTxtAddMoney.setText(String.format("%,d", Integer.parseInt(resultMoney)));
-            mEditAddNote.setText(item.getmName());
-            mEditAddDate.setText(DateUtil.getDateStringFromDataObject(item.getmDate()));
-
-        }
-
-
         mLayoutIncome.setBackgroundResource(R.drawable.background_income);
         mTxtAddIncome.setTextColor(Color.parseColor("#FFFFFF"));
         mTxtAddMoney.setTextColor(Color.parseColor("#40E0D0"));
@@ -184,18 +143,10 @@ public class AddNewFragment extends Fragment implements View.OnClickListener, Ad
 
     }
 
-    private String cutZero(String s) {
-        StringBuilder builder = new StringBuilder(s);
-        return builder.delete(s.length() - 3, s.length()).toString();
-    }
-
     private void initToolbar() {
         mTxtTitle = ((ManageActivity) getActivity()).findViewById(R.id.txtTitle);
-        if (item != null) {
-            mTxtTitle.setText("Edit");
-        } else {
-            mTxtTitle.setText("Add New");
-        }
+        mTxtTitle.setText("Add New");
+
     }
 
     private void clickCalendarImage() {
@@ -205,9 +156,9 @@ public class AddNewFragment extends Fragment implements View.OnClickListener, Ad
         month = mCalendar.get(Calendar.MONTH);
         year = mCalendar.get(Calendar.YEAR);
 
-//        month = month + 1;
+        month = month + 1;
 
-        mEditAddDate.setText(day + "-" + (month + 1) + "-" + year);
+        mEditAddDate.setText(day + "-" + month + "-" + year);
 
         mImgAddDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -216,7 +167,7 @@ public class AddNewFragment extends Fragment implements View.OnClickListener, Ad
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        mEditAddDate.setText(day + "-" + (month + 1) + "-" + year);
+                        mEditAddDate.setText(day + "-" + month + "-" + year);
                     }
                 }, year, month, day);
                 datePickerDialog.show();
@@ -323,32 +274,16 @@ public class AddNewFragment extends Fragment implements View.OnClickListener, Ad
             if (mEditAddNote.getText().toString() == null || mEditAddNote.getText().toString().length() == 0) {
                 Toast.makeText(getContext(), "Please enter the note!", Toast.LENGTH_SHORT).show();
             } else {
-                if (item != null) {
-                    editItemToDatabase();
-                } else {
-                    addItemToDatabase();
-                }
+                addItemToDatabase();
                 clear();
             }
         }
-    }
-
-    private void editItemToDatabase() {
-        item.setmName(mEditAddNote.getText().toString());
-        item.setmMoney(resultMoney + "000");
-        item.setmType(isIncome ? ItemType.INCOME : ItemType.CONSUM);
-        item.setmDate(DateUtil.getDateFromString(mEditAddDate.getText().toString()));
-        item.setmIdGroup(itemSpinner.getcIdGroup());
-
-        mySQLite.updateItem(item);
-        clear();
     }
 
     private void clear() {
         mEditAddNote.setText("");
         resultMoney = "0";
         mTxtAddMoney.setText(resultMoney);
-        Toast.makeText(getContext(), "Saved!", Toast.LENGTH_SHORT).show();
     }
 
     private void addItemToDatabase() {
@@ -369,10 +304,10 @@ public class AddNewFragment extends Fragment implements View.OnClickListener, Ad
 
     private void limitResult(String num) {
         if (resultMoney.length() > 9) {
-            mTxtAddMoney.setText(String.format("%,d", Integer.parseInt(resultMoney)));
+            mTxtAddMoney.setText(String.format("%,d", Long.parseLong(resultMoney)));
         } else {
             resultMoney += num;
-            mTxtAddMoney.setText(String.format("%,d", Integer.parseInt(resultMoney)));
+            mTxtAddMoney.setText(String.format("%,d", Long.parseLong(resultMoney)));
         }
     }
 
@@ -383,7 +318,7 @@ public class AddNewFragment extends Fragment implements View.OnClickListener, Ad
             StringBuilder builder = new StringBuilder(resultMoney);
             builder.deleteCharAt(resultMoney.length() - 1);
             resultMoney = builder.toString();
-            mTxtAddMoney.setText(String.format("%,d", Integer.parseInt(resultMoney)));
+            mTxtAddMoney.setText(String.format("%,d", Long.parseLong(resultMoney)));
         }
     }
 
@@ -395,6 +330,4 @@ public class AddNewFragment extends Fragment implements View.OnClickListener, Ad
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
-    }
-
-}
+    }}

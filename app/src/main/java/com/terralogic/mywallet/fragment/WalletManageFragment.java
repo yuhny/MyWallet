@@ -67,7 +67,7 @@ public class WalletManageFragment extends Fragment {
 
 //                text = DateUtil.getMonthFromLong(mCalendarView.getDate());
                 text = "0" + (i1 + 1);
-//                Toast.makeText(getContext(), , Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), items.size()+"", Toast.LENGTH_SHORT).show();
                 if (items.size() == 0) {
                     addFragment(new NodataFragment());
                 } else {

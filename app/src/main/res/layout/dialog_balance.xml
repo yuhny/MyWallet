@@ -28,7 +28,7 @@
                 android:layout_gravity="right"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/icon_smile" />
+                android:src="@drawable/view_details" />
 
             <TextView
                 android:layout_marginLeft="20dp"
@@ -60,6 +60,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/txtDialogBalance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
