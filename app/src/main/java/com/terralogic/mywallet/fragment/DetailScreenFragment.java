@@ -7,6 +7,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,8 +47,9 @@ public class DetailScreenFragment extends Fragment {
     HashMap<Integer, List<Item>> listId;
     private Toolbar mToolbar;
     private TextView mTitle;
+    private TextView mNotify;
 
-   // @RequiresApi(api = Build.VERSION_CODES.M)
+    // @RequiresApi(api = Build.VERSION_CODES.M)
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -57,7 +60,9 @@ public class DetailScreenFragment extends Fragment {
 
         mToolbar = ((ManageActivity) getActivity()).findViewById( R.id.toolbar );
         mTitle = ((ManageActivity) getActivity()).findViewById( R.id.txtTitle );
-////        mTitle.setText( "Detail for month" );
+        mNotify = view.findViewById( R.id.txtNotify );
+       // mNotify.setVisibility( View.INVISIBLE );
+       // mNotify.setText( "No Data" );
 
 
         spinner = view.findViewById( R.id.spinner_month );
@@ -79,7 +84,7 @@ public class DetailScreenFragment extends Fragment {
                 android.R.layout.simple_spinner_item, arrayMonth );
         arrayAdapter.setDropDownViewResource( R.layout.support_simple_spinner_dropdown_item );
         spinner.setAdapter( arrayAdapter );
-        spinner.setOnItemSelectedListener(onItemSelectedListener());
+        spinner.setOnItemSelectedListener( onItemSelectedListener() );
 
 
         expListView = view.findViewById( R.id.expandableListView );
@@ -88,12 +93,21 @@ public class DetailScreenFragment extends Fragment {
         return view;
     }
 
-    private AdapterView.OnItemSelectedListener onItemSelectedListener(){
-       return new AdapterView.OnItemSelectedListener() {
+    private AdapterView.OnItemSelectedListener onItemSelectedListener() {
+        return new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 prepareListData();
                 //listAdapter.notify();
+                if(listDataItem.size() > 0 )
+                {
+                    mNotify.setVisibility(View.INVISIBLE );
+                }
+                else
+                {
+                    mNotify.setVisibility(View.VISIBLE );
+                    mNotify.setText( "No data" );
+                }
                 listAdapter = new com.terralogic.mywallet.adapter.ExpandableListAdapter(
                         view.getContext(), listDataGroup, listDataItem );
 
@@ -101,8 +115,12 @@ public class DetailScreenFragment extends Fragment {
                 int itemCount = expListView.getCount();
                 for (int j = 0; j < itemCount; j++) {
                     expListView.expandGroup( j );
+
                 }
-                mTitle.setText( "Detail for "+spinner.getSelectedItem() );
+                mTitle.setText( "Detail for " + spinner.getSelectedItem() );
+
+
+
             }
 
             @Override
@@ -125,8 +143,8 @@ public class DetailScreenFragment extends Fragment {
             long money = 0;
 
             for (Item item : itemList) {
-                if (item.getmIdGroup() == gi.getcIdGroup() ) {
-                    if(spinner.getSelectedItemPosition() == item.getmDate().getMonth()) {
+                if (item.getmIdGroup() == gi.getcIdGroup()) {
+                    if (spinner.getSelectedItemPosition() == item.getmDate().getMonth()) {
                         listItem.add( item );
                         if (item.getmType() == ItemType.INCOME) {
                             money += Long.parseLong( item.getmMoney() );
@@ -139,44 +157,23 @@ public class DetailScreenFragment extends Fragment {
 
             if (listItem.size() > 0) {
                 listDataItem.put( gi, listItem );
-                gi.setcMoney( money+"" );
+                gi.setcMoney( money + "" );
+                //mNotify.setVisibility(View.INVISIBLE );
                 listDataGroup.add( gi );
             }
+//           else
+//            {
+//                mNotify.setVisibility( View.VISIBLE );
+//                mNotify.setText( "No data" );
+//            }
+
 
         }
 
-//            for (GroupItem gi : listDataGroup) {
-//                ArrayList<Item> list = new ArrayList<>();
-//                listId.put( gi.getcIdGroup(), list );
-//
-//                }
-//
-//                for(Item item : itemList)
-//                {
-//                    ArrayList<Item> list = (ArrayList<Item>) listId.get( item.getmIdGroup() );
-//                    list.add( item );
-//                    listId.put( item.getmIdGroup(),list );
-//                }
-//
-//                for(GroupItem gr:listDataGroup)
-//                {
-//                    List<Item> list1 = listId.get( gr.getcIdGroup() );
-//                    listDataItem.put( gr,list1 );
-//                }
-
-
-    }
-
-    private void handleMoneyCategory() {
-        MySQLite sqLite1 = new MySQLite( this.getContext() );
-        List<Item> itemList = sqLite1.getListItem();
-        List<GroupItem> listDataGroup = sqLite1.getListCategory();
-
-
-        for (GroupItem gritem : listDataGroup) {
-
-        }
     }
 
 
 }
+
+
+

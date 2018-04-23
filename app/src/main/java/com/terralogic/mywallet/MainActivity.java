@@ -61,6 +61,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTitle = (TextView) findViewById(R.id.txtTitle);
         mTitle.setText("Password Lock");
 
+
+
+        radioBtn1.setEnabled( false );
+        radioBtn2.setEnabled( false );
+        radioBtn3.setEnabled( false);
+        radioBtn4.setEnabled( false );
+        radioBtn5.setEnabled( false );
+
         btnNum1.setOnClickListener(this);
         btnNum2.setOnClickListener(this);
         btnNum3.setOnClickListener(this);
@@ -72,11 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnNum9.setOnClickListener(this);
         btnNum0.setOnClickListener(this);
 
-        radioBtn1.setChecked(false);
-        radioBtn2.setChecked( false);
-        radioBtn3.setChecked( false );
-        radioBtn4.setChecked( false );
-        radioBtn5.setChecked( false );
+
 
 
 
@@ -88,24 +92,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    void preventRadioButtonOnClick(int countClickRadioButton)
-    {
-        switch (countClickRadioButton)
-        {
-            case 0:
-                radioBtn1.setChecked( false );
-                break;
-            case 1:
-                radioBtn2.setChecked( false );
-                break;
-            case 2:
-                radioBtn3.setChecked( false );
-                break;
-            case 3:
-                radioBtn4.setChecked( false );
-                break;
-        }
-    }
 
     void fillPwdRadioBtn(int countClick) {
         switch (countClick) {

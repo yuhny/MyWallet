@@ -11,7 +11,9 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.terralogic.mywallet.R;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.ButterKnife;
@@ -56,6 +58,8 @@ public class ReLogin extends AppCompatActivity {
 
     @BindView(R.id.text1)
 
+
+
     TextView textView;
 
     private String pwdLetters[] = new String[5];
@@ -73,8 +77,43 @@ public class ReLogin extends AppCompatActivity {
 
         textView.setText( "Reenter your pass" );
         firstPass = getIntent().getStringExtra("first_pass");
+        //        if(radioBtn1.isChecked())
+        //
+        //        {
+        //            radioBtn1.setChecked( false );
+        //        }
+        //        else if(radioBtn2.isChecked()) {
+        //
+        //            radioBtn2.setChecked( false );
+        //        }
+        //        else if(radioBtn3.isChecked()) {
+        //            radioBtn3.setChecked( false );
+        //        }
+        //        else if(radioBtn4.isChecked()) {
+        //            radioBtn4.setChecked( false );
+        //        }
+        //        else if(radioBtn5.isChecked())
+        //        {
+        //            radioBtn5.setChecked( false );
+        //
+        //        }
+//                if(radioBtn1.isChecked()||radioBtn2.isChecked()||radioBtn3.isChecked()
+//                        ||radioBtn4.isChecked()||radioBtn5.isChecked())
+//                {
+//                    radioBtn1.setChecked( false );
+//                    radioBtn2.setChecked( false );
+//                    radioBtn3.setChecked( false );
+//                    radioBtn4.setChecked( false );
+//                    radioBtn5.setChecked( false );
+//                }
 
+        radioBtn1.setEnabled( false );
+        radioBtn2.setEnabled( false );
+        radioBtn3.setEnabled( false );
+        radioBtn4.setEnabled( false );
+        radioBtn5.setEnabled( false );
     }
+
     void fillPwdRadioBtn(int countClick) {
         switch (countClick) {
             case 0:
