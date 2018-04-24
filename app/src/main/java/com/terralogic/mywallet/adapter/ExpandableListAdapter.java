@@ -90,14 +90,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         imGroup.setImageResource( groupItem.getcImage() );
         grTextView1.setText( groupItem.getcName() );
-        if(Long.parseLong(groupItem.getcMoney() ) < 0 )
-        {
+        if (Long.parseLong( groupItem.getcMoney() ) < 0) {
             grTextView2.setText( groupItem.getcMoney() );
-            grTextView2.setTextColor(Color.argb( 255,207,29,29 )  );
-        }
-        else if(Long.parseLong( groupItem.getcMoney() )>0) {
+            grTextView2.setTextColor( Color.argb( 255, 207, 29, 29 ) );
+        } else if (Long.parseLong( groupItem.getcMoney() ) > 0) {
             grTextView2.setText( groupItem.getcMoney() );
-            grTextView2.setTextColor( Color.argb( 255,0,255,251 ) );
+            grTextView2.setTextColor( Color.argb( 255, 0, 255, 251 ) );
         }
 
         return convertView;
@@ -118,24 +116,26 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView textViewDateChild = (TextView) convertView.findViewById( R.id.textDate );
         TextView textViewMoneyChild = (TextView) convertView.findViewById( R.id.textMoneyItem );
 
+        try {
+            Item item = mlistDataItem.get( mlistDataGroup.get(
+                    groupPosition ) ).get( childPosition );
+            textViewNameChild.setText( item.getmName() );
+            textViewDateChild.setText( DateUtil.getDateStringFromDataObject( item.getmDate() ) );
+            if (item.getmType() == ItemType.CONSUM) {
+                textViewMoneyChild.setText( item.getmMoney() );
+                textViewMoneyChild.setTextColor( Color.argb( 255, 185, 56, 56 ) );
+            } else if (item.getmType() == ItemType.INCOME) {
+                textViewMoneyChild.setText( item.getmMoney() );
+            }
 
-        Item item = mlistDataItem.get( mlistDataGroup.get(
-                groupPosition ) ).get( childPosition );
-        textViewNameChild.setText( item.getmName() );
-        textViewDateChild.setText( DateUtil.getDateStringFromDataObject(item.getmDate()));
-        if(item.getmType()== ItemType.CONSUM) {
-            textViewMoneyChild.setText( item.getmMoney() );
-            textViewMoneyChild.setTextColor( Color.argb( 255,185,56,56 ));
-        }
-        else if(item.getmType() == ItemType.INCOME)
+        }catch(NullPointerException e)
         {
-            textViewMoneyChild.setText( item.getmMoney() );
+
         }
-
-
 
         return convertView;
     }
+
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {

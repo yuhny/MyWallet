@@ -1,6 +1,7 @@
 package com.terralogic.mywallet.fragment;
 
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -24,18 +25,24 @@ import android.widget.Toast;
 import com.terralogic.mywallet.R;
 import com.terralogic.mywallet.activity.ManageActivity;
 import com.terralogic.mywallet.database.MySQLite;
+import com.terralogic.mywallet.fragment.dialog.BalanceDialog;
 import com.terralogic.mywallet.model.Category;
+import com.terralogic.mywallet.model.DateUtil;
 import com.terralogic.mywallet.model.GroupItem;
 import com.terralogic.mywallet.model.Item;
 import com.terralogic.mywallet.model.ItemType;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class DetailScreenFragment extends Fragment {
@@ -49,7 +56,13 @@ public class DetailScreenFragment extends Fragment {
     private TextView mTitle;
     private TextView mNotify;
 
+    String month;
+
     // @RequiresApi(api = Build.VERSION_CODES.M)
+   public void setMonth(String month) {
+       this.month = month;
+   }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -61,8 +74,6 @@ public class DetailScreenFragment extends Fragment {
         mToolbar = ((ManageActivity) getActivity()).findViewById( R.id.toolbar );
         mTitle = ((ManageActivity) getActivity()).findViewById( R.id.txtTitle );
         mNotify = view.findViewById( R.id.txtNotify );
-       // mNotify.setVisibility( View.INVISIBLE );
-       // mNotify.setText( "No Data" );
 
 
         spinner = view.findViewById( R.id.spinner_month );
@@ -80,6 +91,7 @@ public class DetailScreenFragment extends Fragment {
         arrayMonth.add( "November" );
         arrayMonth.add( "December " );
 
+
         final ArrayAdapter arrayAdapter = new ArrayAdapter( this.getContext(),
                 android.R.layout.simple_spinner_item, arrayMonth );
         arrayAdapter.setDropDownViewResource( R.layout.support_simple_spinner_dropdown_item );
@@ -87,7 +99,13 @@ public class DetailScreenFragment extends Fragment {
         spinner.setOnItemSelectedListener( onItemSelectedListener() );
 
 
-        expListView = view.findViewById( R.id.expandableListView );
+            for (int i = 0; i < arrayMonth.size(); i++) {
+                if (month.equals( arrayMonth.get( i ) )) {
+                    spinner.setSelection( i );
+                }
+            }
+            expListView = view.findViewById( R.id.expandableListView );
+
 
         prepareListData();
         return view;
@@ -98,14 +116,12 @@ public class DetailScreenFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 prepareListData();
-                //listAdapter.notify();
-                if(listDataItem.size() > 0 )
-                {
-                    mNotify.setVisibility(View.INVISIBLE );
-                }
-                else
-                {
-                    mNotify.setVisibility(View.VISIBLE );
+                if (listDataItem.size() > 0) {
+
+                    mNotify.setVisibility( View.INVISIBLE );
+
+                } else {
+                    mNotify.setVisibility( View.VISIBLE );
                     mNotify.setText( "No data" );
                 }
                 listAdapter = new com.terralogic.mywallet.adapter.ExpandableListAdapter(
@@ -118,7 +134,6 @@ public class DetailScreenFragment extends Fragment {
 
                 }
                 mTitle.setText( "Detail for " + spinner.getSelectedItem() );
-
 
 
             }
@@ -158,14 +173,8 @@ public class DetailScreenFragment extends Fragment {
             if (listItem.size() > 0) {
                 listDataItem.put( gi, listItem );
                 gi.setcMoney( money + "" );
-                //mNotify.setVisibility(View.INVISIBLE );
                 listDataGroup.add( gi );
             }
-//           else
-//            {
-//                mNotify.setVisibility( View.VISIBLE );
-//                mNotify.setText( "No data" );
-//            }
 
 
         }

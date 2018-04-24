@@ -106,8 +106,11 @@ public class BalanceDialog extends Dialog implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+
         if (view.getId() == R.id.imgDialog) {
-            callFragment(new DetailScreenFragment());
+            DetailScreenFragment detailScreenFragment = new DetailScreenFragment();
+            detailScreenFragment.setMonth( map.get(month) );
+            callFragment(detailScreenFragment);
         }
 
     }

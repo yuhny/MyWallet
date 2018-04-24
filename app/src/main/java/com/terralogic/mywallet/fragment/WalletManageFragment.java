@@ -25,6 +25,7 @@ import com.terralogic.mywallet.fragment.dialog.BalanceDialog;
 import com.terralogic.mywallet.model.DateUtil;
 import com.terralogic.mywallet.model.Item;
 
+import java.util.Date;
 import java.util.List;
 
 public class WalletManageFragment extends Fragment {
@@ -52,7 +53,8 @@ public class WalletManageFragment extends Fragment {
         clickCalendarView();
         clickBalance();
         clickAddNew();
-
+        int currentMonth = new Date(  ).getMonth() + 1;
+        text = "0"+currentMonth+ "";
         return view;
     }
 

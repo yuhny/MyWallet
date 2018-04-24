@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:text="Select month: "
             android:textColor="#00fffb"
-            />
+            android:textSize="20sp" />
 
         <Spinner
 
@@ -38,20 +38,29 @@
         android:id="@+id/frameContent2"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <ExpandableListView
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/expandableListView"
-            ></ExpandableListView>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#a43c3c"
-            android:textSize="20sp"
-            android:id="@+id/txtNotify"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="250dp"
-            />
+            android:layout_height="match_parent">
+
+            <ExpandableListView
+                android:id="@+id/expandableListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></ExpandableListView>
+
+            <TextView
+                android:id="@+id/txtNotify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="150dp"
+                android:textColor="#a43c3c"
+                android:textSize="20sp"
+
+
+                />
+        </RelativeLayout>
 
     </FrameLayout>
 
