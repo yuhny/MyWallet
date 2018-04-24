@@ -16,10 +16,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.terralogic.mywallet.R;
+import com.terralogic.mywallet.activity.ManageActivity;
 import com.terralogic.mywallet.database.MySQLite;
 import com.terralogic.mywallet.fragment.dialog.BalanceDialog;
 import com.terralogic.mywallet.model.DateUtil;
@@ -59,6 +61,18 @@ public class WalletManageFragment extends Fragment {
     }
 
     private void clickCalendarView() {
+        String date = DateUtil.getDate(mCalendarView.getDate());
+        text = DateUtil.getMonthFromLong(mCalendarView.getDate());
+        List<Item> items = mySQLite.getListItemWithDate(date);
+        ListExpenseFragment listExpenseFragment = new ListExpenseFragment();
+        listExpenseFragment.setItems(items);
+
+        if (items.size() == 0) {
+            addFragment(new NodataFragment());
+        } else {
+            addFragment(listExpenseFragment);
+        }
+
         mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView calendarView, int i, final int i1, final int i2) {
@@ -69,7 +83,6 @@ public class WalletManageFragment extends Fragment {
 
 //                text = DateUtil.getMonthFromLong(mCalendarView.getDate());
                 text = "0" + (i1 + 1);
-                Toast.makeText(getContext(), items.size()+"", Toast.LENGTH_SHORT).show();
                 if (items.size() == 0) {
                     addFragment(new NodataFragment());
                 } else {
@@ -130,4 +143,10 @@ public class WalletManageFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        TextView mTxtTitle = ((ManageActivity) getActivity()).findViewById(R.id.txtTitle);
+        mTxtTitle.setText("Wallet Manage");
+    }
 }

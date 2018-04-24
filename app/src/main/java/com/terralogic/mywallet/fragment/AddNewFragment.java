@@ -25,7 +25,6 @@ import android.widget.Toast;
 import com.terralogic.mywallet.R;
 import com.terralogic.mywallet.activity.ManageActivity;
 import com.terralogic.mywallet.adapter.CategoryAdapter;
-import com.terralogic.mywallet.controller.ButtonState;
 import com.terralogic.mywallet.database.MySQLite;
 import com.terralogic.mywallet.model.Category;
 import com.terralogic.mywallet.model.DateUtil;
@@ -98,7 +97,6 @@ public class AddNewFragment extends Fragment implements View.OnClickListener, Ad
 //            mSpinnerCate.setSelection();
             int position = mListCate.indexOf(getGroupItemById(item.getmIdGroup()));
             mSpinnerCate.setSelection(position);
-            Toast.makeText(getContext(), position + "", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -173,15 +171,25 @@ public class AddNewFragment extends Fragment implements View.OnClickListener, Ad
             mTxtAddMoney.setText(String.format("%,d", Integer.parseInt(resultMoney)));
             mEditAddNote.setText(item.getmName());
             mEditAddDate.setText(DateUtil.getDateStringFromDataObject(item.getmDate()));
-
+            if (item.getmType() == ItemType.INCOME) {
+                isIncome = true;
+                mLayoutIncome.setBackgroundResource(R.drawable.background_income);
+                mTxtAddIncome.setTextColor(Color.parseColor("#FFFFFF"));
+                mTxtAddMoney.setTextColor(Color.parseColor("#40E0D0"));
+                mTxtUnit.setTextColor(Color.parseColor("#40E0D0"));
+            } else {
+                isIncome = false;
+                mLayoutExpense.setBackgroundResource(R.drawable.background_expense);
+                mTxtAddExpense.setTextColor(Color.parseColor("#FFFFFF"));
+                mTxtAddMoney.setTextColor(Color.parseColor("#FF4081"));
+                mTxtUnit.setTextColor(Color.parseColor("#FF4081"));
+            }
+        } else {
+            mLayoutIncome.setBackgroundResource(R.drawable.background_income);
+            mTxtAddIncome.setTextColor(Color.parseColor("#FFFFFF"));
+            mTxtAddMoney.setTextColor(Color.parseColor("#40E0D0"));
+            mTxtUnit.setTextColor(Color.parseColor("#40E0D0"));
         }
-
-
-        mLayoutIncome.setBackgroundResource(R.drawable.background_income);
-        mTxtAddIncome.setTextColor(Color.parseColor("#FFFFFF"));
-        mTxtAddMoney.setTextColor(Color.parseColor("#40E0D0"));
-        mTxtUnit.setTextColor(Color.parseColor("#40E0D0"));
-
     }
 
     private String cutZero(String s) {

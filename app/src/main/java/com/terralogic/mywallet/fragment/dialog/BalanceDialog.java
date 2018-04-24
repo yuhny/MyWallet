@@ -90,12 +90,17 @@ public class BalanceDialog extends Dialog implements View.OnClickListener {
         this.month = month;
     }
 
+    /*
+     * author: trile
+     * action: add fragment to back stack and set animation
+     */
     public void callFragment(Fragment fragment) {
         if (!(mContext instanceof FragmentActivity)) {
             return;
         }
         FragmentManager manager = ((FragmentActivity) mContext).getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.anim_in_right, R.anim.anim_out_left, R.anim.anim_in_left, R.anim.anim_to_right);
         transaction.replace(R.id.frameManage, fragment);
         transaction.addToBackStack(fragment.getClass().getSimpleName());
         transaction.commit();

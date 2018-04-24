@@ -17,8 +17,6 @@ import android.widget.Toast;
 
 import com.terralogic.mywallet.R;
 import com.terralogic.mywallet.adapter.ExpenseAdapter;
-import com.terralogic.mywallet.controller.SwipeController;
-import com.terralogic.mywallet.controller.SwipeControllerActions;
 import com.terralogic.mywallet.database.MySQLite;
 import com.terralogic.mywallet.model.Item;
 
@@ -28,7 +26,6 @@ public class ListExpenseFragment extends Fragment {
     RecyclerView recyclerView;
     List<Item> items;
     ExpenseAdapter adapter;
-    SwipeController swipeController;
     private String date;
     private MySQLite mySQLite;
 
@@ -58,31 +55,6 @@ public class ListExpenseFragment extends Fragment {
         mySQLite = new MySQLite(getContext());
 
         recyclerView.setAdapter(adapter);
-
-        swipeController = new SwipeController(new SwipeControllerActions() {
-            @Override
-            public void onRightClicked(int position) {
-                Item i = adapter.getItemList().remove(position);
-                mySQLite.deleteItem(i);
-                adapter.notifyItemRemoved(position);
-                adapter.notifyItemRangeChanged(position, adapter.getItemCount());
-            }
-
-            @Override
-            public void onLeftClicked(int position) {
-                Item item = adapter.getItemList().get(position);
-                addFragmentBackStack(new AddNewFragment(item));
-            }
-        });
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeController);
-        itemTouchHelper.attachToRecyclerView(recyclerView);
-
-        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
-            @Override
-            public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
-                swipeController.onDraw(c);
-            }
-        });
 
         return view;
     }

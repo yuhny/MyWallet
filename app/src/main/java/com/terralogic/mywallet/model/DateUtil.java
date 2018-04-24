@@ -41,7 +41,7 @@ public class DateUtil {
 
     public static String getDate(long input) {
         Date d = new Date(input);
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         String text = format.format(d);
         return text;
     }
