@@ -1,8 +1,10 @@
 package com.terralogic.mywallet.adapter.viewHolder;
 
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.terralogic.mywallet.R;
@@ -12,14 +14,22 @@ public class ItemViewHolder extends RecyclerView.ViewHolder {
     private TextView mContextExpense;
     private TextView mDateCreate;
     private TextView mMoney;
+    private LinearLayout mInside, mOutside;
+    private ImageView mImgEdit, mImgDelete;
+    private CardView mCardView;
 
     public ItemViewHolder(View itemView) {
         super(itemView);
 
-        mImageCate = (ImageView) itemView.findViewById(R.id.imgCate);
-        mContextExpense = (TextView) itemView.findViewById(R.id.txtExpense);
-        mDateCreate = (TextView) itemView.findViewById(R.id.txtDate);
-        mMoney = (TextView) itemView.findViewById(R.id.txtMoney);
+        mImageCate = itemView.findViewById(R.id.imgCate);
+        mContextExpense = itemView.findViewById(R.id.txtExpense);
+        mDateCreate = itemView.findViewById(R.id.txtDate);
+        mMoney = itemView.findViewById(R.id.txtMoney);
+        mInside = itemView.findViewById(R.id.layoutInside);
+        mOutside = itemView.findViewById(R.id.layoutOutside);
+        mCardView = itemView.findViewById(R.id.cardView);
+        mImgEdit = itemView.findViewById(R.id.imageEdit);
+        mImgDelete = itemView.findViewById(R.id.imageDelete);
     }
 
     public ImageView getmImageCate() {
@@ -36,5 +46,25 @@ public class ItemViewHolder extends RecyclerView.ViewHolder {
 
     public TextView getmMoney() {
         return mMoney;
+    }
+
+    public LinearLayout getmInside() {
+        return mInside;
+    }
+
+    public LinearLayout getmOutside() {
+        return mOutside;
+    }
+
+    public CardView getmCardView() {
+        return mCardView;
+    }
+
+    public ImageView getmImgEdit() {
+        return mImgEdit;
+    }
+
+    public ImageView getmImgDelete() {
+        return mImgDelete;
     }
 }
