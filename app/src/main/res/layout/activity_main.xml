@@ -42,32 +42,38 @@
                 android:id="@+id/radioNum1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="#00fffb"/>
+                android:buttonTint="#00fffb"
+                android:checked="false"/>
 
             <RadioButton
                 android:id="@+id/radioNum2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="#00fffb"/>
+                android:buttonTint="#00fffb"
+                android:checked="false"
+                />
 
             <RadioButton
                 android:id="@+id/radioNum3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="#00fffb"/>
+                android:buttonTint="#00fffb"
+                android:checked="false"/>
 
             <RadioButton
                 android:id="@+id/radioNum4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="#00fffb"/>
+                android:buttonTint="#00fffb"
+                android:checked="false"/>
 
             <RadioButton
 
                 android:id="@+id/radioNum5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="#00fffb"/>
+                android:buttonTint="#00fffb"
+                android:checked="false"/>
 
     </LinearLayout>
 

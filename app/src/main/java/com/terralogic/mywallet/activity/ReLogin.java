@@ -11,7 +11,9 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.terralogic.mywallet.R;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.ButterKnife;
@@ -55,6 +57,11 @@ public class ReLogin extends AppCompatActivity {
 
 
     @BindView(R.id.text1)
+
+
+
+
+
     TextView textView;
 
     @BindView(R.id.txtTitle)
@@ -81,7 +88,13 @@ public class ReLogin extends AppCompatActivity {
 
         firstPass = getIntent().getStringExtra("first_pass");
 
+        radioBtn1.setEnabled( false );
+        radioBtn2.setEnabled( false );
+        radioBtn3.setEnabled( false );
+        radioBtn4.setEnabled( false );
+        radioBtn5.setEnabled( false );
     }
+
     void fillPwdRadioBtn(int countClick) {
         switch (countClick) {
             case 0:
