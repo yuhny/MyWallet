@@ -145,7 +145,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }else if(mCountClick==4 && oldPassword!=null){
             if(oldPassword.equals(pwd))
             {
-
                 Intent i = new Intent(this,ManageActivity.class);
                 startActivity(i);
                 finish();

@@ -55,7 +55,7 @@ public class WalletManageFragment extends Fragment {
         clickCalendarView();
         clickBalance();
         clickAddNew();
-        int currentMonth = new Date(  ).getMonth() + 1;
+        int currentMonth = new Date().getMonth() + 1;
         text = "0"+currentMonth+ "";
         return view;
     }
