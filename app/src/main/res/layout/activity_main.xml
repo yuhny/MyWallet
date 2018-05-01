@@ -95,8 +95,8 @@
             android:paddingBottom="10dp">
 
             <Button
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:id="@+id/buttonNum1"
                 android:background="@drawable/custom_button"
                 android:text="1"
@@ -106,8 +106,8 @@
 
             <Button
                 android:id="@+id/buttonNum2"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/custom_button"
@@ -118,8 +118,8 @@
 
             <Button
                 android:id="@+id/buttonNum3"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:background="@drawable/custom_button"
                 android:text="3"
                 android:textColor="#fff"
@@ -141,8 +141,8 @@
 
             <Button
                 android:id="@+id/buttonNum4"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
 
                 android:background="@drawable/custom_button"
                 android:text="4"
@@ -153,8 +153,8 @@
 
             <Button
                 android:id="@+id/buttonNum5"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
 
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
@@ -166,8 +166,8 @@
 
             <Button
                 android:id="@+id/buttonNum6"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
 
                 android:background="@drawable/custom_button"
                 android:text="6"
@@ -188,8 +188,8 @@
             android:weightSum="3">
 
             <Button
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:id="@+id/buttonNum7"
                 android:background="@drawable/custom_button"
                 android:text="7"
@@ -198,8 +198,8 @@
                 />
 
             <Button
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:id="@+id/buttonNum8"
@@ -211,8 +211,8 @@
 
             <Button
                 android:id="@+id/buttonNum9"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:background="@drawable/custom_button"
                 android:text="9"
                 android:textColor="#fff"
@@ -233,8 +233,8 @@
             android:layout_weight="1"
             android:orientation="horizontal">
             <Button
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"

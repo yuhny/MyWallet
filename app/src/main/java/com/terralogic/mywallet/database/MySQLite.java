@@ -132,7 +132,7 @@ public class MySQLite extends SQLiteOpenHelper {
         values.put(MyDatabase.ID_GROUP_IEAM, item.getmIdGroup());
 
         long check = sqLiteDatabase.insert(MyDatabase.TABLE_ITEM, null, values);
-        Toast.makeText(context, check + " ", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, check + " ", Toast.LENGTH_SHORT).show();
 
         sqLiteDatabase.close();
 

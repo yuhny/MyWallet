@@ -41,8 +41,6 @@ public class ManageActivity extends AppCompatActivity {
 
         List<Item> items = mySQLite.getListItem();
 
-        Toast.makeText(getApplicationContext(), items.size()+"", Toast.LENGTH_SHORT).show();
-
 
     }
 
@@ -67,8 +65,6 @@ public class ManageActivity extends AppCompatActivity {
             MySQLite mySQLite2 = new MySQLite(this.getApplicationContext());
 
 
-        } else {
-            Toast.makeText( getApplicationContext(),"not empty",Toast.LENGTH_SHORT ).show();
         }
         return list;
 
