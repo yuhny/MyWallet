@@ -17,7 +17,7 @@
 
             android:id="@+id/text1"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Enter your Password"
             android:textColor="#fff"
@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingTop="10dp"
+        android:paddingTop="50dp"
         android:paddingBottom="10dp"
         android:gravity="center">
 

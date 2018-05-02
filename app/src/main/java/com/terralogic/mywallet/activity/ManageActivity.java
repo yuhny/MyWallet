@@ -1,11 +1,16 @@
 package com.terralogic.mywallet.activity;
 
 
+import android.content.DialogInterface;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +27,7 @@ import java.util.List;
 public class ManageActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private TextView mTitle;
-    private FrameLayout mFrame;
+    private ImageView mIconUser;
     DetailScreenFragment detailScreenFragment;
 
     @Override
@@ -32,16 +37,43 @@ public class ManageActivity extends AppCompatActivity {
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mTitle = (TextView) findViewById(R.id.txtTitle);
+        mIconUser = (ImageView) findViewById(R.id.iconUser);
+
         mTitle.setText("Wallet Manage");
         checkForTableCategory();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.frameManage, new WalletManageFragment());
-        transaction.commit();
-        MySQLite mySQLite = new MySQLite(getApplicationContext());
+        addFragment(new WalletManageFragment());
+        mIconUser.setVisibility(View.VISIBLE);
+        mIconUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialogUser();
+            }
+        });
 
+        MySQLite mySQLite = new MySQLite(getApplicationContext());
         List<Item> items = mySQLite.getListItem();
 
 
+    }
+
+    private void showDialogUser() {
+        final AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(R.string.app_version);
+        alert.setMessage(R.string.app_info);
+        alert.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        alert.show();
+    }
+
+
+    private void addFragment(Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.frameManage, fragment);
+        transaction.commit();
     }
 
     public List checkForTableCategory() {
@@ -64,6 +96,9 @@ public class ManageActivity extends AppCompatActivity {
 
             MySQLite mySQLite2 = new MySQLite(this.getApplicationContext());
 
+
+        } else {
+            Toast.makeText(getApplicationContext(), "not empty", Toast.LENGTH_SHORT).show();
 
         }
         return list;

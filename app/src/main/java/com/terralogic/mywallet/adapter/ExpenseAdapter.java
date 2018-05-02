@@ -17,6 +17,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -38,10 +40,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ItemViewHolder> {
     private Context context;
     private List<Item> itemList;
     private MySQLite mySQLite;
-    private SecondTimer timer;
-    private int countDown = 3;
-    private int secondLeft;
-//    private CountDownTimer mCountDownTimer;
+
 
     public ExpenseAdapter(Context context, List<Item> expenseList) {
         this.context = context;
@@ -64,6 +63,9 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ItemViewHolder> {
     public void onBindViewHolder(final ItemViewHolder holder, final int position) {
         final Item item = itemList.get(position);
 
+        final Animation animOpenOutside = AnimationUtils.loadAnimation(context, R.anim.anim_moveleft_outside);
+        final Animation animCloseOutside = AnimationUtils.loadAnimation(context, R.anim.anim_moveright_outside);
+
         holder.getmContextExpense().setText(item.getmName());
         holder.getmDateCreate().setText(DateUtil.getDateStringFromDataObject(item.getmDate()));
         holder.getmMoney().setText(String.format("%,d", Integer.parseInt(item.getmMoney())) + " VNĐ");
@@ -74,21 +76,27 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ItemViewHolder> {
         } else {
             holder.getmMoney().setTextColor(Color.parseColor("#FF4081"));
         }
-
         holder.getmCardView().setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                CountDownTimer countDown = new CountDownTimer(3000, 1000) {
+                holder.getmInside().startAnimation(animOpenOutside);
+                holder.getmOutside().startAnimation(animOpenOutside);
+
+                new CountDownTimer(3000, 1000) {
                     @Override
                     public void onTick(long l) {
                         holder.getmInside().setTranslationX(-120);
                         holder.getmOutside().setTranslationX(-120);
+//                        holder.getmInside().setAnimation(animOpenOutside);
+//                        holder.getmOutside().setAnimation(animOpenOutside);
                     }
 
                     @Override
                     public void onFinish() {
                         holder.getmInside().setTranslationX(0);
                         holder.getmOutside().setTranslationX(0);
+                        holder.getmInside().startAnimation(animCloseOutside);
+                        holder.getmOutside().startAnimation(animCloseOutside);
                     }
                 }.start();
 
@@ -108,13 +116,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ItemViewHolder> {
                 });
                 return true;
             }
-
-
-//            @Override
-//            public void onClick(View view) {
-//                            }
         });
-
     }
 
     private int getImageCate(int idGroup) {

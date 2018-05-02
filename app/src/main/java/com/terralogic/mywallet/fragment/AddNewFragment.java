@@ -53,7 +53,7 @@ public class AddNewFragment extends Fragment implements View.OnClickListener, Ad
     private int day, month, year;
     private Button btnZero, btnOne, btnTwo, btnThree, btnFour, btnFive, btnSix, btnSeven, btnEight, btnNine;
     private Button btnOkay;
-    private Button btnDel;
+    private ImageButton btnDel;
     private String resultMoney = "0";
     private GroupItem itemSpinner;
     private MySQLite mySQLite;
