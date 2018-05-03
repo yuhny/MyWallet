@@ -3,9 +3,11 @@ package com.terralogic.mywallet.fragment;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -39,6 +41,7 @@ public class WalletManageFragment extends Fragment {
     private String text, result;
     private MySQLite mySQLite;
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -49,8 +52,9 @@ public class WalletManageFragment extends Fragment {
 
         mCalendarView = (CalendarView) view.findViewById(R.id.calendar);
         mFabAddNew = (FloatingActionButton) view.findViewById(R.id.fabAddNew);
-
         mImgBalance = (ImageView) view.findViewById(R.id.imgBalance);
+
+        mCalendarView.setSelectedDateVerticalBar(R.drawable.background_income);
 
         clickCalendarView();
         clickBalance();
