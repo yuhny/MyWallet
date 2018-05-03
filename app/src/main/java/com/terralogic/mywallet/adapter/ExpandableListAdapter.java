@@ -103,14 +103,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             //grTextView2.setText( groupItem.getcMoney()+" VND" );
             money = seperate( groupItem.getcMoney() );
             grTextView2.setText( money );
-            grTextView2.setText( String.format( "%,d", Integer.parseInt( money ) )+" VND" );
+           grTextView2.setText( String.format( "%,d", Long.parseLong( money ) )+" VND" );
            // grTextView2.setText( money +" VND" );
             grTextView2.setTextColor( Color.argb( 255, 217, 45, 104 ) );
         } else if (Long.parseLong( groupItem.getcMoney() ) > 0) {
             //grTextView2.setText( groupItem.getcMoney() +" VND" );
             money = seperate( groupItem.getcMoney() );
             grTextView2.setText( money  );
-            grTextView2.setText( String.format( "%,d", Integer.parseInt(money ) )+" VND" );
+            grTextView2.setText( String.format( "%,d", Long.parseLong(money ) )+" VND" );
 
             grTextView2.setTextColor( Color.argb( 255, 0, 255, 251 ) );
         }
@@ -143,7 +143,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 // textViewMoneyChild.setText( item.getmMoney()+" VND" );
                 money = seperate( item.getmMoney() );
                 textViewMoneyChild.setText( money );
-                textViewMoneyChild.setText( String.format( "%,d", Integer.parseInt( money ) )+" VND" );
+                textViewMoneyChild.setText( String.format( "%,d", Long.parseLong( money ) )+" VND" );
                 //textViewMoneyChild.setText( money +" VND" );
                 textViewMoneyChild.setTextColor( Color.argb( 255, 217, 45, 104 )
                 );
@@ -152,8 +152,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 // textViewMoneyChild.setText( item.getmMoney()+" VND" );
                 money = seperate( item.getmMoney() );
                 textViewMoneyChild.setText( money );
-                textViewMoneyChild.setText( String.format( "%,d", Integer.parseInt( money ) ) +
-                " VND");
+                textViewMoneyChild.setText( String.format( "%,d", Long.parseLong( money ) )+" VND" );
                 //textViewMoneyChild.setText( money +" VND" );
             }
 
