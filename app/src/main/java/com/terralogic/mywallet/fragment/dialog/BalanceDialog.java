@@ -35,7 +35,7 @@ public class BalanceDialog extends Dialog implements View.OnClickListener {
     private Dialog mDialog;
     private TextView mTitle, mIncome, mExpense, mBalance;
     private String month;
-    private int moneyIncome, moneyExpense, moneyBalance;
+    private long moneyIncome, moneyExpense, moneyBalance;
     private Map<String, String> map = DateUtil.MONTH_OF_YEAR;
     private ImageView imageView;
     private MySQLite mySQLite;
@@ -66,11 +66,11 @@ public class BalanceDialog extends Dialog implements View.OnClickListener {
             int thisMonth = (item.getmDate().getMonth() + 1);
             if (item.getmType() == ItemType.INCOME) {
                 if (thisMonth == Integer.parseInt(month)) {
-                    moneyIncome += Integer.parseInt(item.getmMoney());
+                    moneyIncome += Long.parseLong(item.getmMoney());
                 }
             } else if (item.getmType() == ItemType.CONSUM) {
                 if (thisMonth == Integer.parseInt(month)) {
-                    moneyExpense += Integer.parseInt(item.getmMoney());
+                    moneyExpense += Long.parseLong(item.getmMoney());
                 }
             }
         }

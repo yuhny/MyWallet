@@ -68,7 +68,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ItemViewHolder> {
 
         holder.getmContextExpense().setText(item.getmName());
         holder.getmDateCreate().setText(DateUtil.getDateStringFromDataObject(item.getmDate()));
-        holder.getmMoney().setText(String.format("%,d", Integer.parseInt(item.getmMoney())) + " VNĐ");
+        holder.getmMoney().setText(String.format("%,d", Long.parseLong(item.getmMoney())) + " VNĐ");
 
         holder.getmImageCate().setImageDrawable(context.getResources().getDrawable(getImageCate(item.getmIdGroup())));
         if (item.getmType().getValues() == 0) {
