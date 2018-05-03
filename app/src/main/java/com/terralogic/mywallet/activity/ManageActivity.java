@@ -97,10 +97,11 @@ public class ManageActivity extends AppCompatActivity {
             MySQLite mySQLite2 = new MySQLite(this.getApplicationContext());
 
 
-        } else {
-            Toast.makeText(getApplicationContext(), "not empty", Toast.LENGTH_SHORT).show();
-
-        }
+       }
+//       else {
+//            Toast.makeText(getApplicationContext(), "not empty", Toast.LENGTH_SHORT).show();
+//
+//        }
         return list;
 
     }
