@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.terralogic.mywallet.activity.ManageActivity;
 import com.terralogic.mywallet.activity.ReLogin;
@@ -151,6 +152,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             else
             {
+                Toast.makeText( getApplicationContext(), "FAIL PASS", Toast.LENGTH_LONG ).show();
                mCountClick = 0;
                radioBtn1.setChecked(false);
                radioBtn2.setChecked(false);
