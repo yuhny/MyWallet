@@ -169,15 +169,14 @@ public class DetailScreenFragment extends Fragment {
                         if (item.getmType() == ItemType.INCOME) {
 
                             money += Long.parseLong( item.getmMoney() );
+
                         } else {
 
                             money -= Long.parseLong( item.getmMoney() );
-                            if(money < 0)
-                            {
-                                Math.abs( money );
+
+
                             }
 
-                        }
                     }
                 }
             }
