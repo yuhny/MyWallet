@@ -22,6 +22,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private Context mcontext;
     private List<GroupItem> mlistDataGroup;
     private HashMap<GroupItem, List<Item>> mlistDataItem;
+    private String money = "0";
 
 
     public ExpandableListAdapter(Context context, List<GroupItem> listDataGroup,
@@ -68,6 +69,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         return false;
     }
 
+    private String seperate(String s) {
+
+        StringBuilder builder = new StringBuilder( s );
+
+        s = builder.toString();
+        return s;
+    }
+
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView,
                              ViewGroup viewGroup) {
@@ -91,10 +100,18 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         imGroup.setImageResource( groupItem.getcImage() );
         grTextView1.setText( groupItem.getcName() );
         if (Long.parseLong( groupItem.getcMoney() ) < 0) {
-            grTextView2.setText( groupItem.getcMoney() );
-            grTextView2.setTextColor( Color.argb( 255, 207, 29, 29 ) );
+            //grTextView2.setText( groupItem.getcMoney()+" VND" );
+            money = seperate( groupItem.getcMoney() );
+            grTextView2.setText( money );
+            grTextView2.setText( String.format( "%,d", Integer.parseInt( money ) )+" VND" );
+           // grTextView2.setText( money +" VND" );
+            grTextView2.setTextColor( Color.argb( 255, 217, 45, 104 ) );
         } else if (Long.parseLong( groupItem.getcMoney() ) > 0) {
-            grTextView2.setText( groupItem.getcMoney() );
+            //grTextView2.setText( groupItem.getcMoney() +" VND" );
+            money = seperate( groupItem.getcMoney() );
+            grTextView2.setText( money  );
+            grTextView2.setText( String.format( "%,d", Integer.parseInt(money ) )+" VND" );
+
             grTextView2.setTextColor( Color.argb( 255, 0, 255, 251 ) );
         }
 
@@ -122,14 +139,25 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             textViewNameChild.setText( item.getmName() );
             textViewDateChild.setText( DateUtil.getDateStringFromDataObject( item.getmDate() ) );
             if (item.getmType() == ItemType.CONSUM) {
-                textViewMoneyChild.setText( item.getmMoney() );
-                textViewMoneyChild.setTextColor( Color.argb( 255, 185, 56, 56 ) );
+
+                // textViewMoneyChild.setText( item.getmMoney()+" VND" );
+                money = seperate( item.getmMoney() );
+                textViewMoneyChild.setText( money );
+                textViewMoneyChild.setText( String.format( "%,d", Integer.parseInt( money ) )+" VND" );
+                //textViewMoneyChild.setText( money +" VND" );
+                textViewMoneyChild.setTextColor( Color.argb( 255, 217, 45, 104 )
+                );
+
             } else if (item.getmType() == ItemType.INCOME) {
-                textViewMoneyChild.setText( item.getmMoney() );
+                // textViewMoneyChild.setText( item.getmMoney()+" VND" );
+                money = seperate( item.getmMoney() );
+                textViewMoneyChild.setText( money );
+                textViewMoneyChild.setText( String.format( "%,d", Integer.parseInt( money ) ) +
+                " VND");
+                //textViewMoneyChild.setText( money +" VND" );
             }
 
-        }catch(NullPointerException e)
-        {
+        } catch (NullPointerException e) {
 
         }
 
