@@ -103,7 +103,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             //grTextView2.setText( groupItem.getcMoney()+" VND" );
             money = seperate( groupItem.getcMoney() );
             grTextView2.setText( money );
-           grTextView2.setText( String.format( "%,d", Long.parseLong( money ) )+" VND" );
+           grTextView2.setText( String.format( "%,d", Math.abs(  Long.parseLong( money )) )+" VND" );
            // grTextView2.setText( money +" VND" );
             grTextView2.setTextColor( Color.argb( 255, 217, 45, 104 ) );
         } else if (Long.parseLong( groupItem.getcMoney() ) > 0) {
