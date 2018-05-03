@@ -43,6 +43,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.function.IntPredicate;
 import java.util.stream.Collectors;
 
 public class DetailScreenFragment extends Fragment {
@@ -53,7 +54,7 @@ public class DetailScreenFragment extends Fragment {
     HashMap<GroupItem, List<Item>> listDataItem;
     HashMap<Integer, List<Item>> listId;
     private Toolbar mToolbar;
-    private TextView mTitle;
+    private TextView mTitle,mMoney;
     private TextView mNotify;
 
     String month;
@@ -73,6 +74,8 @@ public class DetailScreenFragment extends Fragment {
 
         mToolbar = ((ManageActivity) getActivity()).findViewById( R.id.toolbar );
         mTitle = ((ManageActivity) getActivity()).findViewById( R.id.txtTitle );
+        mMoney = ((ManageActivity) getActivity()).findViewById( R.id.textMoneyItem);
+
         mNotify = view.findViewById( R.id.txtNotify );
 
 
@@ -156,15 +159,24 @@ public class DetailScreenFragment extends Fragment {
         for (GroupItem gi : listDataGroupTemp) {
             ArrayList<Item> listItem = new ArrayList<>();
             long money = 0;
+//           String money = "0";
+//            int myMoney ;
 
             for (Item item : itemList) {
                 if (item.getmIdGroup() == gi.getcIdGroup()) {
                     if (spinner.getSelectedItemPosition() == item.getmDate().getMonth()) {
                         listItem.add( item );
                         if (item.getmType() == ItemType.INCOME) {
+
                             money += Long.parseLong( item.getmMoney() );
                         } else {
+
                             money -= Long.parseLong( item.getmMoney() );
+                            if(money < 0)
+                            {
+                                Math.abs( money );
+                            }
+
                         }
                     }
                 }
@@ -173,6 +185,7 @@ public class DetailScreenFragment extends Fragment {
             if (listItem.size() > 0) {
                 listDataItem.put( gi, listItem );
                 gi.setcMoney( money + "" );
+
                 listDataGroup.add( gi );
             }
 
