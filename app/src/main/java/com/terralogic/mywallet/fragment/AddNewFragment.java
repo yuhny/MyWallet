@@ -221,12 +221,13 @@ public class AddNewFragment extends Fragment implements View.OnClickListener, Ad
             @Override
             public void onClick(View view) {
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), R.style.DatePicker, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         mEditAddDate.setText(day + "-" + (month + 1) + "-" + year);
                     }
                 }, year, month, day);
+//                datePickerDialog
                 datePickerDialog.show();
             }
         });
