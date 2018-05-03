@@ -53,6 +53,7 @@ public class ManageActivity extends AppCompatActivity {
         MySQLite mySQLite = new MySQLite(getApplicationContext());
         List<Item> items = mySQLite.getListItem();
 
+
     }
 
     private void showDialogUser() {
@@ -67,6 +68,7 @@ public class ManageActivity extends AppCompatActivity {
         });
         alert.show();
     }
+
 
     private void addFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -97,6 +99,7 @@ public class ManageActivity extends AppCompatActivity {
 
         } else {
             Toast.makeText(getApplicationContext(), "not empty", Toast.LENGTH_SHORT).show();
+
         }
         return list;
 

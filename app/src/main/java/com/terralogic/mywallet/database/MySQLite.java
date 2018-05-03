@@ -133,6 +133,8 @@ public class MySQLite extends SQLiteOpenHelper {
 
         long check = sqLiteDatabase.insert(MyDatabase.TABLE_ITEM, null, values);
 
+        //Toast.makeText(context, check + " ", Toast.LENGTH_SHORT).show();
+
         sqLiteDatabase.close();
 
     }

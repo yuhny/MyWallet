@@ -93,12 +93,12 @@ public class DetailScreenFragment extends Fragment {
 
 
         final ArrayAdapter arrayAdapter = new ArrayAdapter( this.getContext(),
-                android.R.layout.simple_spinner_item, arrayMonth );
-        arrayAdapter.setDropDownViewResource( R.layout.support_simple_spinner_dropdown_item );
+                R.layout.text_view_spinner, arrayMonth );
+        arrayAdapter.setDropDownViewResource( R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter( arrayAdapter );
         spinner.setOnItemSelectedListener( onItemSelectedListener() );
 
-
+        //android.R.layout.simple_spinner_item
             for (int i = 0; i < arrayMonth.size(); i++) {
                 if (month.equals( arrayMonth.get( i ) )) {
                     spinner.setSelection( i );

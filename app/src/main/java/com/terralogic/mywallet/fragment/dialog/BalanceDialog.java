@@ -61,7 +61,7 @@ public class BalanceDialog extends Dialog implements View.OnClickListener {
         mySQLite = new MySQLite(getContext());
 
         List<Item> items = mySQLite.getListItem();
-        Toast.makeText(getContext(), items.size() + "", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), items.size() + "", Toast.LENGTH_SHORT).show();
         for (Item item : items) {
             int thisMonth = (item.getmDate().getMonth() + 1);
             if (item.getmType() == ItemType.INCOME) {
