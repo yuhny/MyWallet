@@ -117,7 +117,7 @@ public class WalletManageFragment extends Fragment {
                 dialog.setCancelable(true);
                 dialog.getWindow().setGravity(Gravity.CENTER);
                 dialog.show();
-                dialog.getWindow().setLayout(480, Toolbar.LayoutParams.WRAP_CONTENT);
+                dialog.getWindow().setLayout(Toolbar.LayoutParams.WRAP_CONTENT, Toolbar.LayoutParams.WRAP_CONTENT);
 //                Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
             }
         });

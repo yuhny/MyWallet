@@ -1,8 +1,6 @@
 package com.terralogic.mywallet.adapter;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
@@ -10,18 +8,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.terralogic.mywallet.R;
 import com.terralogic.mywallet.adapter.viewHolder.ItemViewHolder;
@@ -30,11 +21,8 @@ import com.terralogic.mywallet.fragment.AddNewFragment;
 import com.terralogic.mywallet.model.DateUtil;
 import com.terralogic.mywallet.model.GroupItem;
 import com.terralogic.mywallet.model.Item;
-import com.terralogic.mywallet.model.SecondTimer;
 
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class ExpenseAdapter extends RecyclerView.Adapter<ItemViewHolder> {
     private Context context;
@@ -81,14 +69,13 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ItemViewHolder> {
             public boolean onLongClick(View view) {
                 holder.getmInside().startAnimation(animOpenOutside);
                 holder.getmOutside().startAnimation(animOpenOutside);
+                final int widthOutside = holder.getmOutside().getWidth();
 
                 new CountDownTimer(3000, 1000) {
                     @Override
                     public void onTick(long l) {
-                        holder.getmInside().setTranslationX(-120);
-                        holder.getmOutside().setTranslationX(-120);
-//                        holder.getmInside().setAnimation(animOpenOutside);
-//                        holder.getmOutside().setAnimation(animOpenOutside);
+                        holder.getmInside().setTranslationX(-widthOutside);
+                        holder.getmOutside().setTranslationX(-widthOutside);
                     }
 
                     @Override

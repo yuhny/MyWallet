@@ -377,22 +377,24 @@ public class AddNewFragment extends Fragment implements View.OnClickListener, Ad
     }
 
     private void limitResult(String num) {
-        if (resultMoney.length() > 9) {
-            mTxtAddMoney.setText(String.format("%,d", Integer.parseInt(resultMoney)));
+        resultMoney = Long.parseLong(resultMoney) + "";
+        if (resultMoney.length() > 8) {
+            mTxtAddMoney.setText(String.format("%,d", Long.parseLong(resultMoney)));
         } else {
             resultMoney += num;
-            mTxtAddMoney.setText(String.format("%,d", Integer.parseInt(resultMoney)));
+            mTxtAddMoney.setText(String.format("%,d", Long.parseLong(resultMoney)));
         }
     }
 
     private void deleteNumber() {
         if (resultMoney.length() <= 1) {
             mTxtAddMoney.setText("0");
+            resultMoney = "0";
         } else {
             StringBuilder builder = new StringBuilder(resultMoney);
             builder.deleteCharAt(resultMoney.length() - 1);
             resultMoney = builder.toString();
-            mTxtAddMoney.setText(String.format("%,d", Integer.parseInt(resultMoney)));
+            mTxtAddMoney.setText(String.format("%,d", Long.parseLong(resultMoney)));
         }
     }
 

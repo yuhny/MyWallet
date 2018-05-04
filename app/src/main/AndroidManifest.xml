@@ -10,6 +10,7 @@
         android:theme="@style/AppTheme"
         >
         <activity android:name=".MainActivity"
+
             android:screenOrientation="portrait"
             >
             <intent-filter>
@@ -22,6 +23,7 @@
         <activity android:name=".activity.ReLogin"
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.ManageActivity"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait"
             />
 
