@@ -59,9 +59,6 @@ public class ReLogin extends AppCompatActivity {
     @BindView(R.id.text1)
 
 
-
-
-
     TextView textView;
 
     @BindView(R.id.txtTitle)
@@ -69,24 +66,19 @@ public class ReLogin extends AppCompatActivity {
 
     private String pwdLetters[] = new String[5];
     private int mCountClick = 0;
-    final String PREF_NAME = "com.terralogic.mywallet";
 
-    String firstPass;
+    private String firstPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        super.onCreate( savedInstanceState );
+        setContentView( R.layout.activity_main );
+        ButterKnife.bind( this );
 
-        /*
-         * author: trile
-         * action: set title Toolbar for Activity Relogin
-         */
         textView.setText( "Reenter your pass" );
-        mTitle.setText("Password Lock");
+        mTitle.setText( "Password Lock" );
 
-        firstPass = getIntent().getStringExtra("first_pass");
+        firstPass = getIntent().getStringExtra( "first_pass" );
 
         radioBtn1.setEnabled( false );
         radioBtn2.setEnabled( false );
@@ -95,32 +87,32 @@ public class ReLogin extends AppCompatActivity {
         radioBtn5.setEnabled( false );
     }
 
-    void fillPwdRadioBtn(int countClick) {
+    private void fillPwdRadioBtn(int countClick) {
         switch (countClick) {
             case 0:
-                radioBtn1.setChecked(true);
+                radioBtn1.setChecked( true );
                 break;
             case 1:
-                radioBtn2.setChecked(true);
+                radioBtn2.setChecked( true );
                 break;
             case 2:
-                radioBtn3.setChecked(true);
+                radioBtn3.setChecked( true );
                 break;
             case 3:
-                radioBtn4.setChecked(true);
+                radioBtn4.setChecked( true );
                 break;
             case 4:
-                radioBtn5.setChecked(true);
+                radioBtn5.setChecked( true );
         }
     }
 
     @OnClick({R.id.buttonNum1,
-     R.id.buttonNum2,R.id.buttonNum3, R.id.buttonNum4,R.id.buttonNum5})
+            R.id.buttonNum2, R.id.buttonNum3, R.id.buttonNum4, R.id.buttonNum5})
 
     public void onClick(Button button) {
 
         pwdLetters[mCountClick] = button.getText().toString();
-        fillPwdRadioBtn(mCountClick);
+        fillPwdRadioBtn( mCountClick );
 
         String pwd = "";
         for (int i = 0; i < pwdLetters.length; i++) {
@@ -129,19 +121,17 @@ public class ReLogin extends AppCompatActivity {
             pwd += pwdLetter;
 
         }
-        if(mCountClick == 4 && firstPass.equals( pwd ))
-        {
-            SharedPreferences sharePreferences = getSharedPreferences(PREF_NAME,
-               Context.MODE_PRIVATE);
+        if (mCountClick == 4 && firstPass.equals( pwd )) {
+            SharedPreferences sharePreferences = getSharedPreferences( getResources().getString(
+                    R.string.pref_name ),
+                    Context.MODE_PRIVATE );
             SharedPreferences.Editor editor = sharePreferences.edit();
-            editor.putString("PWD",firstPass);
+            editor.putString( "PWD", firstPass );
             editor.commit();
-            Intent intent = new Intent( this,ManageActivity.class );
+            Intent intent = new Intent( this, ManageActivity.class );
             startActivity( intent );
             finish();
-        }
-        else if(mCountClick == 4 && !firstPass.equals(pwd ))
-        {
+        } else if (mCountClick == 4 && !firstPass.equals( pwd )) {
             Toast.makeText( getApplicationContext(), "FAIL PASS", Toast.LENGTH_LONG ).show();
             radioBtn1.setChecked( false );
             radioBtn2.setChecked( false );
@@ -149,9 +139,9 @@ public class ReLogin extends AppCompatActivity {
             radioBtn4.setChecked( false );
             radioBtn5.setChecked( false );
             mCountClick = 0;
-            return ;
+            return;
         }
-            mCountClick++;
+        mCountClick++;
     }
 
 }

@@ -23,9 +23,9 @@ import com.terralogic.mywallet.model.Item;
 import java.util.List;
 
 public class ListExpenseFragment extends Fragment {
-    RecyclerView recyclerView;
-    List<Item> items;
-    ExpenseAdapter adapter;
+    private RecyclerView recyclerView;
+    private List<Item> items;
+    private ExpenseAdapter adapter;
     private String date;
     private MySQLite mySQLite;
 
@@ -43,18 +43,18 @@ public class ListExpenseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_list_expense, container, false);
+        View view = inflater.inflate( R.layout.fragment_list_expense, container, false );
 
-        view.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.MATCH_PARENT));
+        view.setLayoutParams( new RecyclerView.LayoutParams( RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.MATCH_PARENT ) );
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.listExpenses);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
+        recyclerView = (RecyclerView) view.findViewById( R.id.listExpenses );
+        recyclerView.setHasFixedSize( true );
+        recyclerView.setLayoutManager( new LinearLayoutManager( view.getContext(), LinearLayoutManager.VERTICAL, false ) );
 
-        adapter = new ExpenseAdapter(this.getContext(), items);
-        mySQLite = new MySQLite(getContext());
+        adapter = new ExpenseAdapter( this.getContext(), items );
+        mySQLite = new MySQLite( getContext() );
 
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter( adapter );
 
         return view;
     }
@@ -63,14 +63,14 @@ public class ListExpenseFragment extends Fragment {
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
 
-        transaction.setCustomAnimations(R.anim.anim_in_right, R.anim.anim_out_left, R.anim.anim_in_left, R.anim.anim_to_right);
-        transaction.replace(R.id.frameManage, fragment);
-        transaction.addToBackStack(fragment.getClass().getSimpleName());
+        transaction.setCustomAnimations( R.anim.anim_in_right, R.anim.anim_out_left, R.anim.anim_in_left, R.anim.anim_to_right );
+        transaction.replace( R.id.frameManage, fragment );
+        transaction.addToBackStack( fragment.getClass().getSimpleName() );
         transaction.commit();
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate( savedInstanceState );
     }
 }

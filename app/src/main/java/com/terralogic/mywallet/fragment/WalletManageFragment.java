@@ -47,80 +47,82 @@ public class WalletManageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_wallet_manager, container, false);
-        mySQLite = new MySQLite(getContext());
+        final View view = inflater.inflate( R.layout.fragment_wallet_manager, container, false );
+        mySQLite = new MySQLite( getContext() );
 
-        mCalendarView = (CalendarView) view.findViewById(R.id.calendar);
-        mFabAddNew = (FloatingActionButton) view.findViewById(R.id.fabAddNew);
-        mImgBalance = (ImageView) view.findViewById(R.id.imgBalance);
+        mCalendarView = (CalendarView) view.findViewById( R.id.calendar );
+        mFabAddNew = (FloatingActionButton) view.findViewById( R.id.fabAddNew );
+        mImgBalance = (ImageView) view.findViewById( R.id.imgBalance );
 
-        mCalendarView.setSelectedDateVerticalBar(R.drawable.background_income);
+        mCalendarView.setSelectedDateVerticalBar( R.drawable.background_income );
 
         clickCalendarView();
         clickBalance();
         clickAddNew();
         int currentMonth = new Date().getMonth() + 1;
-        text = "0"+currentMonth+ "";
+        text = "0" + currentMonth + "";
         return view;
     }
 
     private void clickCalendarView() {
-        String date = DateUtil.getDate(mCalendarView.getDate());
-        text = DateUtil.getMonthFromLong(mCalendarView.getDate());
-        List<Item> items = mySQLite.getListItemWithDate(date);
+        String date = DateUtil.getDate( mCalendarView.getDate() );
+        text = DateUtil.getMonthFromLong( mCalendarView.getDate() );
+        List<Item> items = mySQLite.getListItemWithDate( date );
         ListExpenseFragment listExpenseFragment = new ListExpenseFragment();
-        listExpenseFragment.setItems(items);
+        listExpenseFragment.setItems( items );
 
         if (items.size() == 0) {
-            addFragment(new NodataFragment());
+            addFragment( new NodataFragment() );
         } else {
-            addFragment(listExpenseFragment);
+            addFragment( listExpenseFragment );
         }
 
-        mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        mCalendarView.setOnDateChangeListener( new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView calendarView, int i, final int i1, final int i2) {
                 String date = i2 + "-" + (i1 + 1) + "-" + i;
-                List<Item> items = mySQLite.getListItemWithDate(date);
+                List<Item> items = mySQLite.getListItemWithDate( date );
                 ListExpenseFragment listExpenseFragment = new ListExpenseFragment();
-                listExpenseFragment.setItems(items);
+                listExpenseFragment.setItems( items );
 
-//                text = DateUtil.getMonthFromLong(mCalendarView.getDate());
+
                 text = "0" + (i1 + 1);
                 if (items.size() == 0) {
-                    addFragment(new NodataFragment());
+                    addFragment( new NodataFragment() );
                 } else {
-                    addFragment(listExpenseFragment);
+                    addFragment( listExpenseFragment );
                 }
-//                Toast.makeText(getContext(), date + " - " + items.size(), Toast.LENGTH_SHORT).show();
+
             }
-        });
+        } );
     }
 
     private void clickAddNew() {
-        mFabAddNew.setOnClickListener(new View.OnClickListener() {
+        mFabAddNew.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addFragmentBackStack(new AddNewFragment());
+                addFragmentBackStack( new AddNewFragment() );
             }
-        });
+        } );
 
     }
 
     private void clickBalance() {
 
-        mImgBalance.setOnClickListener(new View.OnClickListener() {
+        mImgBalance.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BalanceDialog dialog = new BalanceDialog(getContext(), text);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.setCancelable(true);
-                dialog.getWindow().setGravity(Gravity.CENTER);
+                BalanceDialog dialog = new BalanceDialog( getContext(), text );
+                dialog.getWindow().setBackgroundDrawable( new ColorDrawable( Color.TRANSPARENT ) );
+                dialog.setCancelable( true );
+                dialog.getWindow().setGravity( Gravity.CENTER );
                 dialog.show();
+
                 dialog.getWindow().setLayout(Toolbar.LayoutParams.WRAP_CONTENT, Toolbar.LayoutParams.WRAP_CONTENT);
 //                Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
+
             }
-        });
+        } );
 
     }
 
@@ -128,9 +130,9 @@ public class WalletManageFragment extends Fragment {
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
 
-        transaction.setCustomAnimations(R.anim.anim_in_right, R.anim.anim_out_left, R.anim.anim_in_left, R.anim.anim_to_right);
-        transaction.replace(R.id.frameManage, fragment);
-        transaction.addToBackStack(fragment.getClass().getSimpleName());
+        transaction.setCustomAnimations( R.anim.anim_in_right, R.anim.anim_out_left, R.anim.anim_in_left, R.anim.anim_to_right );
+        transaction.replace( R.id.frameManage, fragment );
+        transaction.addToBackStack( fragment.getClass().getSimpleName() );
         transaction.commit();
     }
 
@@ -138,19 +140,19 @@ public class WalletManageFragment extends Fragment {
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
 
-        transaction.replace(R.id.frameWallet, fragment);
+        transaction.replace( R.id.frameWallet, fragment );
         transaction.commit();
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate( savedInstanceState );
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        TextView mTxtTitle = ((ManageActivity) getActivity()).findViewById(R.id.txtTitle);
-        mTxtTitle.setText("Wallet Manage");
+        TextView mTxtTitle = ((ManageActivity) getActivity()).findViewById( R.id.txtTitle );
+        mTxtTitle.setText( "Wallet Manage" );
     }
 }

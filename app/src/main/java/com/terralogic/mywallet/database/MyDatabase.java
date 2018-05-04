@@ -26,27 +26,20 @@ public class MyDatabase {
     public static final String MONEY_TYPE = "MoneyType";
     public Context context;
 
-    /*
-     *trile
-     *change data type of image category from text to integer
-     */
+
     public static String createTableCategory() {
         return "CREATE TABLE " + TABLE_CATEGORY + "("
-                + IMAGE_CATEGORY + " integer," + NAME_CATEGORY + " text,"+MONEY_CATEGORY+" text,"+
+                + IMAGE_CATEGORY + " integer," + NAME_CATEGORY + " text," + MONEY_CATEGORY + " text," +
                 ID_TABLE_CATEGORY + " integer primary key)";
-//
+
     }
 
-    /*
-     * author: trile
-     * action: change type of id group item from text to integer
-     */
     public static String createTableItem() {
-        return  "CREATE TABLE " + TABLE_ITEM + "(" + ID_TABLE_ITEM + " integer primary key,"
-               + NAME_ITEM + " text," + DATE_COMSUME + " text," + MONEY_ITEM + " text," +
-                MONEY_TYPE + " integer,"+ ID_GROUP_IEAM+" integer)";
+        return "CREATE TABLE " + TABLE_ITEM + "(" + ID_TABLE_ITEM + " integer primary key,"
+                + NAME_ITEM + " text," + DATE_COMSUME + " text," + MONEY_ITEM + " text," +
+                MONEY_TYPE + " integer," + ID_GROUP_IEAM + " integer)";
 
-//
+
     }
 
 

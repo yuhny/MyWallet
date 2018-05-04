@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.terralogic.mywallet.R;
+import com.terralogic.mywallet.adapter.viewHolder.CatgoryViewHolder;
+import com.terralogic.mywallet.adapter.viewHolder.ChildViewHolder;
 import com.terralogic.mywallet.model.DateUtil;
 import com.terralogic.mywallet.model.GroupItem;
 import com.terralogic.mywallet.model.Item;
@@ -22,7 +24,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private Context mcontext;
     private List<GroupItem> mlistDataGroup;
     private HashMap<GroupItem, List<Item>> mlistDataItem;
-    private String money = "0";
 
 
     public ExpandableListAdapter(Context context, List<GroupItem> listDataGroup,
@@ -90,30 +91,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         }
 
-        ImageView imGroup = (ImageView) convertView.findViewById( R.id.imgGroup );
-        TextView grTextView1 = (TextView) convertView.findViewById( R.id.textNameGroup );
-        TextView grTextView2 = (TextView) convertView.findViewById( R.id.textMoney );
-
 
         GroupItem groupItem = mlistDataGroup.get( groupPosition );
+        CatgoryViewHolder catgoryViewHolder = new CatgoryViewHolder( convertView );
+        catgoryViewHolder.setDataForGroup( groupItem );
 
-        imGroup.setImageResource( groupItem.getcImage() );
-        grTextView1.setText( groupItem.getcName() );
-        if (Long.parseLong( groupItem.getcMoney() ) < 0) {
-            //grTextView2.setText( groupItem.getcMoney()+" VND" );
-            money = seperate( groupItem.getcMoney() );
-            grTextView2.setText( money );
-           grTextView2.setText( String.format( "%,d", Math.abs(  Long.parseLong( money )) )+" VND" );
-           // grTextView2.setText( money +" VND" );
-            grTextView2.setTextColor( Color.argb( 255, 217, 45, 104 ) );
-        } else if (Long.parseLong( groupItem.getcMoney() ) > 0) {
-            //grTextView2.setText( groupItem.getcMoney() +" VND" );
-            money = seperate( groupItem.getcMoney() );
-            grTextView2.setText( money  );
-            grTextView2.setText( String.format( "%,d", Long.parseLong(money ) )+" VND" );
-
-            grTextView2.setTextColor( Color.argb( 255, 0, 255, 251 ) );
-        }
 
         return convertView;
     }
@@ -129,36 +111,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         }
 
-        TextView textViewNameChild = (TextView) convertView.findViewById( R.id.textNameItem );
-        TextView textViewDateChild = (TextView) convertView.findViewById( R.id.textDate );
-        TextView textViewMoneyChild = (TextView) convertView.findViewById( R.id.textMoneyItem );
 
-        try {
-            Item item = mlistDataItem.get( mlistDataGroup.get(
-                    groupPosition ) ).get( childPosition );
-            textViewNameChild.setText( item.getmName() );
-            textViewDateChild.setText( DateUtil.getDateStringFromDataObject( item.getmDate() ) );
-            if (item.getmType() == ItemType.CONSUM) {
+        Item item = mlistDataItem.get( mlistDataGroup.get(
+                groupPosition ) ).get( childPosition );
+        ChildViewHolder childViewHolder = new ChildViewHolder( convertView );
+        childViewHolder.setDataForItem( item );
 
-                // textViewMoneyChild.setText( item.getmMoney()+" VND" );
-                money = seperate( item.getmMoney() );
-                textViewMoneyChild.setText( money );
-                textViewMoneyChild.setText( String.format( "%,d", Long.parseLong( money ) )+" VND" );
-                //textViewMoneyChild.setText( money +" VND" );
-                textViewMoneyChild.setTextColor( Color.argb( 255, 217, 45, 104 )
-                );
-
-            } else if (item.getmType() == ItemType.INCOME) {
-                // textViewMoneyChild.setText( item.getmMoney()+" VND" );
-                money = seperate( item.getmMoney() );
-                textViewMoneyChild.setText( money );
-                textViewMoneyChild.setText( String.format( "%,d", Long.parseLong( money ) )+" VND" );
-                //textViewMoneyChild.setText( money +" VND" );
-            }
-
-        } catch (NullPointerException e) {
-
-        }
 
         return convertView;
     }
