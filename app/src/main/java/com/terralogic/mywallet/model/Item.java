@@ -81,17 +81,6 @@ public class Item {
         this.mType = mType;
     }
 
-//    public int getImageCate() {
-//        int result = 0;
-//        MySQLite mySQLite = new MySQLite()
-//
-//        for (GroupItem item : groupItems) {
-//            if (mIdGroup == item.getcIdGroup()) {
-//                result = item.getcImage();
-//            }
-//        }
-//        return result;
-//    }
 
     @Override
     public String toString() {

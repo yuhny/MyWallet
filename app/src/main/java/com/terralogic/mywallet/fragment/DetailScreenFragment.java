@@ -47,22 +47,21 @@ import java.util.function.IntPredicate;
 import java.util.stream.Collectors;
 
 public class DetailScreenFragment extends Fragment {
-    Spinner spinner;
-    ExpandableListAdapter listAdapter;
-    ExpandableListView expListView;
-    List<GroupItem> listDataGroup;
-    HashMap<GroupItem, List<Item>> listDataItem;
-    HashMap<Integer, List<Item>> listId;
+    private Spinner spinner;
+    private ExpandableListAdapter listAdapter;
+    private ExpandableListView expListView;
+    private List<GroupItem> listDataGroup;
+    private HashMap<GroupItem, List<Item>> listDataItem;
+    private HashMap<Integer, List<Item>> listId;
     private Toolbar mToolbar;
-    private TextView mTitle,mMoney;
+    private TextView mTitle, mMoney;
     private TextView mNotify;
+    private String month;
 
-    String month;
 
-    // @RequiresApi(api = Build.VERSION_CODES.M)
-   public void setMonth(String month) {
-       this.month = month;
-   }
+    public void setMonth(String month) {
+        this.month = month;
+    }
 
     @Nullable
     @Override
@@ -74,7 +73,7 @@ public class DetailScreenFragment extends Fragment {
 
         mToolbar = ((ManageActivity) getActivity()).findViewById( R.id.toolbar );
         mTitle = ((ManageActivity) getActivity()).findViewById( R.id.txtTitle );
-        mMoney = ((ManageActivity) getActivity()).findViewById( R.id.textMoneyItem);
+        mMoney = ((ManageActivity) getActivity()).findViewById( R.id.textMoneyItem );
 
         mNotify = view.findViewById( R.id.txtNotify );
 
@@ -97,17 +96,16 @@ public class DetailScreenFragment extends Fragment {
 
         final ArrayAdapter arrayAdapter = new ArrayAdapter( this.getContext(),
                 R.layout.text_view_spinner, arrayMonth );
-        arrayAdapter.setDropDownViewResource( R.layout.support_simple_spinner_dropdown_item);
+        arrayAdapter.setDropDownViewResource( R.layout.support_simple_spinner_dropdown_item );
         spinner.setAdapter( arrayAdapter );
         spinner.setOnItemSelectedListener( onItemSelectedListener() );
 
-        //android.R.layout.simple_spinner_item
-            for (int i = 0; i < arrayMonth.size(); i++) {
-                if (month.equals( arrayMonth.get( i ) )) {
-                    spinner.setSelection( i );
-                }
+        for (int i = 0; i < arrayMonth.size(); i++) {
+            if (month.equals( arrayMonth.get( i ) )) {
+                spinner.setSelection( i );
             }
-            expListView = view.findViewById( R.id.expandableListView );
+        }
+        expListView = view.findViewById( R.id.expandableListView );
 
 
         prepareListData();
@@ -159,8 +157,6 @@ public class DetailScreenFragment extends Fragment {
         for (GroupItem gi : listDataGroupTemp) {
             ArrayList<Item> listItem = new ArrayList<>();
             long money = 0;
-//           String money = "0";
-//            int myMoney ;
 
             for (Item item : itemList) {
                 if (item.getmIdGroup() == gi.getcIdGroup()) {
@@ -175,7 +171,7 @@ public class DetailScreenFragment extends Fragment {
                             money -= Long.parseLong( item.getmMoney() );
 
 
-                            }
+                        }
 
                     }
                 }
