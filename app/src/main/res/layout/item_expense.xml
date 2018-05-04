@@ -29,12 +29,12 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:translationX="0dp"
-                android:weightSum="5">
+                android:weightSum="2">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -72,7 +72,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right|center"
-                    android:layout_weight="3">
+                    android:layout_weight="1">
 
                     <TextView
                         android:id="@+id/txtMoney"
