@@ -1,49 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <RelativeLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <RelativeLayout
+    android:orientation="horizontal">
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        >
+        android:orientation="horizontal"
+        android:weightSum="2">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
             <TextView
+                android:id="@+id/textNameItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textNameItem"
                 android:text="đi ăn"
                 android:textColor="#FF0D0C0C"
-                android:textSize="15sp"
-                />
+                android:textSize="15sp" />
+
             <TextView
+                android:id="@+id/textDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="date"
-
-                android:id="@+id/textDate"/>
+                android:text="date" />
 
         </LinearLayout>
 
-
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="end"
+            android:layout_gravity="center"
+            android:layout_weight="1">
 
-            android:layout_marginTop="10dp"
-            android:text="10000 vnd"
-            android:layout_marginLeft="200dp"
-            android:textColor="#8211E7CB"
-            android:textStyle="bold"
-            android:id="@+id/textMoneyItem"
-            android:layout_alignParentRight="true"/>
+            <TextView
+                android:id="@+id/textMoneyItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10000 vnd"
+                android:textColor="#8211E7CB"
+                android:textStyle="bold" />
 
+        </LinearLayout>
+    </LinearLayout>
 
-    </RelativeLayout>
-
-</RelativeLayout>
+</LinearLayout>

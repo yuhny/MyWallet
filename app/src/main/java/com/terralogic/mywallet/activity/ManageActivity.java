@@ -3,6 +3,7 @@ package com.terralogic.mywallet.activity;
 
 import android.content.DialogInterface;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -71,8 +72,9 @@ public class ManageActivity extends AppCompatActivity {
 
 
     private void addFragment(Fragment fragment) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add( R.id.frameManage, fragment );
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace( R.id.frameManage, fragment );
         transaction.commit();
     }
 

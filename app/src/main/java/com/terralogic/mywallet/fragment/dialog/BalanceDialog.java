@@ -23,6 +23,8 @@ import com.terralogic.mywallet.model.DateUtil;
 import com.terralogic.mywallet.model.Item;
 import com.terralogic.mywallet.model.ItemType;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +41,7 @@ public class BalanceDialog extends Dialog implements View.OnClickListener {
     private Map<String, String> map = DateUtil.MONTH_OF_YEAR;
     private ImageView imageView;
     private MySQLite mySQLite;
+    private NumberFormat format = new DecimalFormat("#,###");
 
     public BalanceDialog(@NonNull Context context, String month) {
         super(context);
@@ -61,7 +64,6 @@ public class BalanceDialog extends Dialog implements View.OnClickListener {
         mySQLite = new MySQLite(getContext());
 
         List<Item> items = mySQLite.getListItem();
-        //Toast.makeText(getContext(), items.size() + "", Toast.LENGTH_SHORT).show();
         for (Item item : items) {
             int thisMonth = (item.getmDate().getMonth() + 1);
             if (item.getmType() == ItemType.INCOME) {
@@ -77,9 +79,9 @@ public class BalanceDialog extends Dialog implements View.OnClickListener {
         moneyBalance = moneyIncome - moneyExpense;
 
         mTitle.setText("Summary for " + map.get(month));
-        mIncome.setText(String.format("%,d", moneyIncome) + " VNĐ");
-        mExpense.setText(String.format("%,d", moneyExpense) + " VNĐ");
-        mBalance.setText(String.format("%,d", moneyBalance) + " VNĐ");
+        mIncome.setText(format.format(moneyIncome) + " VND");
+        mExpense.setText(format.format(moneyExpense) + " VND");
+        mBalance.setText(format.format(moneyBalance) + " VND");
     }
 
     public String getMonth() {
@@ -114,7 +116,7 @@ public class BalanceDialog extends Dialog implements View.OnClickListener {
 
         if (view.getId() == R.id.imgDialog) {
             DetailScreenFragment detailScreenFragment = new DetailScreenFragment();
-            detailScreenFragment.setMonth( map.get(month) );
+            detailScreenFragment.setMonth(map.get(month));
             callFragment(detailScreenFragment);
         }
 

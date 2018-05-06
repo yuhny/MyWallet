@@ -10,42 +10,43 @@ import com.terralogic.mywallet.model.Item;
 import com.terralogic.mywallet.model.ItemType;
 import com.terralogic.mywallet.model.Utils;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 public class ChildViewHolder {
     private TextView textViewNameChild;
     private TextView textViewDateChild;
     private TextView textViewMoneyChild;
+    NumberFormat format = new DecimalFormat("#,###");//fixed format money
 
     public ChildViewHolder(View itemView) {
 
 
-        textViewNameChild = itemView.findViewById( R.id.textNameItem );
-        textViewDateChild = itemView.findViewById( R.id.textDate );
-        textViewMoneyChild = itemView.findViewById( R.id.textMoneyItem );
+        textViewNameChild = itemView.findViewById(R.id.textNameItem);
+        textViewDateChild = itemView.findViewById(R.id.textDate);
+        textViewMoneyChild = itemView.findViewById(R.id.textMoneyItem);
     }
 
 
     public void setDataForItem(Item item) {
         String money;
-        textViewNameChild.setText( item.getmName() );
-        textViewDateChild.setText( DateUtil.getDateStringFromDataObject( item.getmDate() ) );
+        textViewNameChild.setText(item.getmName());
+        textViewDateChild.setText(DateUtil.getDateStringFromDataObject(item.getmDate()));
         if (item.getmType() == ItemType.CONSUM) {
 
 
-            money = Utils.seperate( item.getmMoney() );
-            textViewMoneyChild.setText( money );
-            textViewMoneyChild.setText( String.format( "%,d", Long.parseLong( money ) )
+            money = Utils.seperate(item.getmMoney());
+            textViewMoneyChild.setText(money);
+            textViewMoneyChild.setText(format.format(Long.parseLong(money)) + " VND");//fixed format money
 
-                    + " VND" );
-
-            textViewMoneyChild.setTextColor( Color.argb( 255, 217, 45, 104 )
+            textViewMoneyChild.setTextColor(Color.argb(255, 217, 45, 104)
             );
 
         } else if (item.getmType() == ItemType.INCOME) {
 
-            money = Utils.seperate( item.getmMoney() );
-            textViewMoneyChild.setText( money );
-            textViewMoneyChild.setText( String.format( "%,d", Long.parseLong( money ) )
-                    + " VND" );
+            money = Utils.seperate(item.getmMoney());
+            textViewMoneyChild.setText(money);
+            textViewMoneyChild.setText(format.format(Long.parseLong(money)) + " VND");//fixed format money
 
         }
 
