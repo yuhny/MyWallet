@@ -47,7 +47,7 @@ public class ChildViewHolder {
             money = Utils.seperate(item.getmMoney());
             textViewMoneyChild.setText(money);
             textViewMoneyChild.setText(format.format(Long.parseLong(money)) + " VND");//fixed format money
-
+            textViewMoneyChild.setTextColor(Color.argb(255, 28, 217, 217));
         }
 
 

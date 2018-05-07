@@ -107,7 +107,8 @@ public class ReLogin extends AppCompatActivity {
     }
 
     @OnClick({R.id.buttonNum1,
-            R.id.buttonNum2, R.id.buttonNum3, R.id.buttonNum4, R.id.buttonNum5})
+            R.id.buttonNum2, R.id.buttonNum3, R.id.buttonNum4, R.id.buttonNum5,R.id.buttonNum6,
+    R.id.buttonNum7,R.id.buttonNum8,R.id.buttonNum9,R.id.buttonNum0})
 
     public void onClick(Button button) {
 
