@@ -47,6 +47,7 @@ public class ChildViewHolder {
             textViewMoneyChild.setText(money);
             textViewMoneyChild.setText(Utils.parseToCash(Long.parseLong(money)) + " VND");//fixed format money
 
+
         }
 
 
