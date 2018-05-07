@@ -38,16 +38,14 @@ public class ChildViewHolder {
             textViewMoneyChild.setText(money);
             textViewMoneyChild.setText(Utils.parseToCash(Long.parseLong(money)) + " VND");//fixed format money
 
-            textViewMoneyChild.setTextColor(Color.argb(255, 217, 45, 104)
-            );
+            textViewMoneyChild.setTextColor(Color.parseColor("#FF4081"));//fixed text color
 
         } else if (item.getmType() == ItemType.INCOME) {
 
             money = Utils.seperate(item.getmMoney());
             textViewMoneyChild.setText(money);
             textViewMoneyChild.setText(Utils.parseToCash(Long.parseLong(money)) + " VND");//fixed format money
-
-
+            textViewMoneyChild.setTextColor(Color.parseColor("#40E0D0"));//fixed text color
         }
 
 
