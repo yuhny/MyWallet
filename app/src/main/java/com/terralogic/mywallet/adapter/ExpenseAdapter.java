@@ -1,8 +1,10 @@
 package com.terralogic.mywallet.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.CountDownTimer;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -15,9 +17,12 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.terralogic.mywallet.R;
+import com.terralogic.mywallet.activity.ManageActivity;
 import com.terralogic.mywallet.adapter.viewHolder.ItemViewHolder;
 import com.terralogic.mywallet.database.MySQLite;
 import com.terralogic.mywallet.fragment.AddNewFragment;
+import com.terralogic.mywallet.fragment.WalletManageFragment;
+import com.terralogic.mywallet.fragment.fragment;
 import com.terralogic.mywallet.model.DateUtil;
 import com.terralogic.mywallet.model.GroupItem;
 import com.terralogic.mywallet.model.Item;
@@ -31,7 +36,8 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ItemViewHolder> {
     private Context context;
     private List<Item> itemList;
     private MySQLite mySQLite;
-
+    private Item item;
+    private FloatingActionButton mFab;
 
     public ExpenseAdapter(Context context, List<Item> expenseList) {
         this.context = context;
@@ -44,6 +50,9 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ItemViewHolder> {
         LayoutInflater inflater = LayoutInflater.from(context);
 
         View v = inflater.inflate(R.layout.item_expense, null);
+        mFab = ((Activity) context).findViewById(R.id.fabAddNew);
+
+
         v.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));
         ItemViewHolder viewHolder = new ItemViewHolder(v);
 
@@ -52,12 +61,10 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ItemViewHolder> {
 
     @Override
     public void onBindViewHolder(final ItemViewHolder holder, final int position) {
-        final Item item = itemList.get(position);
+        item = itemList.get(position);
 
         final Animation animOpenOutside = AnimationUtils.loadAnimation(context, R.anim.anim_moveleft_outside);
         final Animation animCloseOutside = AnimationUtils.loadAnimation(context, R.anim.anim_moveright_outside);
-
-        NumberFormat format = new DecimalFormat("#,###");
 
         holder.getmContextExpense().setText(limit(item.getmName(), 10));
         holder.getmDateCreate().setText(DateUtil.getDateStringFromDataObject(item.getmDate()));
@@ -80,10 +87,9 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ItemViewHolder> {
                 new CountDownTimer(3000, 1000) {
                     @Override
                     public void onTick(long l) {
-
                         holder.getmInside().setTranslationX(-widthOutside);
                         holder.getmOutside().setTranslationX(-widthOutside);
-
+                        mFab.setVisibility(View.GONE);
                     }
 
                     @Override
@@ -92,6 +98,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ItemViewHolder> {
                         holder.getmOutside().setTranslationX(0);
                         holder.getmInside().startAnimation(animCloseOutside);
                         holder.getmOutside().startAnimation(animCloseOutside);
+                        mFab.setVisibility(View.VISIBLE);
                     }
                 }.start();
 
@@ -146,6 +153,10 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ItemViewHolder> {
 
     public void setItemList(List<Item> itemList) {
         this.itemList = itemList;
+    }
+
+    public Item getItem() {
+        return item;
     }
 
     public String limit(String value, int length) {

@@ -88,8 +88,18 @@ public class AddNewFragment extends Fragment implements View.OnClickListener, Ad
 
         initListCate();
         initSpinner();
+        clickImageCate();
 
         return view;
+    }
+
+    private void clickImageCate() {
+        mImgAddCate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mSpinnerCate.performClick();
+            }
+        });
     }
 
     private void initSpinner() {
@@ -166,6 +176,7 @@ public class AddNewFragment extends Fragment implements View.OnClickListener, Ad
         mImgAddCate = view.findViewById(R.id.imageAddCate);
 
         mEditAddDate = view.findViewById(R.id.editDate);
+
         mEditAddNote = view.findViewById(R.id.editNote);
 
         mSpinnerCate = view.findViewById(R.id.spinnerCate);
@@ -223,7 +234,19 @@ public class AddNewFragment extends Fragment implements View.OnClickListener, Ad
         mImgAddDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), R.style.DatePicker, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        mEditAddDate.setText(day + "-" + (month + 1) + "-" + year);
+                    }
+                }, year, month, day);
+//                datePickerDialog
+                datePickerDialog.show();
+            }
+        });
+        mEditAddDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), R.style.DatePicker, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {

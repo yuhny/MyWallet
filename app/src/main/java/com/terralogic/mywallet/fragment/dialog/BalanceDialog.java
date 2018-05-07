@@ -83,21 +83,10 @@ public class BalanceDialog extends Dialog implements View.OnClickListener {
 
 //        format.setCurrency(Currency.getInstance("US"));
 
-        if (moneyIncome == 0) {
-            mIncome.setText("0,000 VND");
-        } else {
-            mIncome.setText(Utils.parseToCash(moneyIncome) + " VND");
-        }
-        if (moneyExpense == 0) {
-            mExpense.setText("0,000 VND");
-        } else {
-            mExpense.setText(Utils.parseToCash(moneyExpense) + " VND");
-        }
-        if (moneyBalance == 0) {
-            mBalance.setText("0,000 VND");
-        } else {
-            mBalance.setText(Utils.parseToCash(moneyBalance) + " VND");
-        }
+
+        mIncome.setText(Utils.parseToCash(moneyIncome) + " VND");
+        mExpense.setText(Utils.parseToCash(moneyExpense) + " VND");
+        mBalance.setText(Utils.parseToCash(moneyBalance) + " VND");
 
         mTitle.setText("Summary for " + map.get(month));
 

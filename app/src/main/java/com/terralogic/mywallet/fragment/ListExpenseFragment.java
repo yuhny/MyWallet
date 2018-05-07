@@ -2,6 +2,7 @@ package com.terralogic.mywallet.fragment;
 
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,10 +14,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import com.terralogic.mywallet.R;
 import com.terralogic.mywallet.adapter.ExpenseAdapter;
+import com.terralogic.mywallet.adapter.viewHolder.ItemViewHolder;
 import com.terralogic.mywallet.database.MySQLite;
 import com.terralogic.mywallet.model.Item;
 
@@ -32,10 +36,6 @@ public class ListExpenseFragment extends Fragment {
     public ListExpenseFragment() {
     }
 
-    public List<Item> getItems() {
-        return items;
-    }
-
     public void setItems(List<Item> items) {
         this.items = items;
     }
@@ -43,18 +43,19 @@ public class ListExpenseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate( R.layout.fragment_list_expense, container, false );
 
-        view.setLayoutParams( new RecyclerView.LayoutParams( RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.MATCH_PARENT ) );
+        View view = inflater.inflate(R.layout.fragment_list_expense, container, false);
 
-        recyclerView = (RecyclerView) view.findViewById( R.id.listExpenses );
-        recyclerView.setHasFixedSize( true );
-        recyclerView.setLayoutManager( new LinearLayoutManager( view.getContext(), LinearLayoutManager.VERTICAL, false ) );
+        view.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.MATCH_PARENT));
 
-        adapter = new ExpenseAdapter( this.getContext(), items );
-        mySQLite = new MySQLite( getContext() );
+        recyclerView = (RecyclerView) view.findViewById(R.id.listExpenses);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
 
-        recyclerView.setAdapter( adapter );
+        adapter = new ExpenseAdapter(this.getContext(), items);
+
+        mySQLite = new MySQLite(getContext());
+        recyclerView.setAdapter(adapter);
 
         return view;
     }
@@ -63,14 +64,14 @@ public class ListExpenseFragment extends Fragment {
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
 
-        transaction.setCustomAnimations( R.anim.anim_in_right, R.anim.anim_out_left, R.anim.anim_in_left, R.anim.anim_to_right );
-        transaction.replace( R.id.frameManage, fragment );
-        transaction.addToBackStack( fragment.getClass().getSimpleName() );
+        transaction.setCustomAnimations(R.anim.anim_in_right, R.anim.anim_out_left, R.anim.anim_in_left, R.anim.anim_to_right);
+        transaction.replace(R.id.frameManage, fragment);
+        transaction.addToBackStack(fragment.getClass().getSimpleName());
         transaction.commit();
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
+        super.onCreate(savedInstanceState);
     }
 }

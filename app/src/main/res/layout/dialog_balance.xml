@@ -2,54 +2,62 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FFFFFF"
-   >
+    android:background="#FFFFFF">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/background_dialog">
+        android:background="@drawable/background_dialog"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/layoutSummary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:background="@color/colorGrey"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/txtDialogTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Sumary for"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/imgDialog"
-
                 android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="right"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/layoutSummary"
                 android:src="@drawable/view_details" />
 
-            <TextView
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:id="@+id/txtDialogTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Sumary for"
-                android:textColor="@color/colorBlack"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:background="@color/colorGrey"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
@@ -76,6 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginBottom="20dp"
             android:orientation="horizontal"
             android:weightSum="2">
 
@@ -83,9 +92,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:orientation="vertical"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:orientation="vertical">
+                android:paddingRight="20dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -105,16 +114,16 @@
                     android:gravity="center"
                     android:text="0,000 VNĐ"
                     android:textColor="@color/turquoise"
-                    android:textSize="20dp" />
+                    android:textSize="15dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingRight="20dp"
+                android:orientation="vertical"
                 android:paddingLeft="20dp"
-                android:orientation="vertical">
+                android:paddingRight="20dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -134,7 +143,7 @@
                     android:gravity="center"
                     android:text="0,000 VNĐ"
                     android:textColor="@color/colorAccent"
-                    android:textSize="20dp" />
+                    android:textSize="15dp" />
             </LinearLayout>
 
         </LinearLayout>
