@@ -349,16 +349,12 @@ public class AddNewFragment extends Fragment implements View.OnClickListener, Ad
             deleteNumber();
         }
         if (view == btnOkay) {
-            if (mEditAddNote.getText().toString() == null || mEditAddNote.getText().toString().length() == 0) {
-                Toast.makeText(getContext(), "Please enter the note!", Toast.LENGTH_SHORT).show();
+            if (item != null) {
+                editItemToDatabase();
             } else {
-                if (item != null) {
-                    editItemToDatabase();
-                } else {
-                    addItemToDatabase();
-                }
-                clear();
+                addItemToDatabase();
             }
+            clear();
         }
     }
 

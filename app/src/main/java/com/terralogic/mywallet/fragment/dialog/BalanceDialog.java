@@ -3,6 +3,7 @@ package com.terralogic.mywallet.fragment.dialog;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -81,12 +82,18 @@ public class BalanceDialog extends Dialog implements View.OnClickListener {
         }
         moneyBalance = moneyIncome - moneyExpense;
 
-//        format.setCurrency(Currency.getInstance("US"));
-
-
         mIncome.setText(Utils.parseToCash(moneyIncome) + " VND");
         mExpense.setText(Utils.parseToCash(moneyExpense) + " VND");
         mBalance.setText(Utils.parseToCash(moneyBalance) + " VND");
+
+        if(moneyBalance>0){
+            mBalance.setText(Utils.parseToCash(Math.abs(moneyBalance)) + " VND");
+            mBalance.setTextColor(Color.parseColor("#40E0D0"));
+        }
+        if(moneyBalance<0){
+            mBalance.setText(Utils.parseToCash(Math.abs(moneyBalance)) + " VND");
+            mBalance.setTextColor(Color.parseColor("#FF4081"));
+        }
 
         mTitle.setText("Summary for " + map.get(month));
 
@@ -115,8 +122,6 @@ public class BalanceDialog extends Dialog implements View.OnClickListener {
         transaction.addToBackStack(fragment.getClass().getSimpleName());
         transaction.commit();
         dismiss();
-
-
     }
 
     @Override

@@ -13,4 +13,7 @@
     <string name="app_version" >App version here</string>
     <string name="pref_name" >com.terralogic.mywallet</string>
     <string name="vnd">VND</string>
+    <string name="expense">Expense</string>
+    <string name="income">Income</string>
+    <string name="balance">Balance</string>
 </resources>

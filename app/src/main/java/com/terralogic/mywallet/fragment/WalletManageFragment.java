@@ -126,7 +126,7 @@ public class WalletManageFragment extends Fragment {
                 dialog.getWindow().setGravity(Gravity.CENTER);
                 dialog.show();
 
-                int width = (int) (getResources().getDisplayMetrics().widthPixels * 0.90);
+                int width = (int) (getResources().getDisplayMetrics().widthPixels * 0.7);
 
                 dialog.getWindow().setLayout(width, Toolbar.LayoutParams.WRAP_CONTENT);
             }
