@@ -22,7 +22,9 @@ import com.terralogic.mywallet.fragment.fragment;
 import com.terralogic.mywallet.model.DateUtil;
 import com.terralogic.mywallet.model.Item;
 import com.terralogic.mywallet.model.ItemType;
+import com.terralogic.mywallet.model.Utils;
 
+import java.text.ChoiceFormat;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Currency;
@@ -84,17 +86,17 @@ public class BalanceDialog extends Dialog implements View.OnClickListener {
         if (moneyIncome == 0) {
             mIncome.setText("0,000 VND");
         } else {
-            mIncome.setText(format.format(moneyIncome) + " VND");
+            mIncome.setText(Utils.parseToCash(moneyIncome) + " VND");
         }
         if (moneyExpense == 0) {
             mExpense.setText("0,000 VND");
         } else {
-            mExpense.setText(format.format(moneyExpense) + " VND");
+            mExpense.setText(Utils.parseToCash(moneyExpense) + " VND");
         }
         if (moneyBalance == 0) {
             mBalance.setText("0,000 VND");
         } else {
-            mBalance.setText(format.format(moneyBalance) + " VND");
+            mBalance.setText(Utils.parseToCash(moneyBalance) + " VND");
         }
 
         mTitle.setText("Summary for " + map.get(month));

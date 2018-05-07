@@ -17,7 +17,6 @@ public class ChildViewHolder {
     private TextView textViewNameChild;
     private TextView textViewDateChild;
     private TextView textViewMoneyChild;
-    NumberFormat format = new DecimalFormat("#,###");//fixed format money
 
     public ChildViewHolder(View itemView) {
 
@@ -37,7 +36,7 @@ public class ChildViewHolder {
 
             money = Utils.seperate(item.getmMoney());
             textViewMoneyChild.setText(money);
-            textViewMoneyChild.setText(format.format(Long.parseLong(money)) + " VND");//fixed format money
+            textViewMoneyChild.setText(Utils.parseToCash(Long.parseLong(money)) + " VND");//fixed format money
 
             textViewMoneyChild.setTextColor(Color.argb(255, 217, 45, 104)
             );
@@ -46,7 +45,7 @@ public class ChildViewHolder {
 
             money = Utils.seperate(item.getmMoney());
             textViewMoneyChild.setText(money);
-            textViewMoneyChild.setText(format.format(Long.parseLong(money)) + " VND");//fixed format money
+            textViewMoneyChild.setText(Utils.parseToCash(Long.parseLong(money)) + " VND");//fixed format money
 
         }
 

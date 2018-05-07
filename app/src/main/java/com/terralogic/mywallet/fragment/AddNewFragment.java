@@ -31,6 +31,7 @@ import com.terralogic.mywallet.model.DateUtil;
 import com.terralogic.mywallet.model.GroupItem;
 import com.terralogic.mywallet.model.Item;
 import com.terralogic.mywallet.model.ItemType;
+import com.terralogic.mywallet.model.Utils;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -376,10 +377,10 @@ public class AddNewFragment extends Fragment implements View.OnClickListener, Ad
 
         resultMoney = Long.parseLong(resultMoney) + "";
         if (resultMoney.length() > 8) {
-            mTxtAddMoney.setText(format.format(Long.parseLong(resultMoney)));
+            mTxtAddMoney.setText(Utils.parseToCash(Long.parseLong(resultMoney)));
         } else {
             resultMoney += num;
-            mTxtAddMoney.setText(format.format(Long.parseLong(resultMoney)));
+            mTxtAddMoney.setText(Utils.parseToCash(Long.parseLong(resultMoney)));
         }
     }
 
