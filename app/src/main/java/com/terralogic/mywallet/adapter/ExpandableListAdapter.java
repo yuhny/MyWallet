@@ -70,13 +70,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         return false;
     }
 
-    private String seperate(String s) {
-
-        StringBuilder builder = new StringBuilder( s );
-
-        s = builder.toString();
-        return s;
-    }
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView,

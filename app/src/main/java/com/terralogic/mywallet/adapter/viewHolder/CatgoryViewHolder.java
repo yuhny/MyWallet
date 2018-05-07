@@ -38,7 +38,7 @@ public class CatgoryViewHolder {
 
             money = Utils.seperate(groupItem.getcMoney());
             grTextView2.setText(money);
-            grTextView2.setText(format.format(Math.abs(Long.parseLong(money)))+ " VND");//fixed format money
+            grTextView2.setText(format.format(Math.abs(Long.parseLong(money)))+ " VND");
 
             grTextView2.setTextColor(Color.argb(255, 217, 45, 104));
         } else if (Long.parseLong(groupItem.getcMoney()) > 0) {
@@ -46,7 +46,7 @@ public class CatgoryViewHolder {
 
             money = Utils.seperate(groupItem.getcMoney());
             grTextView2.setText(money);
-            grTextView2.setText(format.format(Long.parseLong(money)) + " VND");//fixed format money
+            grTextView2.setText(format.format(Long.parseLong(money)) + " VND");
 
             grTextView2.setTextColor(Color.argb(255, 0, 255, 251));
         }
