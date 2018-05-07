@@ -78,10 +78,24 @@ public class BalanceDialog extends Dialog implements View.OnClickListener {
         }
         moneyBalance = moneyIncome - moneyExpense;
 
+        if (moneyIncome == 0) {
+            mIncome.setText("0,000 VND");
+        } else {
+            mIncome.setText(format.format(moneyIncome) + " VND");
+        }
+        if (moneyExpense == 0) {
+            mExpense.setText("0,000 VND");
+        } else {
+            mExpense.setText(format.format(moneyExpense) + " VND");
+        }
+        if (moneyBalance == 0) {
+            mBalance.setText("0,000 VND");
+        } else {
+            mBalance.setText(format.format(moneyBalance) + " VND");
+        }
+
         mTitle.setText("Summary for " + map.get(month));
-        mIncome.setText(format.format(moneyIncome) + " VND");
-        mExpense.setText(format.format(moneyExpense) + " VND");
-        mBalance.setText(format.format(moneyBalance) + " VND");
+
     }
 
     public String getMonth() {
