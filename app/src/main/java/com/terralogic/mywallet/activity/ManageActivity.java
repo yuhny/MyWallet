@@ -74,7 +74,7 @@ public class ManageActivity extends AppCompatActivity {
     private void addFragment(Fragment fragment) {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace( R.id.frameManage, fragment );
+        transaction.add( R.id.frameManage, fragment );
         transaction.commit();
     }
 

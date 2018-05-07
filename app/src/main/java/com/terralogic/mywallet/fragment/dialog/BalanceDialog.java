@@ -25,6 +25,7 @@ import com.terralogic.mywallet.model.ItemType;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Currency;
 import java.util.List;
 import java.util.Map;
 
@@ -77,6 +78,8 @@ public class BalanceDialog extends Dialog implements View.OnClickListener {
             }
         }
         moneyBalance = moneyIncome - moneyExpense;
+
+//        format.setCurrency(Currency.getInstance("US"));
 
         if (moneyIncome == 0) {
             mIncome.setText("0,000 VND");
