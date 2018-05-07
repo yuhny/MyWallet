@@ -94,7 +94,6 @@ public class BalanceDialog extends Dialog implements View.OnClickListener {
             mBalance.setText(Utils.parseToCash(Math.abs(moneyBalance)) + " VND");
             mBalance.setTextColor(Color.parseColor("#FF4081"));
         }
-
         mTitle.setText("Summary for " + map.get(month));
 
     }
