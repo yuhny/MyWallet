@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ic_expandable_arrow_up"
+        android:state_empty="true"
+        android:height="30dp"
+        android:width="30dp"
+
+        />
+
+    <item android:drawable="@drawable/ic_expandable_arrow_down2"
+        android:state_expanded="true"
+        android:height="30dp"
+        android:width="30dp" />
+
+
+    />
+</selector>
+
+

@@ -11,9 +11,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ExpandableListAdapter;
@@ -63,6 +65,7 @@ public class DetailScreenFragment extends Fragment {
         this.month = month;
     }
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -105,7 +108,13 @@ public class DetailScreenFragment extends Fragment {
                 spinner.setSelection( i );
             }
         }
+//
         expListView = view.findViewById( R.id.expandableListView );
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            expListView.setIndicatorBounds(0,50);
+        } else {
+            expListView.setIndicatorBoundsRelative(0, 50);
+        }
 
 
         prepareListData();
@@ -145,7 +154,11 @@ public class DetailScreenFragment extends Fragment {
             }
         };
     }
+    public int getPixelValue(int dp) {
 
+        final float scale = getResources().getDisplayMetrics().density;
+        return (int) (dp * scale + 0.5f);
+    }
     private void prepareListData() {
         listDataGroup = new ArrayList<>();
         listDataItem = new HashMap<GroupItem, List<Item>>();
@@ -188,6 +201,7 @@ public class DetailScreenFragment extends Fragment {
         }
 
     }
+
 
 
 }
