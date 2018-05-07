@@ -21,6 +21,7 @@ import com.terralogic.mywallet.fragment.AddNewFragment;
 import com.terralogic.mywallet.model.DateUtil;
 import com.terralogic.mywallet.model.GroupItem;
 import com.terralogic.mywallet.model.Item;
+import com.terralogic.mywallet.model.Utils;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -60,7 +61,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ItemViewHolder> {
 
         holder.getmContextExpense().setText(limit(item.getmName(), 10));
         holder.getmDateCreate().setText(DateUtil.getDateStringFromDataObject(item.getmDate()));
-        holder.getmMoney().setText(format.format(Long.parseLong(item.getmMoney())) + " VND");
+        holder.getmMoney().setText(Utils.parseToCash(Long.parseLong(item.getmMoney())) + " VND");
 
         holder.getmImageCate().setImageDrawable(context.getResources().getDrawable(getImageCate(item.getmIdGroup())));
         if (item.getmType().getValues() == 0) {
