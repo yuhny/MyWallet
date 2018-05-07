@@ -388,7 +388,7 @@ public class AddNewFragment extends Fragment implements View.OnClickListener, Ad
         item.setmIdGroup(itemSpinner.getcIdGroup());
         item.setmType(isIncome ? ItemType.INCOME : ItemType.CONSUM);
         item.setmMoney(resultMoney + "000");
-        item.setmName(mEditAddNote.getText().toString());
+        item.setmName(mEditAddNote.getText().toString().replace("\n", ""));
         mySQLite.addItem(item);
     }
 
