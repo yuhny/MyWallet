@@ -71,49 +71,49 @@ public class ReLogin extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_main );
-        ButterKnife.bind( this );
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
-        textView.setText( "Reenter your pass" );
-        mTitle.setText( "Password Lock" );
+        textView.setText("Reenter your pass");
+        mTitle.setText("Password Lock");
 
-        firstPass = getIntent().getStringExtra( "first_pass" );
+        firstPass = getIntent().getStringExtra("first_pass");
 
-        radioBtn1.setEnabled( false );
-        radioBtn2.setEnabled( false );
-        radioBtn3.setEnabled( false );
-        radioBtn4.setEnabled( false );
-        radioBtn5.setEnabled( false );
+        radioBtn1.setEnabled(false);
+        radioBtn2.setEnabled(false);
+        radioBtn3.setEnabled(false);
+        radioBtn4.setEnabled(false);
+        radioBtn5.setEnabled(false);
     }
 
     private void fillPwdRadioBtn(int countClick) {
         switch (countClick) {
             case 0:
-                radioBtn1.setChecked( true );
+                radioBtn1.setChecked(true);
                 break;
             case 1:
-                radioBtn2.setChecked( true );
+                radioBtn2.setChecked(true);
                 break;
             case 2:
-                radioBtn3.setChecked( true );
+                radioBtn3.setChecked(true);
                 break;
             case 3:
-                radioBtn4.setChecked( true );
+                radioBtn4.setChecked(true);
                 break;
             case 4:
-                radioBtn5.setChecked( true );
+                radioBtn5.setChecked(true);
         }
     }
 
     @OnClick({R.id.buttonNum1,
-            R.id.buttonNum2, R.id.buttonNum3, R.id.buttonNum4, R.id.buttonNum5,R.id.buttonNum6,
-    R.id.buttonNum7,R.id.buttonNum8,R.id.buttonNum9,R.id.buttonNum0})
+            R.id.buttonNum2, R.id.buttonNum3, R.id.buttonNum4, R.id.buttonNum5, R.id.buttonNum6,
+            R.id.buttonNum7, R.id.buttonNum8, R.id.buttonNum9, R.id.buttonNum0})
 
     public void onClick(Button button) {
 
         pwdLetters[mCountClick] = button.getText().toString();
-        fillPwdRadioBtn( mCountClick );
+        fillPwdRadioBtn(mCountClick);
 
         String pwd = "";
         for (int i = 0; i < pwdLetters.length; i++) {
@@ -122,23 +122,23 @@ public class ReLogin extends AppCompatActivity {
             pwd += pwdLetter;
 
         }
-        if (mCountClick == 4 && firstPass.equals( pwd )) {
-            SharedPreferences sharePreferences = getSharedPreferences( getResources().getString(
-                    R.string.pref_name ),
-                    Context.MODE_PRIVATE );
+        if (mCountClick == 4 && firstPass.equals(pwd)) {
+            SharedPreferences sharePreferences = getSharedPreferences(getResources().getString(
+                    R.string.pref_name),
+                    Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharePreferences.edit();
-            editor.putString( "PWD", firstPass );
+            editor.putString("PWD", firstPass);
             editor.commit();
-            Intent intent = new Intent( this, ManageActivity.class );
-            startActivity( intent );
+            Intent intent = new Intent(this, ManageActivity.class);
+            startActivity(intent);
             finish();
-        } else if (mCountClick == 4 && !firstPass.equals( pwd )) {
-            Toast.makeText( getApplicationContext(), "FAIL PASS", Toast.LENGTH_LONG ).show();
-            radioBtn1.setChecked( false );
-            radioBtn2.setChecked( false );
-            radioBtn3.setChecked( false );
-            radioBtn4.setChecked( false );
-            radioBtn5.setChecked( false );
+        } else if (mCountClick == 4 && !firstPass.equals(pwd)) {
+            Toast.makeText(getApplicationContext(), R.string.incorrect_pass, Toast.LENGTH_LONG).show();//edit toast context
+            radioBtn1.setChecked(false);
+            radioBtn2.setChecked(false);
+            radioBtn3.setChecked(false);
+            radioBtn4.setChecked(false);
+            radioBtn5.setChecked(false);
             mCountClick = 0;
             return;
         }

@@ -36,62 +36,62 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @SuppressLint("CutPasteId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_main );
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
 
-        btnNum1 = (Button) findViewById( R.id.buttonNum1 );
-        btnNum2 = (Button) findViewById( R.id.buttonNum2 );
-        btnNum3 = (Button) findViewById( R.id.buttonNum3 );
-        btnNum4 = (Button) findViewById( R.id.buttonNum4 );
-        btnNum5 = (Button) findViewById( R.id.buttonNum5 );
-        btnNum6 = (Button) findViewById( R.id.buttonNum6 );
-        btnNum7 = (Button) findViewById( R.id.buttonNum7 );
-        btnNum8 = (Button) findViewById( R.id.buttonNum8 );
-        btnNum9 = (Button) findViewById( R.id.buttonNum9 );
-        btnNum0 = (Button) findViewById( R.id.buttonNum0 );
+        btnNum1 = (Button) findViewById(R.id.buttonNum1);
+        btnNum2 = (Button) findViewById(R.id.buttonNum2);
+        btnNum3 = (Button) findViewById(R.id.buttonNum3);
+        btnNum4 = (Button) findViewById(R.id.buttonNum4);
+        btnNum5 = (Button) findViewById(R.id.buttonNum5);
+        btnNum6 = (Button) findViewById(R.id.buttonNum6);
+        btnNum7 = (Button) findViewById(R.id.buttonNum7);
+        btnNum8 = (Button) findViewById(R.id.buttonNum8);
+        btnNum9 = (Button) findViewById(R.id.buttonNum9);
+        btnNum0 = (Button) findViewById(R.id.buttonNum0);
 
-        radioBtn1 = (RadioButton) findViewById( R.id.radioNum1 );
-        radioBtn2 = (RadioButton) findViewById( R.id.radioNum2 );
-        radioBtn3 = (RadioButton) findViewById( R.id.radioNum3 );
-        radioBtn4 = (RadioButton) findViewById( R.id.radioNum4 );
-        radioBtn5 = (RadioButton) findViewById( R.id.radioNum5 );
+        radioBtn1 = (RadioButton) findViewById(R.id.radioNum1);
+        radioBtn2 = (RadioButton) findViewById(R.id.radioNum2);
+        radioBtn3 = (RadioButton) findViewById(R.id.radioNum3);
+        radioBtn4 = (RadioButton) findViewById(R.id.radioNum4);
+        radioBtn5 = (RadioButton) findViewById(R.id.radioNum5);
 
 
-        mToolBar = (Toolbar) findViewById( R.id.toolbar );
-        mTitle = (TextView) findViewById( R.id.txtTitle );
+        mToolBar = (Toolbar) findViewById(R.id.toolbar);
+        mTitle = (TextView) findViewById(R.id.txtTitle);
 
         /*
          * author: trile
          * action: set title Toolbar for Activity Relogin
          */
 
-        mTitle.setText( "Password Lock" );
+        mTitle.setText("Password Lock");
 
 
-        radioBtn1.setEnabled( false );
-        radioBtn2.setEnabled( false );
-        radioBtn3.setEnabled( false );
-        radioBtn4.setEnabled( false );
-        radioBtn5.setEnabled( false );
+        radioBtn1.setEnabled(false);
+        radioBtn2.setEnabled(false);
+        radioBtn3.setEnabled(false);
+        radioBtn4.setEnabled(false);
+        radioBtn5.setEnabled(false);
 
-        btnNum1.setOnClickListener( this );
-        btnNum2.setOnClickListener( this );
-        btnNum3.setOnClickListener( this );
-        btnNum4.setOnClickListener( this );
-        btnNum5.setOnClickListener( this );
-        btnNum6.setOnClickListener( this );
-        btnNum7.setOnClickListener( this );
-        btnNum8.setOnClickListener( this );
-        btnNum9.setOnClickListener( this );
-        btnNum0.setOnClickListener( this );
+        btnNum1.setOnClickListener(this);
+        btnNum2.setOnClickListener(this);
+        btnNum3.setOnClickListener(this);
+        btnNum4.setOnClickListener(this);
+        btnNum5.setOnClickListener(this);
+        btnNum6.setOnClickListener(this);
+        btnNum7.setOnClickListener(this);
+        btnNum8.setOnClickListener(this);
+        btnNum9.setOnClickListener(this);
+        btnNum0.setOnClickListener(this);
 
 
         // Checking pwd exitence
-        SharedPreferences sharePreferences = getSharedPreferences( getResources().getString
-                        ( R.string.pref_name ),
-                Context.MODE_PRIVATE );
-        oldPassword = sharePreferences.getString( "PWD", null );
+        SharedPreferences sharePreferences = getSharedPreferences(getResources().getString
+                        (R.string.pref_name),
+                Context.MODE_PRIVATE);
+        oldPassword = sharePreferences.getString("PWD", null);
 
     }
 
@@ -99,19 +99,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void fillPwdRadioBtn(int countClick) {
         switch (countClick) {
             case 0:
-                radioBtn1.setChecked( true );
+                radioBtn1.setChecked(true);
                 break;
             case 1:
-                radioBtn2.setChecked( true );
+                radioBtn2.setChecked(true);
                 break;
             case 2:
-                radioBtn3.setChecked( true );
+                radioBtn3.setChecked(true);
                 break;
             case 3:
-                radioBtn4.setChecked( true );
+                radioBtn4.setChecked(true);
                 break;
             case 4:
-                radioBtn5.setChecked( true );
+                radioBtn5.setChecked(true);
         }
     }
 
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         pwdLetters[mCountClick] = ((Button) view).getText().toString();
-        fillPwdRadioBtn( mCountClick );
+        fillPwdRadioBtn(mCountClick);
 
 
         String pwd = "";
@@ -133,24 +133,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         if (mCountClick == 4 && oldPassword == null) {
-            Intent i = new Intent( this, ReLogin.class );
-            i.putExtra( "first_pass", pwd );
-            startActivity( i );
+            Intent i = new Intent(this, ReLogin.class);
+            i.putExtra("first_pass", pwd);
+            startActivity(i);
             finish();
 
         } else if (mCountClick == 4 && oldPassword != null) {
-            if (oldPassword.equals( pwd )) {
-                Intent i = new Intent( this, ManageActivity.class );
-                startActivity( i );
+            if (oldPassword.equals(pwd)) {
+                Intent i = new Intent(this, ManageActivity.class);
+                startActivity(i);
                 finish();
             } else {
-                Toast.makeText( getApplicationContext(), "FAIL PASS", Toast.LENGTH_LONG ).show();
+                Toast.makeText(getApplicationContext(), R.string.incorrect_pass, Toast.LENGTH_LONG).show();//edit toast context
                 mCountClick = 0;
-                radioBtn1.setChecked( false );
-                radioBtn2.setChecked( false );
-                radioBtn3.setChecked( false );
-                radioBtn4.setChecked( false );
-                radioBtn5.setChecked( false );
+                radioBtn1.setChecked(false);
+                radioBtn2.setChecked(false);
+                radioBtn3.setChecked(false);
+                radioBtn4.setChecked(false);
+                radioBtn5.setChecked(false);
                 return;
             }
 

@@ -9,11 +9,12 @@
     <string name="add_income">INCOME</string>
     <string name="add_expense">EXPENSE</string>
     <string name="hint_note">Enter your note</string>
-    <string name="app_info" >App info hereApp info hereApp info hereApp info hereApp info hereApp info hereApp info hereApp info hereApp info hereApp info here</string>
-    <string name="app_version" >App version here</string>
+    <string name="app_info" >This is Terralogic internship app.This program is free software written by Tri Le and Thuy Hoang</string>
+    <string name="app_version" >My Wallet version 1.0</string>
     <string name="pref_name" >com.terralogic.mywallet</string>
     <string name="vnd">VND</string>
     <string name="expense">Expense</string>
     <string name="income">Income</string>
     <string name="balance">Balance</string>
+    <string name="incorrect_pass">Incorrect password</string>
 </resources>
