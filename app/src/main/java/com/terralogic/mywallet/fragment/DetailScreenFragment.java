@@ -108,12 +108,12 @@ public class DetailScreenFragment extends Fragment {
                 spinner.setSelection( i );
             }
         }
-//
+
         expListView = view.findViewById( R.id.expandableListView );
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            expListView.setIndicatorBounds(0,50);
+            expListView.setIndicatorBounds(0,80);
         } else {
-            expListView.setIndicatorBoundsRelative(0, 50);
+            expListView.setIndicatorBoundsRelative(0, 80);
         }
 
 
